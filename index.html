@@ -136,8 +136,32 @@ tailwind.config = {
 </script>
 <style>
 body { font-family: 'Inter', sans-serif; background-color: #0A0A0A; color: #e5e2e1; }
-.glass-panel { background: rgba(32,31,31,0.4); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
-.glass-panel:hover { transform: translateY(-8px) scale(1.01); border-color: rgba(0,102,255,0.3); box-shadow: 0 20px 40px -10px rgba(0,102,255,0.2); }
+.glass-panel { background: rgba(32,31,31,0.4); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); transform: translateZ(0); }
+.glass-panel:hover { transform: translateY(-8px) scale(1.01) translateZ(0); border-color: rgba(0,102,255,0.3); box-shadow: 0 20px 40px -10px rgba(0,102,255,0.2); }
+/* --- Premium Reveal Animations --- */
+.reveal-up {
+  opacity: 0;
+  transform: translate3d(0, 40px, 0);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-up.active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.95) translate3d(0, 20px, 0);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-scale.active {
+  opacity: 1;
+  transform: scale(1) translate3d(0, 0, 0);
+}
 .glow-button { background: linear-gradient(to right, #0066ff, #4c10cc); box-shadow: 0 0 20px rgba(0,102,255,0.2); transition: all 0.3s ease; }
 .glow-button:hover { box-shadow: 0 0 40px rgba(0,102,255,0.4); transform: translateY(-2px) scale(1.05); }
 .grid-bg-animated {
@@ -264,7 +288,7 @@ body { font-family: 'Inter', sans-serif; background-color: #0A0A0A; color: #e5e2
 <div class="flex flex-col gap-6 group">
 <div class="glass-panel rounded-[2rem] aspect-[9/16] relative overflow-hidden bg-neutral-950 video-container" reveal-scale>
     <div class="absolute inset-0 z-0">
-        <video src="video1.mp4" autoplay loop muted playsinline></video>
+        <video src="video1.mp4" loop muted playsinline preload="none"></video>
     </div>
     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10 transition-opacity group-hover:opacity-50"></div>
     <div class="absolute bottom-6 left-6 z-20">
@@ -281,7 +305,7 @@ body { font-family: 'Inter', sans-serif; background-color: #0A0A0A; color: #e5e2
 <div class="flex flex-col gap-6 group">
 <div class="glass-panel rounded-[2rem] aspect-[9/16] relative overflow-hidden bg-neutral-950 video-container" reveal-scale>
     <div class="absolute inset-0 z-0">
-        <video src="video2.mp4" autoplay loop muted playsinline></video>
+        <video src="video2.mp4" loop muted playsinline preload="none"></video>
     </div>
     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10 transition-opacity group-hover:opacity-50"></div>
     <div class="absolute bottom-6 left-6 z-20">
@@ -298,7 +322,7 @@ body { font-family: 'Inter', sans-serif; background-color: #0A0A0A; color: #e5e2
 <div class="flex flex-col gap-6 group">
 <div class="glass-panel rounded-[2rem] aspect-[9/16] relative overflow-hidden bg-neutral-950 video-container" reveal-scale>
     <div class="absolute inset-0 z-0">
-        <video src="video3.mp4" autoplay loop muted playsinline></video>
+        <video src="video3.mp4" loop muted playsinline preload="none"></video>
     </div>
     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10 transition-opacity group-hover:opacity-50"></div>
     <div class="absolute bottom-6 left-6 z-20">
