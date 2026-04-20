@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Prevent indexing of internal or temporary files if any exist
+Disallow: /scratch/
+Disallow: /design-system/
+
+Sitemap: https://vomtu.com/sitemap.xml
