@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VOMTU - Spots publicitarios profesionales. En 48 horas.</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Cal element-click embed code begins -->
+<script type="text/javascript">
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal;
+      let ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const ns = ar[1];
+        api.q = api.q || [];
+        typeof ns === "string" ? (cal.ns[ns] = api) && p(api, ar) : p(cal, ar);
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", {origin: "https://cal.com"});
+Cal("ui", {"styles":{"branding":{"brandColor":"#0066ff"}},"hideEventTypeDetails":false,"layout":"month_view"});
+
+// Ensure Cal.com iframe doesn't have focus issues
+document.addEventListener("DOMContentLoaded", () => {
+    const style = document.createElement('style');
+    style.innerHTML = `
+        .cal-modal, #cal-embed-hugo-garcia-15min { 
+            z-index: 999999 !important; 
+            pointer-events: auto !important; 
+        }
+        body.cal-open { overflow: hidden !important; }
+    `;
+    document.head.appendChild(style);
+});
+</script>
+<!-- Cal element-click embed code ends -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "secondary-container": "#4c10cc",
+                "background": "#0A0A0A",
+                "on-background": "#e5e2e1",
+                "surface-container-low": "#1c1b1b",
+                "secondary": "#ccbeff",
+                "surface-tint": "#b3c5ff",
+                "surface-container-high": "#2a2a2a",
+                "surface-variant": "#353534",
+                "outline": "#8c90a1",
+                "surface-container": "#201f1f",
+                "inverse-surface": "#e5e2e1",
+                "on-primary": "#002b75",
+                "tertiary": "#d2bbff",
+                "surface": "#131313",
+                "on-secondary": "#340098",
+                "primary-container": "#0066ff",
+                "tertiary-container": "#8848f9",
+                "inverse-primary": "#0054d6",
+                "on-primary-container": "#f8f7ff",
+                "outline-variant": "#424656",
+                "primary": "#b3c5ff",
+                "surface-dim": "#131313",
+                "on-surface-variant": "#c2c6d8",
+                "on-surface": "#e5e2e1",
+                "error-container": "#93000a",
+            },
+            fontFamily: {
+                "headline": ["Inter"],
+                "body": ["Inter"],
+                "label": ["Space Grotesk"]
+            },
+            animation: { 
+                'grid': 'grid 20s linear infinite',
+                'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            },
+            keyframes: { grid: { '0%': { transform: 'translateY(0)' }, '100%': { transform: 'translateY(40px)' } } }
+        }
+    }
+}
+</script>
+<style>
+body { font-family: 'Inter', sans-serif; background-color: #0A0A0A; color: #e5e2e1; }
+.glass-panel { background: rgba(32,31,31,0.4); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
+.glass-panel:hover { transform: translateY(-8px) scale(1.01); border-color: rgba(0,102,255,0.3); box-shadow: 0 20px 40px -10px rgba(0,102,255,0.2); }
+.glow-button { background: linear-gradient(to right, #0066ff, #4c10cc); box-shadow: 0 0 20px rgba(0,102,255,0.2); transition: all 0.3s ease; }
+.glow-button:hover { box-shadow: 0 0 40px rgba(0,102,255,0.4); transform: translateY(-2px) scale(1.05); }
+.grid-bg-animated {
+    position: absolute; inset: -40px;
+    background-image: linear-gradient(to right, rgba(0,102,255,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,102,255,0.08) 1px, transparent 1px);
+    background-size: 40px 40px; animation: grid 20s linear infinite; z-index: 0;
+    mask-image: radial-gradient(circle at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 70%);
+}
+.ambient-glow { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.1; pointer-events: none; }
+.section-divider { border-bottom: 1px solid rgba(255,255,255,0.05); }
+.stars { color: #f59e0b; letter-spacing: 2px; font-size: 14px; }
+.verified-badge { display: inline-flex; align-items: center; gap: 4px; background: rgba(0,102,255,0.1); border: 1px solid rgba(0,102,255,0.2); border-radius: 99px; padding: 2px 8px; font-size: 11px; color: #6699ff; font-family: 'Space Grotesk', sans-serif; font-weight: 600; }
+
+/* Custom Video Integration */
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.4;
+    transition: opacity 0.5s ease;
+}
+.video-container:hover video {
+    opacity: 1;
+}
+</style>
+</head>
+<body class="bg-[#0A0A0A] text-on-surface antialiased overflow-x-hidden">
+
+<!-- NAV -->
+<nav class="fixed top-0 w-full z-50 bg-[#0A0A0A]/40 backdrop-blur-2xl border-b border-white/5">
+<div class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto">
+<a class="font-black tracking-tighter text-neutral-100 uppercase font-headline text-2xl" href="#">VOMTU</a>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-neutral-400 font-medium hover:text-white transition-colors text-sm uppercase tracking-widest" href="#process">Proceso</a>
+<a class="text-neutral-400 font-medium hover:text-white transition-colors text-sm uppercase tracking-widest" href="#work">Trabajos</a>
+<a class="text-neutral-400 font-medium hover:text-white transition-colors text-sm uppercase tracking-widest" href="#services">Precios</a>
+<a class="text-neutral-400 font-medium hover:text-white transition-colors text-sm uppercase tracking-widest" href="#faq">FAQ</a>
+</div>
+<button class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white/5 text-white font-bold hover:bg-white/10 transition-all duration-300 border border-white/10 font-label tracking-wide text-xs cursor-pointer" data-cal-link="hugo-garcia/15min">RESERVA TU DEMO</button>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="relative min-h-screen flex items-center justify-center pt-40 pb-32 px-6 section-divider overflow-hidden">
+<div class="grid-bg-animated"></div>
+<div class="ambient-glow bg-primary-container w-[800px] h-[800px] top-1/4 -left-1/4 animate-pulse-slow"></div>
+<div class="ambient-glow bg-secondary-container w-[700px] h-[700px] bottom-1/4 -right-1/4 animate-pulse-slow" style="animation-delay: -2s"></div>
+<div class="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-container/10 border border-primary-container/20 text-primary-container font-label text-[10px] font-bold tracking-[0.2em] uppercase mb-8">
+    <span class="relative flex h-2 w-2">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2 w-2 bg-primary-container"></span>
+    </span>
+    AI Video Production
+</div>
+<h1 class="font-headline text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-8 text-white uppercase italic">
+    Spots <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-container to-secondary-container">profesionales.</span><br/>En 48 horas.
+</h1>
+<p class="font-body text-xl md:text-2xl text-on-surface-variant max-w-2xl mb-12 leading-relaxed opacity-80">
+    Creamos anuncios con IA que escalan tu tienda online. Sin equipo de producción. Sin esperas. Resultados que se ven.
+</p>
+<div class="flex flex-col sm:flex-row gap-6 mb-20 w-full sm:w-auto">
+<button class="glow-button text-white px-10 py-5 rounded-full font-label font-black text-lg uppercase tracking-tight flex items-center justify-center cursor-pointer" data-cal-link="hugo-garcia/15min" data-cal-config='{"layout":"month_view"}'>RESERVA TU DEMO</button>
+<a class="glass-panel text-white px-10 py-5 rounded-full font-label font-black text-lg uppercase tracking-tight hover:bg-white/10 transition-colors flex items-center justify-center" href="#work">Ver ejemplos</a>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<div class="flex items-center gap-2 font-label text-[10px] font-bold tracking-widest text-on-surface-variant uppercase bg-white/5 px-4 py-2 rounded-full border border-white/5">
+<span class="material-symbols-outlined text-[16px] text-primary-container">bolt</span> 48h entrega</div>
+<div class="flex items-center gap-2 font-label text-[10px] font-bold tracking-widest text-on-surface-variant uppercase bg-white/5 px-4 py-2 rounded-full border border-white/5">
+<span class="material-symbols-outlined text-[16px] text-primary-container">payments</span> Desde 300€</div>
+<div class="flex items-center gap-2 font-label text-[10px] font-bold tracking-widest text-on-surface-variant uppercase bg-white/5 px-4 py-2 rounded-full border border-white/5">
+<span class="material-symbols-outlined text-[16px] text-primary-container">verified</span> +20 tiendas</div>
+</div>
+</div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="py-20 bg-[#0A0A0A] relative section-divider" id="process">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col items-center mb-16">
+    <div class="text-primary-container font-label text-[10px] font-black tracking-[0.3em] uppercase mb-3">Metodología</div>
+    <h2 class="font-headline text-3xl md:text-5xl font-black text-center text-white uppercase italic leading-none">Del briefing al anuncio en <span class="text-primary-container">4 pasos</span></h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="glass-panel p-8 rounded-2xl flex flex-col group relative overflow-hidden">
+<div class="text-6xl font-black text-white/5 absolute -top-4 -right-4 italic">01</div>
+<div class="w-10 h-10 rounded-xl bg-primary-container/10 border border-primary-container/20 flex items-center justify-center mb-6"><span class="text-[10px] font-black text-primary-container font-label">01</span></div>
+<h3 class="font-headline text-xl font-black mb-3 text-white uppercase tracking-tight">Briefing</h3>
+<p class="text-on-surface-variant text-xs leading-relaxed opacity-60">Nos cuentas tu producto, objetivo y estilo deseado en un formulario de 5 min.</p>
+</div>
+<div class="glass-panel p-8 rounded-2xl flex flex-col group relative overflow-hidden">
+<div class="text-6xl font-black text-white/5 absolute -top-4 -right-4 italic">02</div>
+<div class="w-10 h-10 rounded-xl bg-secondary-container/10 border border-secondary-container/20 flex items-center justify-center mb-6"><span class="text-[10px] font-black text-secondary-container font-label">02</span></div>
+<h3 class="font-headline text-xl font-black mb-3 text-white uppercase tracking-tight">Producción</h3>
+<p class="text-on-surface-variant text-xs leading-relaxed opacity-60">Generamos los visuales cinemáticos, locución AI y música a medida.</p>
+</div>
+<div class="glass-panel p-8 rounded-2xl flex flex-col group relative overflow-hidden">
+<div class="text-6xl font-black text-white/5 absolute -top-4 -right-4 italic">03</div>
+<div class="w-10 h-10 rounded-xl bg-primary-container/10 border border-primary-container/20 flex items-center justify-center mb-6"><span class="text-[10px] font-black text-primary-container font-label">03</span></div>
+<h3 class="font-headline text-xl font-black mb-3 text-white uppercase tracking-tight">Revisión</h3>
+<p class="text-on-surface-variant text-xs leading-relaxed opacity-60">Te enviamos una versión preliminar para que ajustes hasta que brille.</p>
+</div>
+<div class="glass-panel p-8 rounded-2xl flex flex-col group relative overflow-hidden">
+<div class="text-6xl font-black text-white/5 absolute -top-4 -right-4 italic">04</div>
+<div class="w-10 h-10 rounded-xl bg-secondary-container/10 border border-secondary-container/20 flex items-center justify-center mb-6"><span class="text-[10px] font-black text-secondary-container font-label">04</span></div>
+<h3 class="font-headline text-xl font-black mb-3 text-white uppercase tracking-tight">Lanzamiento</h3>
+<p class="text-on-surface-variant text-xs leading-relaxed opacity-60">Recibes el anuncio final en menos de 48h listo para publicar y escalar.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- VIDEO SHOWCASE -->
+<section class="py-20 bg-[#0A0A0A] relative section-divider" id="work">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col items-center mb-16">
+    <div class="text-primary-container font-label text-[10px] font-black tracking-[0.3em] uppercase mb-3">Portfolio</div>
+    <h2 class="font-headline text-3xl md:text-5xl font-black text-center text-white uppercase italic leading-none">Spots que <span class="text-primary-container">convierten</span></h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+<!-- Video 1 -->
+<div class="flex flex-col gap-6 group">
+<div class="glass-panel rounded-[2rem] aspect-[9/16] relative overflow-hidden bg-neutral-950 video-container">
+    <div class="absolute inset-0 z-0">
+        <video src="video1.mp4" autoplay loop muted playsinline></video>
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10 transition-opacity group-hover:opacity-50"></div>
+    <div class="absolute bottom-6 left-6 z-20">
+        <div class="flex items-center gap-2 mb-1">
+            <span class="verified-badge text-[9px]">EC-01</span>
+            <span class="text-[9px] font-bold text-white/40 tracking-widest font-label uppercase">Moda B2C</span>
+        </div>
+        <h4 class="text-white font-headline text-xl font-black italic uppercase italic">Tienda Ropa</h4>
+    </div>
+</div>
+</div>
+
+<!-- Video 2 -->
+<div class="flex flex-col gap-6 group">
+<div class="glass-panel rounded-[2rem] aspect-[9/16] relative overflow-hidden bg-neutral-950 video-container">
+    <div class="absolute inset-0 z-0">
+        <video src="video2.mp4" autoplay loop muted playsinline></video>
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10 transition-opacity group-hover:opacity-50"></div>
+    <div class="absolute bottom-6 left-6 z-20">
+        <div class="flex items-center gap-2 mb-1">
+            <span class="verified-badge text-[9px]">EC-02</span>
+            <span class="text-[9px] font-bold text-white/40 tracking-widest font-label uppercase">Moda / Accesorios</span>
+        </div>
+        <h4 class="text-white font-headline text-xl font-black italic uppercase italic">Colección</h4>
+    </div>
+</div>
+</div>
+
+<!-- Video 3 -->
+<div class="flex flex-col gap-6 group">
+<div class="glass-panel rounded-[2rem] aspect-[9/16] relative overflow-hidden bg-neutral-950 video-container">
+    <div class="absolute inset-0 z-0">
+        <video src="video3.mp4" autoplay loop muted playsinline></video>
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10 transition-opacity group-hover:opacity-50"></div>
+    <div class="absolute bottom-6 left-6 z-20">
+        <div class="flex items-center gap-2 mb-1">
+            <span class="verified-badge text-[9px]">EC-03</span>
+            <span class="text-[9px] font-bold text-white/40 tracking-widest font-label uppercase">Nutrición</span>
+        </div>
+        <h4 class="text-white font-headline text-xl font-black italic uppercase italic">Suplementos</h4>
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- PRICING -->
+<section class="py-20 bg-[#0A0A0A] relative section-divider" id="services">
+<div class="max-w-6xl mx-auto px-6">
+<div class="flex flex-col items-center mb-16">
+    <div class="text-primary-container font-label text-[10px] font-black tracking-[0.3em] uppercase mb-3">Inversión</div>
+    <h2 class="font-headline text-3xl md:text-5xl font-black text-center text-white uppercase italic leading-none">Tarifas <span class="text-primary-container">directas</span></h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+
+<div class="glass-panel p-8 rounded-[2rem] flex flex-col h-full border-white/5 hover:border-primary-container/20 transition-all group">
+<h3 class="font-headline text-2xl font-black text-white mb-2 uppercase tracking-tighter italic">Spot Único</h3>
+<div class="flex items-baseline gap-2 mb-8"><span class="text-5xl font-black text-white">€300–800</span></div>
+<div class="w-full h-px bg-white/10 mb-8"></div>
+<ul class="space-y-6 mb-12 flex-grow">
+<li class="flex items-center gap-4 text-on-surface-variant text-sm font-medium"><span class="material-symbols-outlined text-primary-container text-lg">check_circle</span><span>Entrega express 48h</span></li>
+<li class="flex items-center gap-4 text-on-surface-variant text-sm font-medium"><span class="material-symbols-outlined text-primary-container text-lg">check_circle</span><span>2 Rondas de ajustes</span></li>
+<li class="flex items-center gap-4 text-on-surface-variant text-sm font-medium"><span class="material-symbols-outlined text-primary-container text-lg">check_circle</span><span>Formato optimizado para Ads</span></li>
+<li class="flex items-center gap-4 text-on-surface-variant text-sm font-medium opacity-30 italic"><span class="material-symbols-outlined text-lg">close</span><span>Sin prioridad en cola</span></li>
+</ul>
+<button class="w-full py-4 rounded-xl font-label font-black text-center border border-white/20 text-white uppercase tracking-widest text-[10px] hover:bg-white/10 hover:border-white/40 transition-all cursor-pointer" data-cal-link="hugo-garcia/15min" data-cal-config='{"layout":"month_view"}'>Empezar ahora</button>
+</div>
+
+<div class="glass-panel p-8 rounded-[2rem] flex flex-col h-full relative overflow-hidden bg-primary-container/5 border-primary-container/20 group">
+<div class="absolute top-4 right-6 bg-primary-container text-white px-4 py-1 rounded-full text-[9px] font-black tracking-widest uppercase font-label">Elite Choice</div>
+<h3 class="font-headline text-2xl font-black text-white mb-2 uppercase tracking-tighter italic">Retainer Mensual</h3>
+<div class="flex items-baseline gap-2 mb-8"><span class="text-lg text-primary-container font-black uppercase italic">Desde</span><span class="text-5xl font-black text-white">€1.200</span><span class="text-on-surface-variant font-label text-[10px] uppercase tracking-widest">/mes</span></div>
+<div class="w-full h-px bg-primary-container/20 mb-8"></div>
+<ul class="space-y-6 mb-12 flex-grow">
+<li class="flex items-center gap-4 text-white text-sm font-bold"><span class="material-symbols-outlined text-primary-container text-lg">verified</span><span>Producción constante</span></li>
+<li class="flex items-center gap-4 text-white text-sm font-bold"><span class="material-symbols-outlined text-primary-container text-lg">verified</span><span>Revisiones ILIMITADAS</span></li>
+<li class="flex items-center gap-4 text-white text-sm font-bold"><span class="material-symbols-outlined text-primary-container text-lg">verified</span><span>Prioridad máxima</span></li>
+<li class="flex items-center gap-4 text-white text-sm font-bold"><span class="material-symbols-outlined text-primary-container text-lg">verified</span><span>Copywriting psicológico</span></li>
+</ul>
+<button class="glow-button w-full py-4 rounded-xl font-label font-black text-center text-white uppercase tracking-widest text-[10px] cursor-pointer" data-cal-link="hugo-garcia/15min" data-cal-config='{"layout":"month_view"}'>Hablar con estrategia</button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="py-32 bg-[#0A0A0A] relative section-divider">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col items-center mb-24">
+    <div class="text-primary-container font-label text-xs font-black tracking-[0.3em] uppercase mb-4">Feedback</div>
+    <h2 class="font-headline text-4xl md:text-6xl font-black text-center text-white uppercase italic leading-none">Confianza <span class="text-primary-container">Verificada</span></h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+  <div class="glass-panel p-10 rounded-[2rem] flex flex-col justify-between hover:bg-white/5 transition-all">
+    <div>
+      <div class="flex items-center justify-between mb-8">
+        <div class="stars">★★★★★</div>
+        <span class="verified-badge tracking-tighter">✓ CLIENTE VERIFICADO</span>
+      </div>
+      <p class="text-white/90 text-lg font-medium leading-relaxed mb-10 italic">"Llevábamos meses sin escalar porque producir vídeos era carísimo. Con VOMTU hicimos 3 spots en una semana por lo que antes nos costaba uno. El ROAS subió un 40%."</p>
+    </div>
+    <div class="flex items-center gap-4 pt-8 border-t border-white/5">
+      <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-600 to-purple-700 flex items-center justify-center font-black text-white text-sm">AR</div>
+      <div>
+        <p class="font-black text-white text-sm uppercase italic tracking-tight">Alejandro R.</p>
+        <p class="text-[10px] text-neutral-500 font-label font-bold uppercase tracking-widest mt-1">Founder · Streetwear</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="glass-panel p-10 rounded-[2rem] flex flex-col justify-between hover:bg-white/5 transition-all">
+    <div>
+      <div class="flex items-center justify-between mb-8">
+        <div class="stars">★★★★★</div>
+        <span class="verified-badge tracking-tighter">✓ CLIENTE VERIFICADO</span>
+      </div>
+      <p class="text-white/90 text-lg font-medium leading-relaxed mb-10 italic">"Honestamente no esperaba tanta calidad. El spot de TikTok que nos hicieron consiguió 800k visualizaciones orgánicas en 4 días. Ya estamos con el plan mensual."</p>
+    </div>
+    <div class="flex items-center gap-4 pt-8 border-t border-white/5">
+      <div class="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center font-black text-white text-sm">LM</div>
+      <div>
+        <p class="font-black text-white text-sm uppercase italic tracking-tight">Laura M.</p>
+        <p class="text-[10px] text-neutral-500 font-label font-bold uppercase tracking-widest mt-1">CEO · Nutrición</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="glass-panel p-10 rounded-[2rem] flex flex-col justify-between hover:bg-white/5 transition-all">
+    <div>
+      <div class="flex items-center justify-between mb-8">
+        <div class="stars">★★★★★</div>
+        <span class="verified-badge tracking-tighter">✓ CLIENTE VERIFICADO</span>
+      </div>
+      <p class="text-white/90 text-lg font-medium leading-relaxed mb-10 italic">"Pensaba que la IA daría resultados genéricos pero se nota que hay criterio detrás. El briefing fue muy rápido y encajó perfectamente con nuestra marca."</p>
+    </div>
+    <div class="flex items-center gap-4 pt-8 border-t border-white/5">
+      <div class="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-rose-600 flex items-center justify-center font-black text-white text-sm">DC</div>
+      <div>
+        <p class="font-black text-white text-sm uppercase italic tracking-tight">Daniel C.</p>
+        <p class="text-[10px] text-neutral-500 font-label font-bold uppercase tracking-widest mt-1">Founders · Accesorios</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="py-32 bg-[#0A0A0A] relative section-divider" id="faq">
+<div class="max-w-4xl mx-auto px-6">
+<div class="flex flex-col items-center mb-24">
+    <div class="text-primary-container font-label text-xs font-black tracking-[0.3em] uppercase mb-4">FAQ</div>
+    <h2 class="font-headline text-4xl md:text-6xl font-black text-center text-white uppercase italic leading-none">Dudas <span class="text-primary-container">Comunes</span></h2>
+</div>
+<div class="space-y-4">
+<div class="glass-panel rounded-2xl overflow-hidden hover:border-primary-container/20 transition-all">
+<details class="group"><summary class="flex justify-between items-center font-headline font-black italic uppercase italic cursor-pointer list-none p-8 text-xl text-white"><span>¿Necesito imágenes del producto?</span><span class="transition group-open:rotate-180 text-primary-container"><span class="material-symbols-outlined">expand_more</span></span></summary>
+<div class="text-on-surface-variant px-8 pb-8 text-base leading-relaxed opacity-70">No es estrictamente necesario, aunque ayuda. Nuestra IA puede generar visuales realistas basándose en descripciones detalladas de tu producto o imágenes de referencia.</div></details>
+</div>
+<div class="glass-panel rounded-2xl overflow-hidden hover:border-primary-container/20 transition-all">
+<details class="group"><summary class="flex justify-between items-center font-headline font-black italic uppercase italic cursor-pointer list-none p-8 text-xl text-white"><span>¿En qué plataformas funcionan?</span><span class="transition group-open:rotate-180 text-primary-container"><span class="material-symbols-outlined">expand_more</span></span></summary>
+<div class="text-on-surface-variant px-8 pb-8 text-base leading-relaxed opacity-70">Entregamos formatos optimizados para Meta Ads (Instagram/Facebook), TikTok Ads, YouTube Shorts o cualquier otra plataforma vertical u horizontal que necesites.</div></details>
+</div>
+<div class="glass-panel rounded-2xl overflow-hidden hover:border-primary-container/20 transition-all">
+<details class="group"><summary class="flex justify-between items-center font-headline font-black italic uppercase italic cursor-pointer list-none p-8 text-xl text-white"><span>¿Cuántas revisiones incluye?</span><span class="transition group-open:rotate-180 text-primary-container"><span class="material-symbols-outlined">expand_more</span></span></summary>
+<div class="text-on-surface-variant px-8 pb-8 text-base leading-relaxed opacity-70">El plan Spot Único incluye 2 rondas de revisiones. El Retainer Mensual incluye revisiones ilimitadas para asegurar que el resultado sea perfecto y escalable.</div></details>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="py-40 relative overflow-hidden bg-[#0A0A0A]" id="demo">
+<div class="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-primary-container/10 to-secondary-container/20 z-0"></div>
+<div class="ambient-glow bg-primary-container w-[1000px] h-[1000px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20"></div>
+<div class="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center">
+<h2 class="font-headline text-7xl md:text-9xl font-black tracking-tighter mb-12 text-white italic leading-[0.8] uppercase">¿Listo para<br/><span class="text-primary-container">VENDER MÁS</span>?</h2>
+<p class="font-body text-2xl text-on-surface-variant mb-20 max-w-2xl opacity-80 uppercase tracking-tighter">Reserva una llamada gratuita de 20 min. Sin compromiso. Descubre lo que la IA puede hacer por tu ROAS.</p>
+<button class="glow-button text-white px-16 py-8 rounded-full font-label font-black text-4xl uppercase tracking-tighter flex items-center justify-center gap-6 hover:scale-110 transition-transform cursor-pointer" data-cal-link="hugo-garcia/15min" data-cal-config='{"layout":"month_view"}'>
+RESERVA TU DEMO <span class="material-symbols-outlined text-5xl">arrow_forward</span></button>
+<div class="mt-20 flex items-center gap-4 bg-white/5 py-4 px-10 rounded-full border border-white/10">
+    <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+    <p class="text-on-surface-variant text-sm font-black uppercase tracking-widest font-label">Próxima disponibilidad: esta semana</p>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="w-full py-20 border-t border-white/5 bg-black text-white font-headline text-xs tracking-widest uppercase font-bold">
+<div class="flex flex-col md:flex-row justify-between items-center px-10 max-w-7xl mx-auto gap-12">
+<div class="text-3xl font-black tracking-tighter text-white italic">VOMTU</div>
+<div class="text-neutral-500">© 2025 VOMTU. VISIONARY AI.</div>
+<div class="flex gap-12">
+<a class="text-neutral-500 hover:text-white transition-colors" href="privacidad.html">Privacidad</a>
+<a class="text-neutral-500 hover:text-white transition-colors" href="terminos.html">Términos</a>
+</div>
+</div>
+</footer>
+
+<script>
+// Intersection Observer for Videos to make it "Alive"
+const observerOptions = {
+    threshold: 0.5
+};
+
+const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        const video = entry.target;
+        if (entry.isIntersecting) {
+            video.play().catch(() => {
+                // Autoplay might be blocked if not muted
+                video.muted = true;
+                video.play();
+            });
+        } else {
+            video.pause();
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('video').forEach(video => {
+    videoObserver.observe(video);
+});
+</script>
+</body></html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Privacidad - VOMTU</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "background": "#0A0A0A",
+                "primary-container": "#0066ff",
+            },
+            fontFamily: {
+                headline: ["Space Grotesk", "sans-serif"],
+                body: ["Inter", "sans-serif"],
+            }
+        }
+    }
+}
+</script>
+<style>
+    body { background-color: #0A0A0A; color: #e5e2e1; }
+    .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
+</style>
+</head>
+<body class="font-body antialiased selection:bg-primary-container selection:text-white">
+
+<nav class="fixed top-0 w-full z-50 bg-[#0A0A0A]/40 backdrop-blur-2xl border-b border-white/5">
+<div class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto">
+<a class="font-black tracking-tighter text-neutral-100 uppercase font-headline text-2xl italic" href="/">VOMTU</a>
+<a class="text-neutral-400 font-medium hover:text-white transition-colors text-xs uppercase tracking-widest" href="/">← Volver</a>
+</div>
+</nav>
+
+<main class="pt-32 pb-20 px-6">
+<div class="max-w-3xl mx-auto">
+    <h1 class="font-headline text-5xl font-black italic uppercase tracking-tighter mb-12 text-white">Política de <span class="text-primary-container">Privacidad</span></h1>
+    
+    <div class="glass-panel p-10 rounded-3xl space-y-8 text-neutral-400 leading-relaxed">
+        <section>
+            <h2 class="text-white font-headline font-bold text-xl uppercase tracking-tight mb-4">1. Responsable del Tratamiento</h2>
+            <p>VOMTU ("nosotros", "nuestro" o "la Empresa") es responsable del tratamiento de sus datos personales recogidos a través de este sitio web. Nos comprometemos a proteger su privacidad de acuerdo con el Reglamento General de Protección de Datos (RGPD).</p>
+        </section>
+
+        <section>
+            <h2 class="text-white font-headline font-bold text-xl uppercase tracking-tight mb-4">2. Datos que Recogemos</h2>
+            <p>Recogemos información que usted nos proporciona directamente al agendar una sesión de trabajo o demo, incluyendo: nombre, correo electrónico, nombre de la tienda y preferencias de plataforma publicitaria.</p>
+        </section>
+
+        <section>
+            <h2 class="text-white font-headline font-bold text-xl uppercase tracking-tight mb-4">3. Finalidad del Tratamiento</h2>
+            <p>Utilizamos sus datos exclusivamente para gestionar las reservas, preparar las sesiones de consultoría y enviarle información relevante sobre los servicios de producción de spots con IA solicitados.</p>
+        </section>
+
+        <section>
+            <h2 class="text-white font-headline font-bold text-xl uppercase tracking-tight mb-4">4. Derechos del Usuario</h2>
+            <p>Usted tiene derecho a acceder, rectificar, suprimir o limitar el tratamiento de sus datos en cualquier momento. Para ejercer estos derechos, puede ponerse en contacto con nosotros a través de los canales oficiales.</p>
+        </section>
+
+        <section>
+            <h2 class="text-white font-headline font-bold text-xl uppercase tracking-tight mb-4">5. Cookies</h2>
+            <p>Este sitio utiliza cookies técnicas esenciales para el funcionamiento de la web y el sistema de agendado de Cal.com. No utilizamos cookies de rastreo de terceros sin su consentimiento explícito.</p>
+        </section>
+    </div>
+</div>
+</main>
+
+<footer class="w-full py-10 border-t border-white/5 bg-black text-center text-neutral-600 text-[10px] tracking-widest uppercase font-bold">
+    © 2025 VOMTU. VISIONARY AI.
+</footer>
+
+</body></html>
