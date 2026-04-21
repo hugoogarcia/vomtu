@@ -1,18 +1,18 @@
-# Vomtu - Artificial Intelligence Video Production Agency
+# Vomtu - Cinematic Video Production via AI
 
 ## Overview
-Vomtu is a premium audiovisual production agency specializing in creating high-converting video ads (spots) for eCommerce brands using Artificial Intelligence. We eliminate the need for expensive traditional production teams and long waiting times, delivering professional spots in 48 hours.
+Vomtu is a premium "Cinematic Modernism" audiovisual production agency specializing in creating high-converting video ads (spots) for elite eCommerce brands using advanced Artificial Intelligence. We deliver professional, high-fidelity spots in 48 hours, eliminating the friction of traditional production.
 
 ## Services
 We offer specialized video production optimized for vertical formats (TikTok Ads, Instagram Reels/Stories) and horizontal formats (YouTube).
 
 ### 1. Spot Único (One-Off Spot)
-- **Price:** From 300 to 800 EUR.
-- **Description:** Perfect for launching a new product collection or testing a specific offer. Includes advanced AI generation, psychological copywriting, commercial voiceovers, and 2 rounds of revisions. Delivered in 48 hours.
+- **Price:** €300–800.
+- **Description:** High-impact production for collection launches. Includes AI cinematic visuals, precision copywriting, and priority delivery.
 
 ### 2. Retainer Mensual (Monthly Retainer)
-- **Price:** From 1200 EUR/month.
-- **Description:** For aggressive scaling. Constant production of video creatives to avoid ad fatigue. Includes unlimited revisions, maximum priority queue, and strategic alignment with the brand's performance marketing team.
+- **Price:** From €1200/month.
+- **Description:** Scalable creative pipelines for performance marketing. Includes unlimited revisions and strategic account management.
 
 ## Target Audience
 DTC (Direct to Consumer) eCommerce brands focusing on fast scaling. We currently have specialized experience in Fashion/Accessories, General Collections, and Supplements.
@@ -22,5 +22,6 @@ Users can book a 15-minute strategic demo directly via our website seamlessly.
 
 ## Additional Resources
 - Website: https://vomtu.com
+- Pricing Plans: https://vomtu.com/planes.html
 - Privacy Policy: https://vomtu.com/privacidad.html
 - Terms & Conditions: https://vomtu.com/terminos.html

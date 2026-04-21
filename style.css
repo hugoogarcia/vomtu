@@ -28,20 +28,21 @@
 
 :root {
   /* Colors */
-  --bg-dark: #000000;
+  --bg-dark: #010409;
   --bg-grid: rgba(255, 255, 255, 0.05);
-  --accent-base: #7c3aed; /* Vomtu Violet */
-  --accent-glow: rgba(124, 58, 237, 0.6);
-  --text-main: #ffffff;
-  --text-muted: #888888;
+  --accent-base: #0066FF; /* Electric Blue */
+  --accent-glow: rgba(0, 102, 255, 0.6);
+  --text-main: #F0F6FC;
+  --text-muted: #8B949E;
   
   /* Glassmorphism */
   --glass-bg: rgba(255, 255, 255, 0.02);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-border-highlight: rgba(255, 255, 255, 0.2);
+  --glass-border: rgba(240, 246, 252, 0.1);
+  --glass-border-highlight: rgba(240, 246, 252, 0.2);
   
   /* Typography */
   --font-sans: 'Geist Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-headline: 'Cal Sans', sans-serif;
 }
 
 * {
@@ -57,6 +58,19 @@ body {
   overflow-x: hidden;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* Grain Noise Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9999;
+  filter: contrast(120%) brightness(120%);
 }
 
 /* Background Technical Grid */
@@ -208,7 +222,7 @@ body {
 .btn-glass:hover {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
+  box-shadow: 0 0 20px rgba(0, 102, 255, 0.3);
 }
 
 /* Sections */

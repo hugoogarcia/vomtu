@@ -8,41 +8,62 @@
 <link rel="canonical" href="https://vomtu.com/privacidad.html">
 <link rel="icon" type="image/png" href="favicon.png?v=3"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-tailwind.config = {
-    darkMode: "class",
-    theme: {
-        extend: {
-            colors: {
-                "background": "#0A0A0A",
-                "primary-container": "#0066ff",
-            },
-            fontFamily: {
-                headline: ["Space Grotesk", "sans-serif"],
-                body: ["Inter", "sans-serif"],
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+    
+    :root {
+        --background: #010409;
+        --primary: #0066FF;
+        --text-secondary: #8B949E;
+    }
+
+    /* Cal Sans import via Fontsource CDN */
+    @font-face {
+        font-family: 'Cal Sans';
+        src: url('https://cdn.jsdelivr.net/gh/clarkmcc/cal-sans@main/fonts/webfonts/CalSans-SemiBold.woff2') format('woff2');
+        font-weight: 600;
+        font-style: normal;
+    }
+
+    /* Geist Sans import via Fontsource CDN */
+    @font-face {
+        font-family: 'Geist Sans';
+        src: url('https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@5.0.3/files/geist-sans-latin-400-normal.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    background: "#010409",
+                    primary: "#0066FF",
+                    "text-secondary": "#8B949E",
+                },
+                fontFamily: {
+                    headline: ["Cal Sans", "sans-serif"],
+                    label: ["Geist Sans", "sans-serif"],
+                    body: ["Geist Sans", "sans-serif"],
+                }
             }
         }
     }
-}
-</script>
-<style>
-    body { background-color: #0A0A0A; color: #e5e2e1; }
-    .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
 </style>
+<link rel="stylesheet" href="style.css">
 </head>
-<body class="font-body antialiased selection:bg-primary-container selection:text-white">
+<body class="bg-background text-white font-body selection:bg-primary selection:text-white">
 
-<nav class="fixed top-0 w-full z-50 bg-[#0A0A0A]/40 backdrop-blur-2xl border-b border-white/5">
+<nav class="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-2xl border-b border-white/5">
 <div class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto">
-<a class="font-black tracking-tighter text-neutral-100 uppercase font-headline text-2xl italic" href="/">VOMTU</a>
-<a class="text-neutral-400 font-medium hover:text-white transition-colors text-xs uppercase tracking-widest" href="/">← Volver</a>
+<a class="font-black tracking-tighter text-white uppercase font-headline text-2xl italic" href="/">VOMTU</a>
+<a class="text-text-secondary font-bold hover:text-white transition-colors text-[10px] uppercase tracking-widest font-label" href="/">← Volver</a>
 </div>
 </nav>
 
 <main class="pt-32 pb-20 px-6">
 <div class="max-w-3xl mx-auto">
-    <h1 class="font-headline text-5xl font-black italic uppercase tracking-tighter mb-12 text-white">Política de <span class="text-primary-container">Privacidad</span></h1>
+    <h1 class="font-headline text-5xl font-black italic uppercase tracking-tighter mb-12 text-white">Política de <span class="text-primary">Privacidad</span></h1>
     
     <div class="glass-panel p-10 rounded-3xl space-y-8 text-neutral-400 leading-relaxed">
         <section>
@@ -73,7 +94,7 @@ tailwind.config = {
 </div>
 </main>
 
-<footer class="w-full py-10 border-t border-white/5 bg-black text-center text-neutral-600 text-[10px] tracking-widest uppercase font-bold">
+<footer class="w-full py-10 border-t border-white/5 bg-background text-center text-text-secondary text-[10px] tracking-[0.3em] uppercase font-black font-label">
     © 2025 VOMTU. VISIONARY AI.
 </footer>
 

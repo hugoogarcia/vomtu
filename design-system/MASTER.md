@@ -7,7 +7,7 @@
 ## 🎨 Color Palette
 - **Background (Base)**: `#010409` (Deep Obsidian)
 - **Background (Surface)**: `#0D1117` (Subtle Slate)
-- **Primary (Vomtu Violet)**: `#7C3AED`
+- **Primary (Electric Blue)**: `#0066FF`
 - **Secondary (Teal Accent)**: `#14B8A6`
 - **Text (Primary)**: `#F0F6FC`
 - **Text (Secondary)**: `#8B949E`
