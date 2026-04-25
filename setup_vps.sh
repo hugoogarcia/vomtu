@@ -26,7 +26,8 @@ else
 fi
 
 # 4. Configure Nginx
-echo "⚙️ Configurando Nginx..."
+echo "⚙️ Configurando Nginx para VOMTU..."
+# We use a specific file for vomtu to avoid conflicts with other services like n8n
 cat <<EOF | sudo tee /etc/nginx/sites-available/vomtu
 server {
     listen 80;
@@ -47,7 +48,7 @@ server {
 EOF
 
 sudo ln -sf /etc/nginx/sites-available/vomtu /etc/nginx/sites-enabled/
-sudo rm -f /etc/nginx/sites-enabled/default
+# Removed: sudo rm -f /etc/nginx/sites-enabled/default (Dangerous for multi-site servers)
 
 # 5. Restart Nginx
 sudo nginx -t
