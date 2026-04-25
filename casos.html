@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Casos de Éxito - VOMTU</title>
+<link rel="icon" type="image/png" href="favicon.png?v=3"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<!-- Fonts -->
+<style>
+@font-face {
+  font-family: 'Cal Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/fontsource/fonts/cal-sans@latest/latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Geist Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Geist Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-700-normal.woff2') format('woff2');
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "background": "#010409",
+                "surface": "#010409",
+                "primary": "#0066FF",
+                "secondary": "#0044cc",
+                "text-secondary": "#8B949E",
+                "outline": "rgba(240, 246, 252, 0.1)",
+            },
+            fontFamily: {
+                "headline": ["Cal Sans", "Inter", "sans-serif"],
+                "body": ["Geist Sans", "Inter", "sans-serif"],
+                "label": ["Geist Sans", "Space Grotesk", "sans-serif"]
+            }
+        }
+    }
+}
+</script>
+<style>
+:root {
+  --bg-obsidian: #010409;
+  --vomtu-blue: #0066FF;
+  --easing-snap: cubic-bezier(0.23, 1, 0.32, 1);
+  --easing-flow: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+body { 
+    font-family: 'Geist Sans', sans-serif; 
+    background-color: var(--bg-obsidian); 
+    color: #F0F6FC; 
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.glass-panel { 
+    background: rgba(13, 17, 23, 0.6); 
+    backdrop-filter: blur(12px); 
+    border: 0.5px solid rgba(240, 246, 252, 0.1); 
+}
+
+.glow-button { 
+    background: linear-gradient(135deg, var(--vomtu-blue), #0044cc); 
+    box-shadow: 0 10px 20px -5px rgba(0, 102, 255, 0.4); 
+    transition: all 0.3s var(--easing-snap); 
+}
+.glow-button:hover { 
+    box-shadow: 0 15px 30px rgba(0, 102, 255, 0.6); 
+    transform: translateY(-2px) scale(1.02); 
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1.5rem;
+}
+
+.reveal-up {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+  transition: opacity 0.6s var(--easing-flow), transform 0.6s var(--easing-flow);
+}
+.reveal-up.active { opacity: 1; transform: translate3d(0, 0, 0); }
+</style>
+</head>
+<body class="bg-background text-on-surface antialiased overflow-x-hidden">
+
+<!-- NAV -->
+<nav class="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-2xl border-b border-white/5">
+<div class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto">
+<a class="font-black tracking-tighter text-white uppercase font-headline text-2xl italic" href="index.html">VOMTU</a>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-text-secondary font-bold hover:text-white transition-colors text-[10px] uppercase tracking-[0.2em] font-label" href="index.html#process">Proceso</a>
+<a class="text-white font-bold transition-colors text-[10px] uppercase tracking-[0.2em] font-label" href="#">Testimonios</a>
+<a class="text-text-secondary font-bold hover:text-white transition-colors text-[10px] uppercase tracking-[0.2em] font-label" href="index.html#faq">FAQ</a>
+</div>
+<a class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white/5 text-white font-black hover:bg-white/10 transition-all duration-300 border border-white/10 font-label tracking-widest text-[10px] cursor-pointer" href="brief.html">COMPRAR VÍDEO</a>
+</div>
+</nav>
+
+<!-- HEADER -->
+<section class="pt-40 pb-20 px-6 text-center">
+<div class="max-w-4xl mx-auto">
+<div class="text-primary font-label text-[10px] font-black tracking-[0.3em] uppercase mb-4 reveal-up">Nuestros Trabajos</div>
+<h1 class="font-headline text-5xl md:text-7xl font-black text-white uppercase italic leading-none mb-8 tracking-wide reveal-up" style="transition-delay: 100ms">Casos de <span class="text-primary">Éxito</span></h1>
+<p class="font-body text-xl text-text-secondary opacity-80 max-w-2xl mx-auto reveal-up" style="transition-delay: 200ms">Descubre cómo los Motion Graphics de Vomtu han ayudado a marcas reales a romper el techo de su ROAS en tiempo récord.</p>
+</div>
+</section>
+
+<!-- CASES LIST -->
+<section class="py-12 px-6">
+<div class="max-w-6xl mx-auto flex flex-col gap-32">
+
+<!-- Case 1 -->
+<div class="flex flex-col md:flex-row gap-12 items-center">
+    <div class="w-full md:w-1/3 aspect-[9/16] relative reveal-up">
+        <div class="absolute inset-0 bg-primary/20 blur-3xl rounded-full scale-75"></div>
+        <div class="video-container relative z-10 h-full border border-white/10 rounded-[1.5rem] shadow-2xl overflow-hidden bg-neutral-900">
+            <video src="video1.mp4" loop muted playsinline></video>
+        </div>
+    </div>
+    <div class="w-full md:w-2/3 flex flex-col reveal-up" style="transition-delay: 200ms">
+        <div class="flex items-center gap-3 mb-4">
+            <span class="text-xs font-label font-bold tracking-widest text-white/50 border border-white/10 rounded-full px-3 py-1 bg-white/5">MODA B2C</span>
+        </div>
+        <h2 class="font-headline text-4xl font-black italic uppercase text-white mb-6">El reto de testear rápido en Moda</h2>
+        
+        <div class="space-y-6 mb-8">
+            <div class="glass-panel p-6 rounded-2xl">
+                <h3 class="text-primary font-label font-black text-xs uppercase tracking-widest mb-2">El Problema</h3>
+                <p class="text-text-secondary text-sm leading-relaxed">El cliente lanzaba colecciones nuevas cada mes, pero el coste de producir un shooting de vídeo para los anuncios ahogaba el presupuesto. Sus anuncios se quemaban rápido en Meta.</p>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl">
+                <h3 class="text-primary font-label font-black text-xs uppercase tracking-widest mb-2">La Solución Vomtu</h3>
+                <p class="text-text-secondary text-sm leading-relaxed">Creamos un Motion Graphic dinámico utilizando solo las fotografías de su catálogo. Aplicamos efectos parallax 3D y copywriting nativo de TikTok.</p>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-emerald-500">
+                <h3 class="text-emerald-500 font-label font-black text-xs uppercase tracking-widest mb-2">Resultados</h3>
+                <p class="text-white text-sm font-bold leading-relaxed">Reducción del 60% en coste de producción (CPA). Aumento del ROAS un 40% en su campaña principal.</p>
+            </div>
+        </div>
+        <p class="italic text-white/80 border-l-2 border-primary pl-4 py-1">"Hicimos 3 spots en una semana por lo que antes nos costaba uno." - Alejandro R.</p>
+    </div>
+</div>
+
+<!-- Case 2 -->
+<div class="flex flex-col md:flex-row-reverse gap-12 items-center">
+    <div class="w-full md:w-1/3 aspect-[9/16] relative reveal-up">
+        <div class="absolute inset-0 bg-secondary/20 blur-3xl rounded-full scale-75"></div>
+        <div class="video-container relative z-10 h-full border border-white/10 rounded-[1.5rem] shadow-2xl overflow-hidden bg-neutral-900">
+            <video src="video2.mp4" loop muted playsinline></video>
+        </div>
+    </div>
+    <div class="w-full md:w-2/3 flex flex-col reveal-up" style="transition-delay: 200ms">
+        <div class="flex items-center gap-3 mb-4">
+            <span class="text-xs font-label font-bold tracking-widest text-white/50 border border-white/10 rounded-full px-3 py-1 bg-white/5">COSMÉTICA & BEAUTY</span>
+        </div>
+        <h2 class="font-headline text-4xl font-black italic uppercase text-white mb-6">Viralidad sin enseñar caras</h2>
+        
+        <div class="space-y-6 mb-8">
+            <div class="glass-panel p-6 rounded-2xl">
+                <h3 class="text-primary font-label font-black text-xs uppercase tracking-widest mb-2">El Problema</h3>
+                <p class="text-text-secondary text-sm leading-relaxed">Confiaban exclusivamente en contenido UGC (User Generated Content). Cuando el UGC fallaba o perdía autenticidad, las ventas se congelaban. Necesitaban algo más "premium" pero directo al grano.</p>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl">
+                <h3 class="text-primary font-label font-black text-xs uppercase tracking-widest mb-2">La Solución Vomtu</h3>
+                <p class="text-text-secondary text-sm leading-relaxed">Diseñamos una pieza 100% gráfica enfocada en las texturas del producto y los beneficios, usando motion graphics elegantes (estilo Apple) y un ritmo de edición acelerado.</p>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-emerald-500">
+                <h3 class="text-emerald-500 font-label font-black text-xs uppercase tracking-widest mb-2">Resultados</h3>
+                <p class="text-white text-sm font-bold leading-relaxed">800.000 visualizaciones orgánicas en TikTok en solo 4 días. Superó en clics a su mejor vídeo UGC del trimestre.</p>
+            </div>
+        </div>
+        <p class="italic text-white/80 border-l-2 border-primary pl-4 py-1">"Honestamente no esperaba tanta calidad. Superó nuestras métricas de UGC." - Laura M.</p>
+    </div>
+</div>
+
+<!-- Case 3 -->
+<div class="flex flex-col md:flex-row gap-12 items-center">
+    <div class="w-full md:w-1/3 aspect-[9/16] relative reveal-up">
+        <div class="absolute inset-0 bg-primary/20 blur-3xl rounded-full scale-75"></div>
+        <div class="video-container relative z-10 h-full border border-white/10 rounded-[1.5rem] shadow-2xl overflow-hidden bg-neutral-900">
+            <video src="video3.mp4" loop muted playsinline></video>
+        </div>
+    </div>
+    <div class="w-full md:w-2/3 flex flex-col reveal-up" style="transition-delay: 200ms">
+        <div class="flex items-center gap-3 mb-4">
+            <span class="text-xs font-label font-bold tracking-widest text-white/50 border border-white/10 rounded-full px-3 py-1 bg-white/5">NUTRICIÓN / DEPORTE</span>
+        </div>
+        <h2 class="font-headline text-4xl font-black italic uppercase text-white mb-6">Explicando productos complejos visualmente</h2>
+        
+        <div class="space-y-6 mb-8">
+            <div class="glass-panel p-6 rounded-2xl">
+                <h3 class="text-primary font-label font-black text-xs uppercase tracking-widest mb-2">El Problema</h3>
+                <p class="text-text-secondary text-sm leading-relaxed">Vender suplementos requiere explicar ciencia sin aburrir. Sus vídeos corporativos tenían una retención bajísima y no pasaban del segundo 5.</p>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl">
+                <h3 class="text-primary font-label font-black text-xs uppercase tracking-widest mb-2">La Solución Vomtu</h3>
+                <p class="text-text-secondary text-sm leading-relaxed">Cambiamos las caras hablando por infografías animadas brutales, mostrando cómo actúa el suplemento. Voz en off de IA hiperrealista con tono energético.</p>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-emerald-500">
+                <h3 class="text-emerald-500 font-label font-black text-xs uppercase tracking-widest mb-2">Resultados</h3>
+                <p class="text-white text-sm font-bold leading-relaxed">Multiplicaron por 3 el "Thumb-stop ratio" (gente que deja de hacer scroll). Retención de vídeo por encima del 40%.</p>
+            </div>
+        </div>
+        <p class="italic text-white/80 border-l-2 border-primary pl-4 py-1">"Rápido, sin reuniones y con un acabado hiper premium." - Daniel C.</p>
+    </div>
+</div>
+
+</div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="py-32 px-6 text-center relative overflow-hidden mt-20">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/10"></div>
+<div class="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
+<h2 class="font-headline text-5xl md:text-7xl font-black italic uppercase text-white mb-8">Tú puedes ser el próximo</h2>
+<a class="glow-button text-white px-10 py-5 rounded-full font-label font-black text-xl uppercase tracking-tighter flex items-center gap-4" href="brief.html">
+EMPEZAR BRIEFING <span class="material-symbols-outlined">rocket_launch</span>
+</a>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="w-full py-10 border-t border-white/5 bg-background text-white font-label text-[10px] tracking-[0.3em] uppercase font-black">
+<div class="flex justify-between items-center px-10 max-w-7xl mx-auto">
+<div class="text-xl font-black tracking-tighter text-white italic font-headline">VOMTU</div>
+<div class="text-text-secondary">© 2025 VOMTU</div>
+</div>
+</footer>
+
+<script>
+// Scroll Reveal Observer
+const animationObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        }
+    });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal-up').forEach(el => animationObserver.observe(el));
+
+// Video autoplay
+const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.play().catch(e => console.log(e));
+        } else {
+            entry.target.pause();
+        }
+    });
+}, { threshold: 0.5 });
+document.querySelectorAll('video').forEach(video => videoObserver.observe(video));
+</script>
+</body>
+</html>

@@ -45,47 +45,7 @@
 
 <link rel="icon" type="image/png" href="favicon.png?v=3"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Cal element-click embed code begins -->
-<script type="text/javascript">
-  (function (C, A, L) {
-    let p = function (a, ar) { a.q.push(ar); };
-    let d = C.document;
-    C.Cal = C.Cal || function () {
-      let cal = C.Cal;
-      let ar = arguments;
-      if (!cal.loaded) {
-        cal.ns = {};
-        cal.q = cal.q || [];
-        d.head.appendChild(d.createElement("script")).src = A;
-        cal.loaded = true;
-      }
-      if (ar[0] === L) {
-        const api = function () { p(api, arguments); };
-        const ns = ar[1];
-        api.q = api.q || [];
-        typeof ns === "string" ? (cal.ns[ns] = api) && p(api, ar) : p(cal, ar);
-        return;
-      }
-      p(cal, ar);
-    };
-  })(window, "https://app.cal.com/embed/embed.js", "init");
-Cal("init", {origin: "https://cal.com"});
-Cal("ui", {"styles":{"branding":{"brandColor":"#0066ff"}},"hideEventTypeDetails":false,"layout":"month_view"});
 
-// Ensure Cal.com iframe doesn't have focus issues
-document.addEventListener("DOMContentLoaded", () => {
-    const style = document.createElement('style');
-    style.innerHTML = `
-        .cal-modal, #cal-embed-hugo-garcia-15min { 
-            z-index: 999999 !important; 
-            pointer-events: auto !important; 
-        }
-        body.cal-open { overflow: hidden !important; }
-    `;
-    document.head.appendChild(style);
-});
-</script>
-<!-- Cal element-click embed code ends -->
 <!-- Fonts -->
 <style>
 @font-face {
@@ -259,11 +219,11 @@ body::before {
 <a class="font-black tracking-tighter text-white uppercase font-headline text-2xl italic" href="#">VOMTU</a>
 <div class="hidden md:flex items-center gap-10">
 <a class="text-text-secondary font-bold hover:text-white transition-colors text-[10px] uppercase tracking-[0.2em] font-label" href="#process">Proceso</a>
-<a class="text-text-secondary font-bold hover:text-white transition-colors text-[10px] uppercase tracking-[0.2em] font-label" href="#work">Trabajos</a>
+<a class="text-text-secondary font-bold hover:text-white transition-colors text-[10px] uppercase tracking-[0.2em] font-label" href="casos.html">Testimonios</a>
 <a class="text-text-secondary font-bold hover:text-white transition-colors text-[10px] uppercase tracking-[0.2em] font-label" href="#services">Precios</a>
 <a class="text-text-secondary font-bold hover:text-white transition-colors text-[10px] uppercase tracking-[0.2em] font-label" href="#faq">FAQ</a>
 </div>
-<button class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white/5 text-white font-black hover:bg-white/10 transition-all duration-300 border border-white/10 font-label tracking-widest text-[10px] cursor-pointer" data-cal-link="hugo-garcia/15min">RESERVA TU DEMO</button>
+<a class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white/5 text-white font-black hover:bg-white/10 transition-all duration-300 border border-white/10 font-label tracking-widest text-[10px] cursor-pointer" href="brief.html">COMPRAR VÍDEO</a>
 </div>
 </nav>
 
@@ -280,15 +240,15 @@ body::before {
     </span>
     AI Video Production
 </div>
-<h1 class="font-headline text-5xl sm:text-7xl md:text-[88px] font-black tracking-tighter leading-[0.85] mb-10 text-white uppercase italic px-2 reveal-up">
-    Spots <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">profesionales.</span><br/>En 48 horas.
+<h1 class="font-headline text-5xl sm:text-7xl md:text-[88px] font-black tracking-[0.05em] leading-[0.85] mb-10 text-white uppercase italic px-2 reveal-up">
+    Motion <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Graphics.</span><br/>Listos para Ads.
 </h1>
 <p class="font-body text-lg sm:text-xl md:text-2xl text-text-secondary max-w-2xl mb-14 leading-relaxed opacity-90 px-4 reveal-up" style="transition-delay: 200ms">
-    Creamos anuncios con IA que escalan tu tienda online. <span class="text-white">Sin equipo de producción.</span> Sin esperas. Resultados cinemáticos que se ven.
+    Compra tus vídeos directamente y escala tus ventas. <span class="text-white">Sin agendar llamadas.</span> Sin presupuestos ocultos. Entregados en 48 horas.
 </p>
 <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-20 w-full sm:w-auto px-4 sm:px-0 reveal-up" style="transition-delay: 400ms">
-<button class="glow-button text-white px-8 py-5 sm:px-12 sm:py-6 rounded-full font-label font-black text-base sm:text-lg uppercase tracking-tight flex items-center justify-center cursor-pointer" data-cal-link="hugo-garcia/15min" data-cal-config='{"layout":"month_view"}'>RESERVA TU DEMO</button>
-<a class="glass-panel text-white px-8 py-5 sm:px-12 sm:py-6 rounded-full font-label font-black text-base sm:text-lg uppercase tracking-tight hover:bg-white/10 transition-colors flex items-center justify-center" href="#work" style="border-radius: 9999px;">Ver ejemplos</a>
+<a class="glow-button text-white px-8 py-5 sm:px-12 sm:py-6 rounded-full font-label font-black text-base sm:text-lg uppercase tracking-tight flex items-center justify-center cursor-pointer" href="brief.html">COMPRAR VÍDEO</a>
+<a class="glass-panel text-white px-8 py-5 sm:px-12 sm:py-6 rounded-full font-label font-black text-base sm:text-lg uppercase tracking-tight hover:bg-white/10 transition-colors flex items-center justify-center" href="casos.html" style="border-radius: 9999px;">Testimonios</a>
 </div>
 <div class="flex flex-wrap justify-center gap-6 reveal-up" style="transition-delay: 600ms">
 <div class="flex items-center gap-2 font-label text-[10px] font-bold tracking-widest text-text-secondary uppercase bg-white/5 px-4 py-2 rounded-full border border-white/5">
@@ -312,8 +272,8 @@ body::before {
 <div class="glass-panel p-8 rounded-2xl flex flex-col group relative overflow-hidden" reveal-scale>
 <div class="text-8xl font-black text-white/10 absolute top-0 right-2 italic select-none pointer-events-none font-headline">01</div>
 <div class="relative z-10 w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6"><span class="text-[10px] font-black text-primary font-label">01</span></div>
-<h3 class="relative z-10 font-headline text-xl font-black mb-3 text-white uppercase tracking-tight">Briefing</h3>
-<p class="relative z-10 text-text-secondary text-xs leading-relaxed opacity-60">Nos cuentas tu producto, objetivo y estilo deseado en un formulario de 5 min.</p>
+<h3 class="relative z-10 font-headline text-xl font-black mb-3 text-white uppercase tracking-tight">Pedido</h3>
+<p class="relative z-10 text-text-secondary text-xs leading-relaxed opacity-60">Eliges el paquete de vídeos, completas el pago y nos envías los detalles del producto.</p>
 </div>
 <div class="glass-panel p-8 rounded-2xl flex flex-col group relative overflow-hidden" reveal-scale style="transition-delay: 100ms">
 <div class="text-8xl font-black text-white/10 absolute top-0 right-2 italic select-none pointer-events-none font-headline">02</div>
@@ -330,112 +290,68 @@ body::before {
 <div class="glass-panel p-8 rounded-2xl flex flex-col group relative overflow-hidden" reveal-scale style="transition-delay: 300ms">
 <div class="text-8xl font-black text-white/10 absolute top-0 right-2 italic select-none pointer-events-none font-headline">04</div>
 <div class="relative z-10 w-10 h-10 rounded-xl bg-secondary/10 border border-secondary/20 flex items-center justify-center mb-6"><span class="text-[10px] font-black text-secondary font-label">04</span></div>
-<h3 class="relative z-10 font-headline text-xl font-black mb-3 text-white uppercase tracking-tight">Lanzamiento</h3>
-<p class="relative z-10 text-text-secondary text-xs leading-relaxed opacity-60">Recibes el anuncio final en menos de 48h listo para publicar y escalar.</p>
+<h3 class="relative z-10 font-headline text-xl font-black mb-3 text-white uppercase tracking-tight">Entrega</h3>
+<p class="relative z-10 text-text-secondary text-xs leading-relaxed opacity-60">Recibes tus vídeos Motion Graphics en 48h, listos para subir a tus campañas.</p>
 </div>
 </div>
 </div>
 </section>
 
-<!-- VIDEO SHOWCASE -->
-<section class="py-20 bg-background relative section-divider" id="work">
-<div class="max-w-7xl mx-auto px-6">
-<div class="flex flex-col items-center mb-16">
-    <div class="text-primary font-label text-[10px] font-black tracking-[0.3em] uppercase mb-3">Portfolio</div>
-    <h2 class="font-headline text-3xl sm:text-4xl md:text-5xl font-black text-center text-white uppercase italic leading-none px-4 reveal-up">Spots que <span class="text-primary">convierten</span></h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-<!-- Video 1 -->
-<div class="flex flex-col gap-6 group">
-<div class="glass-panel rounded-[2rem] aspect-[9/16] relative overflow-hidden bg-neutral-950 video-container" reveal-scale>
-    <div class="absolute inset-0 z-0">
-        <video src="video1.mp4" loop muted playsinline preload="none"></video>
-    </div>
-    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10 transition-opacity group-hover:opacity-50"></div>
-    <div class="absolute bottom-6 left-6 z-20">
-        <div class="flex items-center gap-2 mb-1">
-            <span class="verified-badge text-[9px]">EC-01</span>
-            <span class="text-[9px] font-bold text-white/40 tracking-widest font-label uppercase">Moda B2C</span>
-        </div>
-        <h4 class="text-white font-headline text-xl font-black italic uppercase italic">Tienda Ropa</h4>
-    </div>
-</div>
-</div>
-
-<!-- Video 2 -->
-<div class="flex flex-col gap-6 group">
-<div class="glass-panel rounded-[2rem] aspect-[9/16] relative overflow-hidden bg-neutral-950 video-container" reveal-scale>
-    <div class="absolute inset-0 z-0">
-        <video src="video2.mp4" loop muted playsinline preload="none"></video>
-    </div>
-    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10 transition-opacity group-hover:opacity-50"></div>
-    <div class="absolute bottom-6 left-6 z-20">
-        <div class="flex items-center gap-2 mb-1">
-            <span class="verified-badge text-[9px]">EC-02</span>
-            <span class="text-[9px] font-bold text-white/40 tracking-widest font-label uppercase">Moda / Accesorios</span>
-        </div>
-        <h4 class="text-white font-headline text-xl font-black italic uppercase italic">Colección</h4>
-    </div>
-</div>
-</div>
-
-<!-- Video 3 -->
-<div class="flex flex-col gap-6 group">
-<div class="glass-panel rounded-[2rem] aspect-[9/16] relative overflow-hidden bg-neutral-950 video-container" reveal-scale>
-    <div class="absolute inset-0 z-0">
-        <video src="video3.mp4" loop muted playsinline preload="none"></video>
-    </div>
-    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10 transition-opacity group-hover:opacity-50"></div>
-    <div class="absolute bottom-6 left-6 z-20">
-        <div class="flex items-center gap-2 mb-1">
-            <span class="verified-badge text-[9px]">EC-03</span>
-            <span class="text-[9px] font-bold text-white/40 tracking-widest font-label uppercase">Nutrición</span>
-        </div>
-        <h4 class="text-white font-headline text-xl font-black italic uppercase italic">Suplementos</h4>
-    </div>
-</div>
-</div>
-
-</div>
+<!-- TESTIMONIALS / CASES CTA -->
+<section class="py-24 bg-background relative section-divider" id="work">
+<div class="max-w-4xl mx-auto px-6 text-center">
+<div class="text-primary font-label text-[10px] font-black tracking-[0.3em] uppercase mb-4">Casos de Éxito</div>
+<h2 class="font-headline text-4xl sm:text-5xl md:text-6xl font-black text-white uppercase italic leading-none mb-8 reveal-up">Testimonios y <span class="text-primary">Resultados</span></h2>
+<p class="font-body text-xl text-text-secondary mb-10 opacity-80 reveal-up" style="transition-delay: 100ms">Descubre cómo nuestros vídeos Motion Graphics están escalando el ROAS de las mejores marcas del mercado.</p>
+<a class="glow-button inline-flex text-white px-10 py-5 rounded-full font-label font-black text-lg uppercase tracking-tight items-center justify-center reveal-up" style="transition-delay: 200ms" href="casos.html">VER TESTIMONIOS COMPLETOS</a>
 </div>
 </section>
 
-<!-- PRICING -->
-<section class="py-20 bg-background relative section-divider" id="services">
+<!-- PURCHASE PANEL -->
+<section class="py-20 bg-background relative section-divider" id="comprar">
 <div class="max-w-6xl mx-auto px-6">
 <div class="flex flex-col items-center mb-16">
-    <div class="text-primary font-label text-[10px] font-black tracking-[0.3em] uppercase mb-3">Inversión</div>
-    <h2 class="font-headline text-3xl sm:text-4xl md:text-5xl font-black text-center text-white uppercase italic leading-none mb-12 px-4 reveal-up">Tarifas <span class="text-primary">directas</span></h2>
+    <div class="text-primary font-label text-[10px] font-black tracking-[0.3em] uppercase mb-3">Tu Pedido</div>
+    <h2 class="font-headline text-3xl sm:text-4xl md:text-5xl font-black text-center text-white uppercase italic leading-none mb-12 px-4 reveal-up">Compra <span class="text-primary">Directa</span></h2>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
 
 <div class="glass-panel p-8 rounded-[2rem] flex flex-col h-full border-white/5 hover:border-primary/20 transition-all group" reveal-scale>
-<h3 class="font-headline text-2xl font-black text-white mb-2 uppercase tracking-tighter italic">Spot Único</h3>
-<div class="flex items-baseline gap-2 mb-8"><span class="text-4xl sm:text-5xl font-black text-white">€300–800</span></div>
+<h3 class="font-headline text-2xl font-black text-white mb-2 uppercase tracking-tighter italic">1 Vídeo</h3>
+<div class="flex items-baseline gap-2 mb-8"><span class="text-4xl sm:text-5xl font-black text-white">€8.99</span></div>
 <div class="w-full h-px bg-white/10 mb-8"></div>
 <ul class="space-y-6 mb-12 flex-grow">
-<li class="flex items-center gap-4 text-text-secondary text-sm font-medium" reveal-up><span class="material-symbols-outlined text-primary text-lg">check_circle</span><span>Entrega express 48h</span></li>
-<li class="flex items-center gap-4 text-text-secondary text-sm font-medium" reveal-up><span class="material-symbols-outlined text-primary text-lg">check_circle</span><span>2 Rondas de ajustes</span></li>
+<li class="flex items-center gap-4 text-text-secondary text-sm font-medium" reveal-up><span class="material-symbols-outlined text-primary text-lg">check_circle</span><span>Entrega en 48h</span></li>
 <li class="flex items-center gap-4 text-text-secondary text-sm font-medium" reveal-up><span class="material-symbols-outlined text-primary text-lg">check_circle</span><span>Formato optimizado para Ads</span></li>
-<li class="flex items-center gap-4 text-text-secondary text-sm font-medium opacity-30 italic" reveal-up><span class="material-symbols-outlined text-lg">close</span><span>Sin prioridad en cola</span></li>
 </ul>
-<button class="w-full py-4 rounded-xl font-label font-black text-center border border-white/20 text-white uppercase tracking-widest text-[10px] hover:bg-white/10 hover:border-white/40 transition-all cursor-pointer" data-cal-link="hugo-garcia/15min" data-cal-config='{"layout":"month_view"}'>Empezar ahora</button>
+<a class="block w-full py-4 rounded-xl font-label font-black text-center border border-white/20 text-white uppercase tracking-widest text-[10px] hover:bg-white/10 hover:border-white/40 transition-all cursor-pointer" href="https://buy.stripe.com/28E5kD9bh77iadOexgcV202">Comprar</a>
 </div>
 
-<div class="glass-panel p-8 rounded-[2rem] flex flex-col h-full relative overflow-hidden bg-primary/5 border-primary/20 group" reveal-scale>
-<div class="absolute top-4 right-6 bg-primary text-white px-4 py-1 rounded-full text-[9px] font-black tracking-widest uppercase font-label">Elite Choice</div>
-<h3 class="font-headline text-2xl font-black text-white mb-2 uppercase tracking-tighter italic">Retainer Mensual</h3>
-<div class="flex items-baseline gap-2 mb-8"><span class="text-lg text-primary font-black uppercase italic">Desde</span><span class="text-4xl sm:text-5xl font-black text-white">€1.200</span><span class="text-text-secondary font-label text-[10px] uppercase tracking-widest">/mes</span></div>
+<div class="glass-panel p-8 rounded-[2rem] flex flex-col h-full relative overflow-hidden bg-primary/5 border-primary/20 group" reveal-scale style="transition-delay: 100ms">
+<div class="absolute top-4 right-6 bg-primary text-white px-4 py-1 rounded-full text-[9px] font-black tracking-widest uppercase font-label">Populares</div>
+<h3 class="font-headline text-2xl font-black text-white mb-2 uppercase tracking-tighter italic">Pack 3 Vídeos</h3>
+<div class="flex items-baseline gap-2 mb-8"><span class="text-4xl sm:text-5xl font-black text-white">€24.99</span><span class="ml-2 text-text-secondary font-label text-[10px] uppercase tracking-widest">Ahorras 2€</span></div>
 <div class="w-full h-px bg-primary/20 mb-8"></div>
 <ul class="space-y-6 mb-12 flex-grow">
-<li class="flex items-center gap-4 text-white text-sm font-bold" reveal-up><span class="material-symbols-outlined text-primary text-lg">verified</span><span>Producción constante</span></li>
-<li class="flex items-center gap-4 text-white text-sm font-bold" reveal-up><span class="material-symbols-outlined text-primary text-lg">verified</span><span>Revisiones ILIMITADAS</span></li>
-<li class="flex items-center gap-4 text-white text-sm font-bold" reveal-up><span class="material-symbols-outlined text-primary text-lg">verified</span><span>Prioridad máxima</span></li>
-<li class="flex items-center gap-4 text-white text-sm font-bold" reveal-up><span class="material-symbols-outlined text-primary text-lg">verified</span><span>Copywriting psicológico</span></li>
+<li class="flex items-center gap-4 text-white text-sm font-bold" reveal-up><span class="material-symbols-outlined text-primary text-lg">verified</span><span>Ideal para A/B Testing</span></li>
+<li class="flex items-center gap-4 text-white text-sm font-bold" reveal-up><span class="material-symbols-outlined text-primary text-lg">verified</span><span>Entrega en 48h</span></li>
+<li class="flex items-center gap-4 text-white text-sm font-bold" reveal-up><span class="material-symbols-outlined text-primary text-lg">verified</span><span>Prioridad de entrega</span></li>
 </ul>
-<button class="glow-button w-full py-4 rounded-xl font-label font-black text-center text-white uppercase tracking-widest text-[10px] cursor-pointer" data-cal-link="hugo-garcia/15min" data-cal-config='{"layout":"month_view"}'>Hablar con estrategia</button>
+<a class="glow-button block w-full py-4 rounded-xl font-label font-black text-center text-white uppercase tracking-widest text-[10px] cursor-pointer" href="https://buy.stripe.com/6oU6oH0ELajuclW88ScV201">Comprar Pack 3</a>
 </div>
+
+<div class="glass-panel p-8 rounded-[2rem] flex flex-col h-full border-white/5 hover:border-primary/20 transition-all group" reveal-scale style="transition-delay: 200ms">
+<h3 class="font-headline text-2xl font-black text-white mb-2 uppercase tracking-tighter italic">Pack 6 Vídeos</h3>
+<div class="flex items-baseline gap-2 mb-8"><span class="text-4xl sm:text-5xl font-black text-white">€49.99</span><span class="ml-2 text-text-secondary font-label text-[10px] uppercase tracking-widest">Ahorras 4€</span></div>
+<div class="w-full h-px bg-white/10 mb-8"></div>
+<ul class="space-y-6 mb-12 flex-grow">
+<li class="flex items-center gap-4 text-text-secondary text-sm font-medium" reveal-up><span class="material-symbols-outlined text-primary text-lg">check_circle</span><span>Dominio de Meta & TikTok Ads</span></li>
+<li class="flex items-center gap-4 text-text-secondary text-sm font-medium" reveal-up><span class="material-symbols-outlined text-primary text-lg">check_circle</span><span>Iteraciones masivas</span></li>
+<li class="flex items-center gap-4 text-text-secondary text-sm font-medium" reveal-up><span class="material-symbols-outlined text-primary text-lg">check_circle</span><span>Soporte VIP</span></li>
+</ul>
+<a class="block w-full py-4 rounded-xl font-label font-black text-center border border-white/20 text-white uppercase tracking-widest text-[10px] hover:bg-white/10 hover:border-white/40 transition-all cursor-pointer" href="https://buy.stripe.com/00wdR91IP77iadO4WGcV200">Comprar Pack 6</a>
+</div>
+
 </div>
 </div>
 </section>
@@ -455,7 +371,7 @@ body::before {
         <div class="stars">★★★★★</div>
         <span class="verified-badge tracking-tighter">✓ CLIENTE VERIFICADO</span>
       </div>
-      <p class="text-white/90 text-lg font-medium leading-relaxed mb-10 italic">"Llevábamos meses sin escalar porque producir vídeos era carísimo. Con VOMTU hicimos 3 spots en una semana por lo que antes nos costaba uno. El ROAS subió un 40%."</p>
+      <p class="text-white/90 text-lg font-medium leading-relaxed mb-10 italic">"Necesitábamos testear creatividades rápido, pero grabar nos retrasaba semanas. Vomtu nos entregó 3 motion graphics en 48h. Llevamos escalando 2 meses seguidos."</p>
     </div>
     <div class="flex items-center gap-4 pt-8 border-t border-white/5">
       <div class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center font-black text-white text-sm">AR</div>
@@ -472,7 +388,7 @@ body::before {
         <div class="stars">★★★★★</div>
         <span class="verified-badge tracking-tighter">✓ CLIENTE VERIFICADO</span>
       </div>
-      <p class="text-white/90 text-lg font-medium leading-relaxed mb-10 italic">"Honestamente no esperaba tanta calidad. El spot de TikTok que nos hicieron consiguió 800k visualizaciones orgánicas en 4 días. Ya estamos con el plan mensual."</p>
+      <p class="text-white/90 text-lg font-medium leading-relaxed mb-10 italic">"Increíble lo sencillos que son los motion graphics pero lo bien que convierten. El vídeo para Meta Ads superó el ROAS de nuestros vídeos UGC de lejos. Directos al grano."</p>
     </div>
     <div class="flex items-center gap-4 pt-8 border-t border-white/5">
       <div class="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center font-black text-white text-sm">LM</div>
@@ -489,7 +405,7 @@ body::before {
         <div class="stars">★★★★★</div>
         <span class="verified-badge tracking-tighter">✓ CLIENTE VERIFICADO</span>
       </div>
-      <p class="text-white/90 text-lg font-medium leading-relaxed mb-10 italic">"Pensaba que la IA daría resultados genéricos pero se nota que hay criterio detrás. El briefing fue muy rápido y encajó perfectamente con nuestra marca."</p>
+      <p class="text-white/90 text-lg font-medium leading-relaxed mb-10 italic">"Rellenar el formulario fue literalmente como un juego. Al día siguiente teníamos el primer borrador listo. Rápido, sin reuniones y con un acabado hiper premium."</p>
     </div>
     <div class="flex items-center gap-4 pt-8 border-t border-white/5">
       <div class="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-rose-600 flex items-center justify-center font-black text-white text-sm">DC</div>
@@ -513,33 +429,33 @@ body::before {
 </div>
 <div class="space-y-4">
 <div class="glass-panel rounded-2xl overflow-hidden hover:border-primary/20 transition-all" reveal-scale>
-<details class="group reveal-up"><summary class="flex justify-between items-center font-headline font-black italic uppercase cursor-pointer list-none p-8 text-xl text-white"><span>¿Necesito imágenes del producto?</span><span class="transition group-open:rotate-180 text-primary"><span class="material-symbols-outlined">expand_more</span></span></summary>
-<div class="text-text-secondary px-8 pb-8 text-base leading-relaxed opacity-70">No es estrictamente necesario, aunque ayuda. Nuestra IA puede generar visuales realistas basándose en descripciones detalladas de tu producto o imágenes de referencia.</div></details>
+<details class="group reveal-up"><summary class="flex justify-between items-center font-headline font-black italic uppercase cursor-pointer list-none p-8 text-xl text-white"><span>¿Necesito grabar o tener contenido propio?</span><span class="transition group-open:rotate-180 text-primary"><span class="material-symbols-outlined">expand_more</span></span></summary>
+<div class="text-text-secondary px-8 pb-8 text-base leading-relaxed opacity-70">Para nada. Podemos trabajar con tus fotos/vídeos o utilizar nuestros propios recursos de stock premium y animaciones gráficas para que no tengas que grabar absolutamente nada.</div></details>
 </div>
 <div class="glass-panel rounded-2xl overflow-hidden hover:border-primary/20 transition-all" reveal-scale style="transition-delay: 100ms">
-<details class="group reveal-up"><summary class="flex justify-between items-center font-headline font-black italic uppercase cursor-pointer list-none p-8 text-xl text-white"><span>¿En qué plataformas funcionan?</span><span class="transition group-open:rotate-180 text-primary"><span class="material-symbols-outlined">expand_more</span></span></summary>
-<div class="text-text-secondary px-8 pb-8 text-base leading-relaxed opacity-70">Entregamos formatos optimizados para Meta Ads (Instagram/Facebook), TikTok Ads, YouTube Shorts o cualquier otra plataforma vertical u horizontal que necesites.</div></details>
+<details class="group reveal-up"><summary class="flex justify-between items-center font-headline font-black italic uppercase cursor-pointer list-none p-8 text-xl text-white"><span>¿Cuánto se tarda en recibir el primer vídeo?</span><span class="transition group-open:rotate-180 text-primary"><span class="material-symbols-outlined">expand_more</span></span></summary>
+<div class="text-text-secondary px-8 pb-8 text-base leading-relaxed opacity-70">Máxima velocidad. En 48 horas desde que completas el briefing interactivo recibes tu primera versión. Sin bloqueos, sin llamadas innecesarias.</div></details>
 </div>
 <div class="glass-panel rounded-2xl overflow-hidden hover:border-primary/20 transition-all" reveal-scale style="transition-delay: 200ms">
-<details class="group reveal-up"><summary class="flex justify-between items-center font-headline font-black italic uppercase cursor-pointer list-none p-8 text-xl text-white"><span>¿Cuántas revisiones incluye?</span><span class="transition group-open:rotate-180 text-primary"><span class="material-symbols-outlined">expand_more</span></span></summary>
-<div class="text-text-secondary px-8 pb-8 text-base leading-relaxed opacity-70">El plan Spot Único incluye 2 rondas de revisiones. El Retainer Mensual incluye revisiones ilimitadas para asegurar que el resultado sea perfecto y escalable.</div></details>
+<details class="group reveal-up"><summary class="flex justify-between items-center font-headline font-black italic uppercase cursor-pointer list-none p-8 text-xl text-white"><span>¿Qué pasa si quiero cambiar algo del vídeo?</span><span class="transition group-open:rotate-180 text-primary"><span class="material-symbols-outlined">expand_more</span></span></summary>
+<div class="text-text-secondary px-8 pb-8 text-base leading-relaxed opacity-70">El pedido incluye 1 ronda de revisión gratuita. Como los vídeos son de Motion Graphics dinámicos, hacer ajustes de textos, colores o ritmo es súper rápido.</div></details>
 </div>
 </div>
 </div>
 </section>
 
 <!-- FINAL CTA -->
-<section class="py-40 relative overflow-hidden bg-background" id="demo">
+<section class="py-40 relative overflow-hidden bg-background" id="pedido">
 <div class="absolute inset-0 bg-gradient-to-b from-background via-primary/10 to-secondary/20 z-0"></div>
 <div class="ambient-glow bg-primary w-[1000px] h-[1000px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20"></div>
 <div class="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center">
 <h2 class="font-headline text-5xl sm:text-6xl md:text-[110px] font-black tracking-tighter mb-8 md:mb-12 text-white italic leading-[0.8] uppercase px-4 reveal-up">¿Listo para<br/><span class="text-primary">VENDER MÁS</span>?</h2>
-<p class="font-body text-lg md:text-2xl text-text-secondary mb-12 md:mb-20 max-w-2xl opacity-90 uppercase tracking-tighter px-4 reveal-up" style="transition-delay: 200ms">Reserva una llamada gratuita de 20 min. Sin compromiso. Descubre lo que la IA puede hacer por tu ROAS.</p>
-<button class="glow-button text-white px-8 py-5 md:px-16 md:py-8 rounded-full font-label font-black text-xl md:text-4xl uppercase tracking-tighter flex items-center justify-center gap-4 md:gap-6 hover:scale-105 transition-transform cursor-pointer w-[90%] md:w-auto shadow-[0_0_40px_rgba(0,102,255,0.4)] reveal-up" style="transition-delay: 400ms" data-cal-link="hugo-garcia/15min" data-cal-config='{"layout":"month_view"}'>
-RESERVA TU DEMO <span class="material-symbols-outlined text-3xl md:text-5xl">arrow_forward</span></button>
+<p class="font-body text-lg md:text-2xl text-text-secondary mb-12 md:mb-20 max-w-2xl opacity-90 uppercase tracking-tighter px-4 reveal-up" style="transition-delay: 200ms">Pide tu vídeo Motion Graphic ahora. Sin llamadas ni esperas. Descubre el contenido que dispara tu ROAS.</p>
+<a class="glow-button text-white px-8 py-5 md:px-16 md:py-8 rounded-full font-label font-black text-xl md:text-4xl uppercase tracking-tighter flex items-center justify-center gap-4 md:gap-6 hover:scale-105 transition-transform cursor-pointer w-[90%] md:w-auto shadow-[0_0_40px_rgba(0,102,255,0.4)] reveal-up" style="transition-delay: 400ms" href="brief.html">
+HACER PEDIDO <span class="material-symbols-outlined text-3xl md:text-5xl">arrow_forward</span></a>
 <div class="mt-20 flex items-center gap-4 bg-white/5 py-4 px-10 rounded-full border border-white/10 reveal-up" style="transition-delay: 600ms">
     <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
-    <p class="text-text-secondary text-sm font-black uppercase tracking-widest font-label">Próxima disponibilidad: esta semana</p>
+    <p class="text-text-secondary text-sm font-black uppercase tracking-widest font-label">Capacidad de producción: Disponible</p>
 </div>
 </div>
 </section>
