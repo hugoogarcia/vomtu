@@ -334,12 +334,9 @@ input[type="file"]:hover { border-color: var(--vomtu-blue); background: rgba(0, 
 </form>
 
 <script>
-// Protection check
+// Protection check removed to ensure customers can always access the brief after purchase
 window.addEventListener('DOMContentLoaded', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (!urlParams.has('checkout') && window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
-        document.body.innerHTML = '<div style="display:flex;height:100vh;align-items:center;justify-content:center;background:#010409;color:white;font-family:sans-serif;flex-direction:column"><h1 style="font-size:2rem;margin-bottom:1rem">Acceso Denegado</h1><p>Esta página es exclusiva para clientes.</p><a href="index.html" style="margin-top:2rem;color:#0066FF">Volver al inicio</a></div>';
-    }
+    // Check removed
 });
 
 // Logo upload to base64
