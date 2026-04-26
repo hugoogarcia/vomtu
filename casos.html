@@ -156,27 +156,90 @@ body::before {
 </div>
 </section>
 
+<style>
+.vid-carousel{position:relative}
+.vid-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:20;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.15);color:white;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;backdrop-filter:blur(8px)}
+.vid-arrow:hover{background:rgba(0,102,255,.6);border-color:#0066FF}
+.vid-arrow.left{left:10px}.vid-arrow.right{right:10px}
+.vid-dots{display:flex;gap:6px;justify-content:center;margin-top:10px}
+.vid-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2);transition:background .2s;cursor:pointer}
+.vid-dot.active{background:#0066FF;width:18px;border-radius:3px}
+</style>
 <script>
 const CASES_PER_PAGE = 2;
 const ACCENT_COLORS = ['bg-primary/20','bg-secondary/20','bg-emerald-500/20','bg-orange-500/20','bg-rose-500/20'];
-const ACCENT_BADGES = ['SAAS','AGENCIA','PRODUCTO','MARCA','ECOMMERCE','ENGAGEMENT'];
 
+// videos: array of src strings. Single video = array of 1
 const HARDCODED = [
-  {name:'Velyn — SaaS',role:'SAAS',text:'Necesitábamos transmitir la esencia del producto de forma visual e impactante. El motion graphic capturó perfectamente el espíritu de la plataforma y nos dio un asset de lanzamiento brutal.',video:'roas/velyn.mp4',roas:''},
-  {name:'Vortiza — Agencia IA',role:'AGENCIA DE IA',text:'Teníamos que comunicar nuestra propuesta de valor tecnológica de forma clara y atractiva. Este vídeo lo logró en segundos, captando la atención perfecta para nuestro público B2B.',video:'roas/vortiza.mp4',roas:''},
-  {name:'Storytelling',role:'ENGAGEMENT & NARRATIVA',text:'Un ritmo de edición perfecto y una calidad visual que nos ayudó a destacar frente a toda la competencia. Directos al grano pero manteniendo al usuario enganchado.',video:'roas/storytelling.mp4',roas:''},
-  {name:'Economy Laborathion',role:'PRODUCTO & MARCA',text:'El vídeo transmite exactamente la identidad de la marca. Calidad cinematográfica sin necesidad de cámaras ni equipo de producción. Listo en tiempo récord.',video:'roas/economy_laborathion_ad1_v2.mp4',roas:''},
-  {name:'One Agency',role:'AGENCIA & SERVICIOS',text:'Queríamos un vídeo que representara la profesionalidad de nuestra agencia sin caer en lo genérico. El resultado fue un motion graphic con personalidad propia.',video:'roas/one-agency.mp4',roas:''},
+  {name:'Velyn — SaaS',role:'SAAS',text:'Necesitábamos transmitir la esencia del producto de forma visual e impactante. El motion graphic capturó perfectamente el espíritu de la plataforma y nos dio un asset de lanzamiento brutal.',videos:['roas/velyn.mp4'],roas:''},
+  {name:'Vortiza — Agencia IA',role:'AGENCIA DE IA',text:'Teníamos que comunicar nuestra propuesta de valor tecnológica de forma clara y atractiva. Este vídeo lo logró en segundos, captando la atención perfecta para nuestro público B2B.',videos:['roas/vortiza.mp4','roas/vortiza2.mp4'],roas:''},
+  {name:'Storytelling',role:'ENGAGEMENT & NARRATIVA',text:'Un ritmo de edición perfecto y una calidad visual que nos ayudó a destacar frente a toda la competencia. Directos al grano pero manteniendo al usuario enganchado.',videos:['roas/storytelling.mp4'],roas:''},
+  {name:'Economy Laborathion',role:'PRODUCTO & MARCA',text:'El vídeo transmite exactamente la identidad de la marca. Calidad cinematográfica sin necesidad de cámaras ni equipo de producción. Listo en tiempo récord.',videos:['roas/economy_laborathion_ad1_v2.mp4'],roas:''},
+  {name:'One Agency',role:'AGENCIA & SERVICIOS',text:'Queríamos un vídeo que representara la profesionalidad de nuestra agencia sin caer en lo genérico. El resultado fue un motion graphic con personalidad propia.',videos:['roas/one-agency.mp4'],roas:''},
 ];
+
+// Track video index per case
+const vidIndex = {};
 
 let currentPage = 0;
 let allCases = [];
 
 function loadCases() {
   const db = JSON.parse(localStorage.getItem('vomtu_db') || '{"testimonials":[]}');
-  const adminCases = (db.testimonials || []).map(t => ({name:t.name, role:t.role||'CLIENTE', text:t.text, video:t.video||'', roas:t.roas||''}));
+  const adminCases = (db.testimonials || []).map(t => {
+    const vids = t.video ? [t.video] : [];
+    return {name:t.name, role:t.role||'CLIENTE', text:t.text, videos:vids, roas:t.roas||''};
+  });
   allCases = adminCases.length > 0 ? [...adminCases, ...HARDCODED] : HARDCODED;
   renderPage();
+}
+
+function buildVideoCarousel(c, caseId, accent) {
+  const vids = c.videos || [];
+  if (!vids.length) return '';
+  if (vids.length === 1) {
+    // Single video — no arrows needed
+    return `<div class="w-full md:w-1/3 aspect-[9/16] relative reveal-up">
+      <div class="absolute inset-0 ${accent} blur-3xl rounded-full scale-75"></div>
+      <div class="relative z-10 h-full border border-white/10 rounded-[1.5rem] shadow-2xl overflow-hidden bg-neutral-900">
+        <video src="${vids[0]}" controls playsinline class="w-full h-full object-cover"></video>
+      </div>
+    </div>`;
+  }
+  // Multiple videos — carousel
+  vidIndex[caseId] = vidIndex[caseId] || 0;
+  const dots = vids.map((_,i) => `<div class="vid-dot ${i===0?'active':''}" id="dot-${caseId}-${i}" onclick="setVid('${caseId}',${i})"></div>`).join('');
+  return `<div class="w-full md:w-1/3 aspect-[9/16] relative reveal-up">
+    <div class="absolute inset-0 ${accent} blur-3xl rounded-full scale-75"></div>
+    <div class="vid-carousel relative z-10 h-full border border-white/10 rounded-[1.5rem] shadow-2xl overflow-hidden bg-neutral-900">
+      <video id="vid-${caseId}" src="${vids[0]}" controls playsinline class="w-full h-full object-cover" style="transition:opacity .25s"></video>
+      <button class="vid-arrow left" onclick="stepVid('${caseId}',-1)">
+        <span class="material-symbols-outlined" style="font-size:18px">chevron_left</span>
+      </button>
+      <button class="vid-arrow right" onclick="stepVid('${caseId}',1)">
+        <span class="material-symbols-outlined" style="font-size:18px">chevron_right</span>
+      </button>
+    </div>
+    <div class="vid-dots mt-3">${dots}</div>
+  </div>`;
+}
+
+function setVid(caseId, idx) {
+  const c = allCases.find((_,i) => `case-${i}` === caseId);
+  if (!c) return;
+  const vids = c.videos || [];
+  idx = Math.max(0, Math.min(vids.length-1, idx));
+  vidIndex[caseId] = idx;
+  const vid = document.getElementById('vid-'+caseId);
+  if (!vid) return;
+  vid.style.opacity = '0';
+  setTimeout(() => { vid.src = vids[idx]; vid.load(); vid.style.opacity = '1'; }, 250);
+  document.querySelectorAll(`[id^="dot-${caseId}-"]`).forEach((d,i) => d.classList.toggle('active', i===idx));
+}
+
+function stepVid(caseId, dir) {
+  const idx = (vidIndex[caseId] || 0) + dir;
+  setVid(caseId, idx);
 }
 
 function renderPage() {
@@ -185,22 +248,28 @@ function renderPage() {
   const items = allCases.slice(start, start + CASES_PER_PAGE);
   const container = document.getElementById('cases-container');
   container.innerHTML = items.map((c, i) => {
+    const globalIdx = start + i;
+    const caseId = `case-${globalIdx}`;
     const isEven = i % 2 === 0;
-    const accent = ACCENT_COLORS[(start + i) % ACCENT_COLORS.length];
-    const videoHtml = c.video ? `<div class="w-full md:w-1/3 aspect-[9/16] relative reveal-up"><div class="absolute inset-0 ${accent} blur-3xl rounded-full scale-75"></div><div class="relative z-10 h-full border border-white/10 rounded-[1.5rem] shadow-2xl overflow-hidden bg-neutral-900"><video src="${c.video}" controls playsinline class="w-full h-full object-cover"></video></div></div>` : '';
+    const accent = ACCENT_COLORS[globalIdx % ACCENT_COLORS.length];
+    const videoBlock = buildVideoCarousel(c, caseId, accent);
     const roasHtml = c.roas ? `<div class="inline-block mb-4 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary font-label font-black text-xs uppercase tracking-widest">${c.roas}</div>` : '';
-    const row = isEven ? `flex-col md:flex-row` : `flex-col md:flex-row-reverse`;
-    return `<div class="flex ${row} gap-12 items-center">${videoHtml}<div class="w-full md:w-2/3 flex flex-col reveal-up" style="transition-delay:200ms"><div class="flex items-center gap-3 mb-4"><span class="text-xs font-label font-bold tracking-widest text-white/50 border border-white/10 rounded-full px-3 py-1 bg-white/5">${c.role}</span></div><h2 class="font-headline text-4xl font-black italic uppercase text-white mb-6">${c.name}</h2>${roasHtml}<div class="glass-panel p-8 rounded-2xl mb-8"><p class="text-white/90 text-lg leading-relaxed italic">"${c.text}"</p></div></div></div>`;
+    const row = isEven ? 'flex-col md:flex-row' : 'flex-col md:flex-row-reverse';
+    return `<div class="flex ${row} gap-12 items-center">${videoBlock}<div class="w-full md:w-2/3 flex flex-col reveal-up" style="transition-delay:200ms">
+      <div class="flex items-center gap-3 mb-4"><span class="text-xs font-label font-bold tracking-widest text-white/50 border border-white/10 rounded-full px-3 py-1 bg-white/5">${c.role}</span></div>
+      <h2 class="font-headline text-4xl font-black italic uppercase text-white mb-6">${c.name}</h2>
+      ${roasHtml}
+      <div class="glass-panel p-8 rounded-2xl mb-8"><p class="text-white/90 text-lg leading-relaxed italic">"${c.text}"</p></div>
+    </div></div>`;
   }).join('');
 
-  // Pagination controls
+  // Pagination
   const pg = document.getElementById('pagination');
   if (totalPages > 1) { pg.style.display = 'flex'; } else { pg.style.display = 'none'; }
   document.getElementById('page-indicator').textContent = `Pág ${currentPage+1} de ${totalPages}`;
   document.getElementById('btn-prev').disabled = currentPage === 0;
   document.getElementById('btn-next').disabled = currentPage >= totalPages - 1;
 
-  // Re-observe animations
   document.querySelectorAll('.reveal-up').forEach(el => animationObserver.observe(el));
   window.scrollTo({top: document.getElementById('cases-section').offsetTop - 80, behavior:'smooth'});
 }
@@ -208,6 +277,7 @@ function renderPage() {
 function changePage(dir) { currentPage += dir; renderPage(); }
 loadCases();
 </script>
+
 
 <!-- BOTTOM CTA -->
 <section class="py-32 px-6 text-center relative overflow-hidden mt-20">
