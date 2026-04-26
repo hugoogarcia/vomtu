@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>¡Gracias! - VOMTU</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="favicon.png?v=3"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+@font-face { font-family: 'Cal Sans'; src: url('https://cdn.jsdelivr.net/fontsource/fonts/cal-sans@latest/latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Geist Sans'; font-weight: 400; src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Geist Sans'; font-weight: 700; src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-700-normal.woff2') format('woff2'); }
+body { background: #010409; color: #F0F6FC; font-family: 'Geist Sans', sans-serif; }
+.glow { box-shadow: 0 0 30px rgba(0,102,255,0.4); }
+@keyframes pulse-slow { 0%,100%{opacity:.3} 50%{opacity:.6} }
+.ambient { position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;animation:pulse-slow 4s ease-in-out infinite; }
+</style>
+</head>
+<body class="min-h-screen flex items-center justify-center overflow-hidden relative">
+
+<div class="ambient bg-blue-600 w-[600px] h-[600px] -top-32 -left-32 opacity-30"></div>
+<div class="ambient bg-blue-800 w-[500px] h-[500px] -bottom-32 -right-32 opacity-20" style="animation-delay:-2s"></div>
+
+<div class="relative z-10 text-center px-6 max-w-xl mx-auto">
+
+  <!-- Checkmark animado -->
+  <div id="check-anim" class="w-24 h-24 rounded-full border-2 border-green-500/50 bg-green-500/10 flex items-center justify-center mx-auto mb-10" style="opacity:0;transform:scale(0.5);transition:all 0.6s cubic-bezier(0.23,1,0.32,1)">
+    <svg class="w-12 h-12 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+    </svg>
+  </div>
+
+  <div class="text-green-400 font-mono text-xs tracking-[0.4em] uppercase mb-4 opacity-0" id="lbl-paid" style="transition:opacity 0.4s ease 0.3s">Pago Confirmado ✓</div>
+
+  <h1 class="font-serif text-5xl md:text-7xl font-black italic uppercase leading-none mb-6 opacity-0" id="lbl-title" style="font-family:'Cal Sans',sans-serif;transition:opacity 0.4s ease 0.5s">
+    ¡Todo<br><span style="color:#0066FF">listo!</span>
+  </h1>
+
+  <!-- Plan badge -->
+  <div id="plan-badge" class="hidden mb-8 inline-flex items-center gap-3 bg-blue-500/10 border border-blue-500/30 rounded-full px-6 py-3">
+    <span class="w-2 h-2 rounded-full bg-blue-500 animate-ping inline-block"></span>
+    <span class="font-mono text-xs font-black tracking-widest uppercase text-blue-400" id="badge-text"></span>
+  </div>
+
+  <p class="text-white/50 text-lg mb-10 opacity-0" id="lbl-sub" style="transition:opacity 0.4s ease 0.7s">
+    Ahora rellena el briefing para que podamos<br>empezar la producción de tu vídeo.
+  </p>
+
+  <!-- Countdown -->
+  <div class="mb-10 opacity-0" id="lbl-count" style="transition:opacity 0.4s ease 0.9s">
+    <p class="text-white/30 text-sm font-mono uppercase tracking-widest">Redirigiendo en <span id="countdown" class="text-blue-400 font-black">5</span>s</p>
+    <div class="mt-3 w-48 mx-auto h-1 bg-white/10 rounded-full overflow-hidden">
+      <div id="progress-bar" class="h-full bg-blue-500 rounded-full" style="width:0%;transition:width 5s linear"></div>
+    </div>
+  </div>
+
+  <a id="manual-btn" href="#" class="hidden glow inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-full font-mono text-sm font-black uppercase tracking-widest transition-all">
+    Ir al Briefing →
+  </a>
+</div>
+
+<script>
+// Plan map: key = param, value = display label
+const PLANS = {
+  'starter':   { label: '1 Vídeo · €8.99',       key: 'starter' },
+  'pack3':     { label: 'Pack 3 Vídeos · €24.99', key: 'pack3' },
+  'pack6':     { label: 'Pack 6 Vídeos · €49.99', key: 'pack6' },
+  'growth':    { label: 'Pack Growth · €1.200/mes', key: 'growth' },
+  'scale':     { label: 'Pack Scale · €2.200/mes',  key: 'scale' },
+  'dominance': { label: 'Pack Dominance · €3.400/mes', key: 'dominance' },
+};
+
+const params     = new URLSearchParams(window.location.search);
+const planKey    = (params.get('plan') || 'starter').toLowerCase();
+const sessionId  = params.get('session_id') || '';
+
+// Build brief URL
+const briefUrl = `brief.html?plan=${encodeURIComponent(planKey)}&session_id=${encodeURIComponent(sessionId)}`;
+
+// Show plan badge
+if (PLANS[planKey]) {
+  document.getElementById('badge-text').textContent = PLANS[planKey].label;
+  const badge = document.getElementById('plan-badge');
+  badge.classList.remove('hidden');
+  badge.classList.add('flex');
+}
+
+// Update manual button href
+document.getElementById('manual-btn').href = briefUrl;
+
+// Animate in
+window.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    const check = document.getElementById('check-anim');
+    check.style.opacity = '1';
+    check.style.transform = 'scale(1)';
+  }, 100);
+  ['lbl-paid','lbl-title','lbl-sub','lbl-count'].forEach(id => {
+    setTimeout(() => { document.getElementById(id).style.opacity = '1'; }, 200);
+  });
+
+  // Start countdown
+  let secs = 5;
+  document.getElementById('progress-bar').style.width = '100%';
+  const interval = setInterval(() => {
+    secs--;
+    document.getElementById('countdown').textContent = secs;
+    if (secs <= 0) {
+      clearInterval(interval);
+      window.location.href = briefUrl;
+    }
+  }, 1000);
+
+  // Show manual button after 2s as fallback
+  setTimeout(() => {
+    document.getElementById('manual-btn').classList.remove('hidden');
+  }, 2000);
+});
+</script>
+</body>
+</html>

@@ -137,11 +137,22 @@ input[type="file"]:hover { border-color: var(--vomtu-blue); background: rgba(0, 
 
 <form id="brief-form" class="w-full h-full relative" onsubmit="event.preventDefault(); submitForm();">
 
+<!-- Hidden system fields -->
+<input type="hidden" name="_plan" id="field-plan">
+<input type="hidden" name="_session_id" id="field-session">
+<input type="hidden" name="_plan_label" id="field-plan-label">
+
 <!-- INTRO -->
 <div class="block-section active" id="block-0">
     <div class="max-w-2xl mx-auto w-full text-center">
         <div class="text-primary font-label text-xs font-black tracking-[0.3em] uppercase mb-4">BRIEFING INTERACTIVO</div>
         <h1 class="font-headline text-5xl md:text-7xl font-black italic uppercase mb-6">Empecemos a <span class="text-primary">Crear</span></h1>
+        <!-- Plan badge (shown when plan detected from URL) -->
+        <div id="plan-badge" class="hidden mb-8 inline-flex items-center gap-3 bg-primary/10 border border-primary/30 rounded-full px-6 py-3">
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse inline-block"></span>
+            <span class="font-label text-xs font-black tracking-widest uppercase text-primary" id="plan-badge-text"></span>
+            <span class="text-white/40 font-label text-xs">— Compra verificada ✓</span>
+        </div>
         <p class="text-text-secondary text-lg mb-12">Rellena esta información para tener tu vídeo en 48 horas. Las preguntas con * son obligatorias.</p>
         <button type="button" class="glow-btn inline-flex items-center gap-2" onclick="nextBlock(1)">
             COMENZAR <span class="material-symbols-outlined">arrow_downward</span>
@@ -350,9 +361,31 @@ input[type="file"]:hover { border-color: var(--vomtu-blue); background: rgba(0, 
 </form>
 
 <script>
-// Protection check removed to ensure customers can always access the brief after purchase
+// Plan detection from URL params (Stripe redirect)
+const PLANS = {
+    'growth':    { label: 'Pack Growth',    price: '1.200€/mes', videos: '2 vídeos/mes' },
+    'scale':     { label: 'Pack Scale',     price: '2.200€/mes', videos: '4 vídeos/mes' },
+    'dominance': { label: 'Pack Dominance', price: '3.400€/mes', videos: '8+ vídeos/mes' },
+    'starter':   { label: 'Pack Starter',   price: '300€',       videos: '1 vídeo' },
+    'pro':       { label: 'Pack Pro',       price: '500€',       videos: '2 vídeos' },
+};
+
 window.addEventListener('DOMContentLoaded', () => {
-    // Check removed
+    const params = new URLSearchParams(window.location.search);
+    const planKey    = (params.get('plan') || '').toLowerCase();
+    const sessionId  = params.get('session_id') || '';
+
+    // Fill hidden fields
+    document.getElementById('field-session').value = sessionId;
+    document.getElementById('field-plan').value    = planKey;
+
+    if (planKey && PLANS[planKey]) {
+        const plan = PLANS[planKey];
+        document.getElementById('field-plan-label').value   = plan.label;
+        document.getElementById('plan-badge-text').textContent = plan.label + ' · ' + plan.price;
+        document.getElementById('plan-badge').classList.remove('hidden');
+        document.getElementById('plan-badge').classList.add('flex');
+    }
 });
 
 // Logo upload to base64
@@ -469,14 +502,17 @@ async function submitForm() {
     data.b8_ab_test = formData.get('b8_ab_test') === 'on';
 
     try {
-        // Add URL params (like checkout=success or session_id)
-        const urlParams = Object.fromEntries(new URLSearchParams(window.location.search).entries());
+        const planKey   = document.getElementById('field-plan').value;
+        const planLabel = document.getElementById('field-plan-label').value || planKey || 'No especificado';
+        const sessionId = document.getElementById('field-session').value;
         const payload = {
             ...data,
             _metadata: {
-                timestamp: new Date().toISOString(),
-                url_params: urlParams,
-                source: 'briefing_form'
+                timestamp:  new Date().toISOString(),
+                plan:       planKey,
+                plan_label: planLabel,
+                session_id: sessionId,
+                source:     'briefing_form'
             }
         };
 
