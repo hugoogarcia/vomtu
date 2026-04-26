@@ -361,21 +361,57 @@ input[type="file"]:hover { border-color: var(--vomtu-blue); background: rgba(0, 
 </form>
 
 <script>
-// Plan detection from URL params (Stripe redirect)
+// Plan definitions
 const PLANS = {
     'growth':    { label: 'Pack Growth',    price: '1.200€/mes', videos: '2 vídeos/mes' },
     'scale':     { label: 'Pack Scale',     price: '2.200€/mes', videos: '4 vídeos/mes' },
     'dominance': { label: 'Pack Dominance', price: '3.400€/mes', videos: '8+ vídeos/mes' },
-    'starter':   { label: 'Pack Starter',   price: '300€',       videos: '1 vídeo' },
-    'pro':       { label: 'Pack Pro',       price: '500€',       videos: '2 vídeos' },
+    'starter':   { label: 'Pack Starter',   price: '8.99€',      videos: '1 vídeo' },
+    'pack3':     { label: 'Pack 3 Vídeos',  price: '24.99€',     videos: '3 vídeos' },
+    'pack6':     { label: 'Pack 6 Vídeos',  price: '49.99€',     videos: '6 vídeos' },
+    'manual':    { label: 'Acceso Manual',  price: 'Verificado', videos: 'Plan personalizado' },
 };
 
+// Smart Access Protection
 window.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
-    const planKey    = (params.get('plan') || '').toLowerCase();
-    const sessionId  = params.get('session_id') || '';
+    const planKey = (params.get('plan') || '').toLowerCase();
+    const sessionId = params.get('session_id') || '';
+    const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
 
-    // Fill hidden fields
+    // If no plan and no session, and not local -> Show Gate
+    if (!planKey && !sessionId && !isLocal) {
+        document.body.innerHTML = `
+        <div style="display:flex;min-height:100vh;align-items:center;justify-content:center;background:#010409;color:white;font-family:'Geist Sans',sans-serif;flex-direction:column;padding:2rem;text-align:center">
+            <div style="font-family:'Cal Sans';font-style:italic;font-weight:900;font-size:2rem;margin-bottom:3rem">VOMTU</div>
+            <div style="width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:2rem">
+                <span class="material-symbols-outlined" style="color:#0066FF">lock</span>
+            </div>
+            <h1 style="font-family:'Cal Sans';font-size:2.5rem;margin-bottom:1rem;text-transform:uppercase;font-style:italic">Acceso Restringido</h1>
+            <p style="color:#8B949E;max-width:400px;margin-bottom:3rem">Esta página es exclusiva para clientes. Por favor, accede a través del enlace de confirmación de tu compra.</p>
+            
+            <div style="background:rgba(255,255,255,0.03);padding:2rem;border-radius:1.5rem;border:1px solid rgba(255,255,255,0.05);width:100%;max-width:400px">
+                <p style="font-size:0.8rem;color:#8B949E;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem;font-weight:bold">¿Tienes un código de acceso?</p>
+                <input type="text" id="manual-code" placeholder="Introduce tu email o código" style="background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.1);padding:1rem;border-radius:0.75rem;width:100%;color:white;margin-bottom:1.5rem;text-align:center">
+                <button onclick="validateManualCode()" style="background:#0066FF;color:white;width:100%;padding:1rem;border-radius:999px;font-weight:bold;cursor:pointer;border:none">ACCEDER AHORA</button>
+            </div>
+            
+            <a href="index.html" style="margin-top:3rem;color:#8B949E;text-decoration:none;font-size:0.9rem">Volver al inicio</a>
+        </div>
+        <script>
+            function validateManualCode() {
+                const code = document.getElementById('manual-code').value;
+                if (code.length > 3) {
+                    window.location.href = 'brief.html?plan=manual&session_id=' + encodeURIComponent(code);
+                } else {
+                    alert('Por favor, introduce un email o código válido.');
+                }
+            }
+        </script>`;
+        return; // Stop execution
+    }
+
+    // Fill hidden fields if we passed the gate
     document.getElementById('field-session').value = sessionId;
     document.getElementById('field-plan').value    = planKey;
 
