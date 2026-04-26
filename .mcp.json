@@ -2,7 +2,7 @@
   "mcpServers": {
     "ig-prospector": {
       "type": "stdio",
-      "command": "/Users/hugogarcia/Desktop/Vomtu/ig-prospector-mcp/.venv/bin/python",
+      "command": "/Users/hugogarcia/Desktop/Vomtu./Vomtu/ig-prospector-mcp/.venv/bin/python",
       "args": [
         "-m",
         "ig_prospector.server"
