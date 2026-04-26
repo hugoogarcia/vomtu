@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>VOMTU Admin</title>
+<meta name="robots" content="noindex,nofollow"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+*{font-family:'Inter',sans-serif;box-sizing:border-box}
+body{background:#060A10;color:#E6EDF3;min-height:100vh}
+.card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px}
+.btn-primary{background:#0066FF;color:white;padding:.6rem 1.4rem;border-radius:999px;font-weight:700;font-size:.85rem;cursor:pointer;border:none;transition:opacity .2s}
+.btn-primary:hover{opacity:.85}
+.btn-danger{background:rgba(255,60,60,.15);color:#ff6b6b;border:1px solid rgba(255,60,60,.3);padding:.4rem 1rem;border-radius:8px;font-size:.8rem;cursor:pointer;border-radius:999px}
+.tab{padding:.5rem 1.2rem;border-radius:999px;font-size:.85rem;font-weight:600;cursor:pointer;color:#8B949E;transition:all .2s}
+.tab.active{background:rgba(0,102,255,.15);color:#0066FF}
+input,textarea,select{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:.65rem 1rem;color:white;width:100%;font-size:.9rem;outline:none}
+input:focus,textarea:focus{border-color:#0066FF}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:#8B949E;padding:.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.06)}
+td{padding:.85rem 1rem;border-bottom:1px solid rgba(255,255,255,.04);font-size:.875rem;vertical-align:top}
+tr:hover td{background:rgba(255,255,255,.02)}
+.badge{display:inline-block;padding:.2rem .7rem;border-radius:999px;font-size:.7rem;font-weight:700}
+.badge-green{background:rgba(52,211,153,.15);color:#34d399}
+.badge-blue{background:rgba(0,102,255,.15);color:#60a5fa}
+.badge-yellow{background:rgba(251,191,36,.15);color:#fbbf24}
+.stat-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:1.5rem}
+</style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen" style="display:flex;min-height:100vh;align-items:center;justify-content:center;flex-direction:column">
+  <div style="font-size:2rem;font-weight:900;font-style:italic;margin-bottom:2.5rem">VOMTU</div>
+  <div class="card" style="padding:2.5rem;width:360px;text-align:center">
+    <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.2em;color:#8B949E;margin-bottom:.75rem">Panel de Administración</div>
+    <h1 style="font-size:1.5rem;font-weight:800;margin-bottom:2rem">Introduce tu PIN</h1>
+    <input id="pin-input" type="password" placeholder="••••" maxlength="4" style="text-align:center;font-size:2rem;letter-spacing:.5em;margin-bottom:1rem" onkeydown="if(event.key==='Enter')doLogin()"/>
+    <div id="pin-error" style="color:#ff6b6b;font-size:.8rem;margin-bottom:1rem;display:none">PIN incorrecto</div>
+    <button class="btn-primary" style="width:100%;padding:.875rem" onclick="doLogin()">ENTRAR</button>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel" style="display:none">
+  <!-- Sidebar -->
+  <div style="position:fixed;left:0;top:0;width:220px;height:100vh;background:#0A0F18;border-right:1px solid rgba(255,255,255,.06);padding:1.5rem;z-index:10;display:flex;flex-direction:column">
+    <div style="font-weight:900;font-size:1.2rem;font-style:italic;margin-bottom:2.5rem;color:white">VOMTU<span style="color:#0066FF">.</span></div>
+    <nav style="display:flex;flex-direction:column;gap:.25rem;flex:1">
+      <div class="tab active" id="nav-dashboard" onclick="showSection('dashboard')">📊 Dashboard</div>
+      <div class="tab" id="nav-crm" onclick="showSection('crm')">👥 CRM</div>
+      <div class="tab" id="nav-testimonials" onclick="showSection('testimonials')">⭐ Testimonios</div>
+      <div class="tab" id="nav-codes" onclick="showSection('codes')">🔑 Códigos Acceso</div>
+    </nav>
+    <button onclick="logout()" style="background:transparent;border:1px solid rgba(255,255,255,.1);color:#8B949E;padding:.6rem;border-radius:10px;cursor:pointer;font-size:.8rem">Cerrar sesión</button>
+  </div>
+
+  <!-- Main content -->
+  <div style="margin-left:220px;padding:2rem;min-height:100vh">
+
+    <!-- DASHBOARD -->
+    <div id="section-dashboard">
+      <h2 style="font-size:1.5rem;font-weight:800;margin-bottom:1.5rem">Dashboard</h2>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem">
+        <div class="stat-card">
+          <div style="font-size:.75rem;color:#8B949E;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem">MRR</div>
+          <div style="font-size:2rem;font-weight:800" id="stat-mrr">€0</div>
+        </div>
+        <div class="stat-card">
+          <div style="font-size:.75rem;color:#8B949E;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem">Clientes Activos</div>
+          <div style="font-size:2rem;font-weight:800" id="stat-clients">0</div>
+        </div>
+        <div class="stat-card">
+          <div style="font-size:.75rem;color:#8B949E;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem">Testimonios</div>
+          <div style="font-size:2rem;font-weight:800" id="stat-testimonials">0</div>
+        </div>
+        <div class="stat-card">
+          <div style="font-size:.75rem;color:#8B949E;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem">Códigos Activos</div>
+          <div style="font-size:2rem;font-weight:800" id="stat-codes">0</div>
+        </div>
+      </div>
+      <div class="card" style="padding:1.5rem">
+        <h3 style="font-weight:700;margin-bottom:1rem">Añadir Ingreso Manual</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:1rem;align-items:end">
+          <div><label style="font-size:.75rem;color:#8B949E;display:block;margin-bottom:.4rem">Concepto</label><input id="rev-concept" placeholder="Pack 3 Vídeos"/></div>
+          <div><label style="font-size:.75rem;color:#8B949E;display:block;margin-bottom:.4rem">Importe (€)</label><input id="rev-amount" type="number" placeholder="24.99"/></div>
+          <div><label style="font-size:.75rem;color:#8B949E;display:block;margin-bottom:.4rem">Fecha</label><input id="rev-date" type="date"/></div>
+          <button class="btn-primary" onclick="addRevenue()">Añadir</button>
+        </div>
+      </div>
+      <div class="card" style="padding:1.5rem;margin-top:1rem">
+        <h3 style="font-weight:700;margin-bottom:1rem">Últimos Ingresos</h3>
+        <table><thead><tr><th>Fecha</th><th>Concepto</th><th>Importe</th><th></th></tr></thead>
+        <tbody id="revenue-table"></tbody></table>
+      </div>
+    </div>
+
+    <!-- CRM -->
+    <div id="section-crm" style="display:none">
+      <h2 style="font-size:1.5rem;font-weight:800;margin-bottom:1.5rem">CRM — Clientes</h2>
+      <div class="card" style="padding:1.5rem;margin-bottom:1rem">
+        <h3 style="font-weight:700;margin-bottom:1rem">Nuevo Cliente</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;gap:1rem;align-items:end">
+          <div><label style="font-size:.75rem;color:#8B949E;display:block;margin-bottom:.4rem">Nombre</label><input id="c-name" placeholder="Juan García"/></div>
+          <div><label style="font-size:.75rem;color:#8B949E;display:block;margin-bottom:.4rem">Email</label><input id="c-email" placeholder="juan@empresa.com"/></div>
+          <div><label style="font-size:.75rem;color:#8B949E;display:block;margin-bottom:.4rem">Plan</label>
+            <select id="c-plan"><option>Pack Starter</option><option>Pack 3 Vídeos</option><option>Pack 6 Vídeos</option><option>Pack Growth</option><option>Pack Scale</option><option>Pack Dominance</option></select>
+          </div>
+          <div><label style="font-size:.75rem;color:#8B949E;display:block;margin-bottom:.4rem">Estado</label>
+            <select id="c-status"><option>Activo</option><option>Pendiente</option><option>Cancelado</option></select>
+          </div>
+          <button class="btn-primary" onclick="addClient()">Añadir</button>
+        </div>
+        <div style="margin-top:1rem"><label style="font-size:.75rem;color:#8B949E;display:block;margin-bottom:.4rem">Notas</label><input id="c-notes" placeholder="Notas internas..."/></div>
+      </div>
+      <div class="card" style="padding:1.5rem">
+        <table><thead><tr><th>Nombre</th><th>Email</th><th>Plan</th><th>Estado</th><th>Fecha</th><th>Notas</th><th></th></tr></thead>
+        <tbody id="crm-table"></tbody></table>
+      </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <div id="section-testimonials" style="display:none">
+      <h2 style="font-size:1.5rem;font-weight:800;margin-bottom:1.5rem">Testimonios</h2>
+      <div class="card" style="padding:1.5rem;margin-bottom:1rem">
+        <h3 style="font-weight:700;margin-bottom:1rem">Nuevo Testimonio</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+          <div><label style="font-size:.75rem;color:#8B949E;display:block;margin-bottom:.4rem">Nombre</label><input id="t-name" placeholder="Alejandro R."/></div>
+          <div><label style="font-size:.75rem;color:#8B949E;display:block;margin-bottom:.4rem">Empresa / Rol</label><input id="t-role" placeholder="Founder · Streetwear"/></div>
+        </div>
+        <div style="margin-bottom:1rem"><label style="font-size:.75rem;color:#8B949E;display:block;margin-bottom:.4rem">Testimonio</label><textarea id="t-text" rows="3" placeholder="Texto del testimonio..."></textarea></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:1rem;align-items:end">
+          <div><label style="font-size:.75rem;color:#8B949E;display:block;margin-bottom:.4rem">URL Vídeo (opcional)</label><input id="t-video" placeholder="https://..."/></div>
+          <div><label style="font-size:.75rem;color:#8B949E;display:block;margin-bottom:.4rem">Resultado ROAS</label><input id="t-roas" placeholder="3.2x ROAS"/></div>
+          <button class="btn-primary" onclick="addTestimonial()">Añadir</button>
+        </div>
+      </div>
+      <div class="card" style="padding:1.5rem">
+        <div id="testimonials-list"></div>
+      </div>
+    </div>
+
+    <!-- ACCESS CODES -->
+    <div id="section-codes" style="display:none">
+      <h2 style="font-size:1.5rem;font-weight:800;margin-bottom:1.5rem">Códigos de Acceso</h2>
+      <div class="card" style="padding:1.5rem;margin-bottom:1rem">
+        <h3 style="font-weight:700;margin-bottom:1rem">Generar Código</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:1rem;align-items:end">
+          <div><label style="font-size:.75rem;color:#8B949E;display:block;margin-bottom:.4rem">Para (email/nombre)</label><input id="code-for" placeholder="cliente@email.com"/></div>
+          <div><label style="font-size:.75rem;color:#8B949E;display:block;margin-bottom:.4rem">Plan</label>
+            <select id="code-plan"><option value="starter">Pack Starter</option><option value="pack3">Pack 3 Vídeos</option><option value="pack6">Pack 6 Vídeos</option><option value="growth">Pack Growth</option><option value="scale">Pack Scale</option><option value="dominance">Pack Dominance</option></select>
+          </div>
+          <div><label style="font-size:.75rem;color:#8B949E;display:block;margin-bottom:.4rem">Código personalizado</label><input id="code-custom" placeholder="dejar vacío = auto"/></div>
+          <button class="btn-primary" onclick="genCode()">Generar</button>
+        </div>
+      </div>
+      <div class="card" style="padding:1.5rem">
+        <table><thead><tr><th>Código</th><th>Para</th><th>Plan</th><th>URL de Acceso</th><th>Creado</th><th></th></tr></thead>
+        <tbody id="codes-table"></tbody></table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const PIN = '0595';
+let DB = JSON.parse(localStorage.getItem('vomtu_db') || '{"clients":[],"testimonials":[],"codes":[],"revenue":[]}');
+
+function save(){localStorage.setItem('vomtu_db',JSON.stringify(DB));}
+
+function doLogin(){
+  const v = document.getElementById('pin-input').value;
+  if(v === PIN){
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('admin-panel').style.display='block';
+    renderAll();
+  } else {
+    document.getElementById('pin-error').style.display='block';
+    document.getElementById('pin-input').value='';
+  }
+}
+document.getElementById('pin-input').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+
+function logout(){document.getElementById('admin-panel').style.display='none';document.getElementById('login-screen').style.display='flex';document.getElementById('pin-input').value='';}
+
+function showSection(s){
+  ['dashboard','crm','testimonials','codes'].forEach(x=>{
+    document.getElementById('section-'+x).style.display = x===s?'block':'none';
+    document.getElementById('nav-'+x).classList.toggle('active',x===s);
+  });
+}
+
+function renderStats(){
+  const mrr = DB.revenue.reduce((a,r)=>a+parseFloat(r.amount||0),0);
+  const active = DB.clients.filter(c=>c.status==='Activo').length;
+  document.getElementById('stat-mrr').textContent='€'+mrr.toFixed(0);
+  document.getElementById('stat-clients').textContent=active;
+  document.getElementById('stat-testimonials').textContent=DB.testimonials.length;
+  document.getElementById('stat-codes').textContent=DB.codes.length;
+}
+
+function addRevenue(){
+  const concept=document.getElementById('rev-concept').value.trim();
+  const amount=document.getElementById('rev-amount').value;
+  const date=document.getElementById('rev-date').value||new Date().toISOString().slice(0,10);
+  if(!concept||!amount)return;
+  DB.revenue.unshift({id:Date.now(),concept,amount,date});
+  save(); renderAll();
+  ['rev-concept','rev-amount','rev-date'].forEach(id=>document.getElementById(id).value='');
+}
+
+function renderRevenue(){
+  const tb=document.getElementById('revenue-table');
+  tb.innerHTML=DB.revenue.map(r=>`<tr><td>${r.date}</td><td>${r.concept}</td><td style="color:#34d399;font-weight:700">€${parseFloat(r.amount).toFixed(2)}</td><td><button class="btn-danger" onclick="delRevenue(${r.id})">✕</button></td></tr>`).join('');
+}
+function delRevenue(id){DB.revenue=DB.revenue.filter(r=>r.id!==id);save();renderAll();}
+
+function addClient(){
+  const name=document.getElementById('c-name').value.trim();
+  const email=document.getElementById('c-email').value.trim();
+  if(!name||!email)return;
+  DB.clients.unshift({id:Date.now(),name,email,plan:document.getElementById('c-plan').value,status:document.getElementById('c-status').value,notes:document.getElementById('c-notes').value,date:new Date().toISOString().slice(0,10)});
+  save(); renderAll();
+  ['c-name','c-email','c-notes'].forEach(id=>document.getElementById(id).value='');
+}
+
+function renderCRM(){
+  const statusColor={'Activo':'badge-green','Pendiente':'badge-yellow','Cancelado':'badge-danger'};
+  document.getElementById('crm-table').innerHTML=DB.clients.map(c=>`<tr><td style="font-weight:600">${c.name}</td><td style="color:#8B949E">${c.email}</td><td><span class="badge badge-blue">${c.plan}</span></td><td><span class="badge ${statusColor[c.status]||'badge-green'}">${c.status}</span></td><td style="color:#8B949E">${c.date}</td><td style="color:#8B949E;font-size:.8rem">${c.notes||'-'}</td><td><button class="btn-danger" onclick="delClient(${c.id})">✕</button></td></tr>`).join('');
+}
+function delClient(id){if(!confirm('¿Eliminar cliente?'))return;DB.clients=DB.clients.filter(c=>c.id!==id);save();renderAll();}
+
+function addTestimonial(){
+  const name=document.getElementById('t-name').value.trim();
+  const text=document.getElementById('t-text').value.trim();
+  if(!name||!text)return;
+  DB.testimonials.unshift({id:Date.now(),name,role:document.getElementById('t-role').value,text,video:document.getElementById('t-video').value,roas:document.getElementById('t-roas').value,date:new Date().toISOString().slice(0,10)});
+  save(); renderAll();
+  ['t-name','t-role','t-text','t-video','t-roas'].forEach(id=>document.getElementById(id).value='');
+}
+
+function renderTestimonials(){
+  const el=document.getElementById('testimonials-list');
+  if(!DB.testimonials.length){el.innerHTML='<p style="color:#8B949E;text-align:center;padding:2rem">Sin testimonios aún. Añade el primero.</p>';return;}
+  el.innerHTML=DB.testimonials.map(t=>`
+    <div style="display:flex;gap:1rem;align-items:flex-start;padding:1rem 0;border-bottom:1px solid rgba(255,255,255,.06)">
+      <div style="flex:1">
+        <div style="font-weight:700">${t.name} <span style="color:#8B949E;font-size:.8rem;font-weight:400">· ${t.role||''}</span></div>
+        <div style="color:#8B949E;margin:.25rem 0;font-size:.875rem">"${t.text}"</div>
+        ${t.roas?`<span class="badge badge-green">${t.roas}</span>`:''}
+        ${t.video?`<a href="${t.video}" target="_blank" style="color:#60a5fa;font-size:.8rem;margin-left:.5rem">🎬 Ver vídeo</a>`:''}
+      </div>
+      <button class="btn-danger" onclick="delTestimonial(${t.id})">✕</button>
+    </div>`).join('');
+}
+function delTestimonial(id){if(!confirm('¿Eliminar testimonio?'))return;DB.testimonials=DB.testimonials.filter(t=>t.id!==id);save();renderAll();}
+
+function genCode(){
+  const forWho=document.getElementById('code-for').value.trim();
+  const plan=document.getElementById('code-plan').value;
+  const custom=document.getElementById('code-custom').value.trim();
+  const code=custom||Math.random().toString(36).substring(2,10).toUpperCase();
+  DB.codes.unshift({id:Date.now(),code,forWho,plan,date:new Date().toISOString().slice(0,10)});
+  save(); renderAll();
+  document.getElementById('code-for').value='';
+  document.getElementById('code-custom').value='';
+}
+
+function renderCodes(){
+  document.getElementById('codes-table').innerHTML=DB.codes.map(c=>{
+    const url=`https://vomtu.com/brief.html?plan=${c.plan}&session_id=${c.code}`;
+    return `<tr><td><code style="background:rgba(0,102,255,.15);color:#60a5fa;padding:.2rem .6rem;border-radius:6px;font-size:.9rem">${c.code}</code></td><td>${c.forWho||'-'}</td><td><span class="badge badge-blue">${c.plan}</span></td><td><input value="${url}" style="font-size:.75rem;padding:.3rem .6rem;width:100%;max-width:340px" onclick="this.select()" readonly/></td><td style="color:#8B949E">${c.date}</td><td><button class="btn-danger" onclick="delCode(${c.id})">✕</button></td></tr>`;
+  }).join('');
+}
+function delCode(id){DB.codes=DB.codes.filter(c=>c.id!==id);save();renderAll();}
+
+function renderAll(){renderStats();renderRevenue();renderCRM();renderTestimonials();renderCodes();}
+</script>
+</body>
+</html>
