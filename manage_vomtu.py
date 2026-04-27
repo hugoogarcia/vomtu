@@ -70,18 +70,41 @@ if __name__ == "__main__":
     action = sys.argv[1]
     
     if action == "add":
-        # Ejemplo: python3 manage_vomtu.py add "Nombre" "Rol" "Texto" "video.mp4" "ROAS"
+        # Ejemplo: python3 manage_vomtu.py add "Nombre" "Rol" "Texto" "video.mp4" "ROAS" [--source path]
         if len(sys.argv) < 7:
             print("Faltan argumentos para 'add'")
             sys.exit(1)
-        add_testimonial(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6])
+            
+        name = sys.argv[2]
+        role = sys.argv[3]
+        text = sys.argv[4]
+        video_filename = sys.argv[5]
+        roas = sys.argv[6]
         
-        # Subir el video si existe localmente
-        video_path = f"roas/{sys.argv[5]}"
-        if os.path.exists(video_path):
-            print(f"⬆️ Subiendo vídeo {video_path}...")
-            upload_file(video_path, f"roas/{sys.argv[5]}")
-            print("✅ Vídeo subido.")
+        source_path = None
+        if "--source" in sys.argv:
+            idx = sys.argv.index("--source")
+            if len(sys.argv) > idx + 1:
+                source_path = sys.argv[idx + 1]
+
+        # 1. Añadir al HTML
+        add_testimonial(name, role, text, video_filename, roas)
+        
+        # 2. Gestionar el archivo de vídeo
+        video_dest = f"roas/{video_filename}"
+        
+        if source_path and os.path.exists(source_path):
+            print(f"📦 Copiando vídeo desde {source_path}...")
+            import shutil
+            shutil.copy(source_path, video_dest)
+            print(f"✅ Vídeo copiado a {video_dest}")
+        
+        if os.path.exists(video_dest):
+            print(f"⬆️ Subiendo vídeo {video_dest} al servidor...")
+            upload_file(video_dest, video_dest)
+            print("✅ Vídeo subido al VPS.")
+        else:
+            print(f"⚠️ Aviso: No se encontró el vídeo en {video_dest}. Asegúrate de que existe antes de desplegar.")
             
     elif action == "deploy":
         msg = sys.argv[2] if len(sys.argv) > 2 else "update from manager"
