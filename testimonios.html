@@ -1,333 +1,892 @@
 <!DOCTYPE html>
-<html class="dark" lang="es"><head>
+<html lang="es">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Testimonios - VOMTU</title>
+<title>VOMTU | Casos de Éxito & Testimonios Premium</title>
+<meta name="description" content="Descubre cómo los vídeos Cinematic Motion Graphics de VOMTU están escalando el ROAS de marcas líderes. Casos de éxito reales.">
 <link rel="icon" type="image/png" href="favicon.png?v=3"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
-<!-- Fonts -->
 <style>
+/* ─── RESET ─── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ─── TOKENS ─── */
+:root {
+  --black:     #010409;
+  --blue:      #0066FF;
+  --blue-dim:  rgba(0,102,255,0.12);
+  --blue-glow: rgba(0,102,255,0.5);
+  --white:     #F0F6FC;
+  --muted:     #8B949E;
+  --glass:     rgba(255,255,255,0.03);
+  --border:    rgba(240,246,252,0.08);
+  --ease-snap: cubic-bezier(0.23,1,0.32,1);
+  --ease-flow: cubic-bezier(0.77,0,0.175,1);
+}
+
+html { scroll-behavior: auto; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Geist Sans', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  cursor: none;
+}
+
+/* ─── FONTS ─── */
 @font-face {
   font-family: 'Cal Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
+  font-weight: 400; font-display: swap;
   src: url('https://cdn.jsdelivr.net/fontsource/fonts/cal-sans@latest/latin-400-normal.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Geist Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
+  font-weight: 400; font-display: swap;
   src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-400-normal.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Geist Sans';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
+  font-weight: 700; font-display: swap;
   src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-700-normal.woff2') format('woff2');
 }
-</style>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-tailwind.config = {
-    darkMode: "class",
-    theme: {
-        extend: {
-            colors: {
-                "background": "#010409",
-                "surface": "#010409",
-                "primary": "#0066FF",
-                "secondary": "#0044cc",
-                "text-secondary": "#8B949E",
-                "outline": "rgba(240, 246, 252, 0.1)",
-            },
-            fontFamily: {
-                "headline": ["Cal Sans", "Inter", "sans-serif"],
-                "body": ["Geist Sans", "Inter", "sans-serif"],
-                "label": ["Geist Sans", "Space Grotesk", "sans-serif"]
-            }
-        }
-    }
-}
-</script>
-<style>
-:root {
-  --bg-obsidian: #010409;
-  --vomtu-blue: #0066FF;
-  --easing-snap: cubic-bezier(0.23, 1, 0.32, 1);
-  --easing-flow: cubic-bezier(0.77, 0, 0.175, 1);
+@font-face {
+  font-family: 'Geist Sans';
+  font-weight: 900; font-display: swap;
+  src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-900-normal.woff2') format('woff2');
 }
 
-body { 
-    font-family: 'Geist Sans', sans-serif; 
-    background-color: var(--bg-obsidian); 
-    color: #F0F6FC; 
+/* ─── GRAIN ─── */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 9998;
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-    opacity: 0.03;
-    pointer-events: none;
-    z-index: 9999;
+/* ─── CURSOR ─── */
+#cursor {
+  position: fixed; width: 10px; height: 10px;
+  background: var(--white); border-radius: 50%;
+  pointer-events: none; z-index: 10000;
+  transform: translate(-50%,-50%);
+  transition: width .2s var(--ease-snap), height .2s var(--ease-snap);
+  mix-blend-mode: difference;
+}
+#cursor-ring {
+  position: fixed; width: 36px; height: 36px;
+  border: 1px solid rgba(240,246,252,0.4); border-radius: 50%;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: width .35s var(--ease-snap), height .35s var(--ease-snap), border-color .2s;
+}
+body.cursor-hover #cursor { width: 6px; height: 6px; }
+body.cursor-hover #cursor-ring { width: 56px; height: 56px; border-color: var(--blue); }
+
+/* ─── PAGE TRANSITION OVERLAY ─── */
+#page-transition {
+  position: fixed;
+  inset: 0;
+  background: var(--black);
+  z-index: 9996;
+  clip-path: inset(100% 0 0 0);
+  pointer-events: none;
 }
 
-.glass-panel { 
-    background: rgba(13, 17, 23, 0.6); 
-    backdrop-filter: blur(12px); 
-    border: 0.5px solid rgba(240, 246, 252, 0.1); 
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 1.5rem; left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: calc(100% - 3rem); max-width: 900px;
+  background: rgba(1,4,9,0.6);
+  backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--border); border-radius: 100px;
+  padding: .75rem .75rem .75rem 1.75rem;
+  display: flex; align-items: center; justify-content: space-between;
 }
+.nav-logo {
+  font-family: 'Cal Sans', sans-serif;
+  font-weight: 900; font-size: 1.25rem;
+  letter-spacing: -0.03em; color: var(--white);
+  text-decoration: none; font-style: italic; text-transform: uppercase;
+}
+.nav-links {
+  display: flex; gap: 2.5rem; list-style: none;
+  position: absolute; left: 50%; transform: translateX(-50%);
+}
+.nav-links a {
+  font-size: 10px; font-weight: 700; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--muted);
+  text-decoration: none; transition: color .2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--white); }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--blue); color: #fff;
+  font-size: 10px; font-weight: 900; letter-spacing: .15em;
+  text-transform: uppercase; text-decoration: none;
+  padding: .65rem 1.4rem; border-radius: 100px;
+  box-shadow: 0 4px 20px var(--blue-glow);
+  transition: all .2s var(--ease-snap);
+}
+.nav-cta:hover { transform: scale(1.04); }
 
-.glow-button { 
-    background: linear-gradient(135deg, var(--vomtu-blue), #0044cc); 
-    box-shadow: 0 10px 20px -5px rgba(0, 102, 255, 0.4); 
-    transition: all 0.3s var(--easing-snap); 
+/* ─── HAMBURGER ─── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 36px; height: 36px;
+  gap: 5px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
 }
-.glow-button:hover { 
-    box-shadow: 0 15px 30px rgba(0, 102, 255, 0.6); 
-    transform: translateY(-2px) scale(1.02); 
+.nav-hamburger:hover { background: rgba(255,255,255,0.1); }
+.nav-hamburger span {
+  display: block;
+  width: 14px; height: 1px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: transform 0.3s var(--ease-snap), opacity 0.3s;
 }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-.video-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 1.5rem;
-}
-
-.reveal-up {
+/* ─── MOBILE MENU ─── */
+#mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: rgba(1,4,9,0.97);
+  backdrop-filter: blur(24px);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
   opacity: 0;
-  transform: translate3d(0, 20px, 0);
-  transition: opacity 0.6s var(--easing-flow), transform 0.6s var(--easing-flow);
+  pointer-events: none;
+  transition: opacity 0.35s var(--ease-snap);
 }
-.reveal-up.active { opacity: 1; transform: translate3d(0, 0, 0); }
+#mobile-menu.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.mobile-link {
+  font-family: 'Cal Sans', sans-serif;
+  font-size: clamp(2rem, 10vw, 4rem);
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: color 0.2s;
+}
+.mobile-link:hover { color: var(--blue); }
+#mobile-menu.open .mobile-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+#mobile-menu.open .mobile-link:nth-child(1) { transition: opacity 0.4s 0.08s, transform 0.4s 0.08s var(--ease-snap), color 0.2s; }
+#mobile-menu.open .mobile-link:nth-child(2) { transition: opacity 0.4s 0.14s, transform 0.4s 0.14s var(--ease-snap), color 0.2s; }
+#mobile-menu.open .mobile-link:nth-child(3) { transition: opacity 0.4s 0.20s, transform 0.4s 0.20s var(--ease-snap), color 0.2s; }
+#mobile-menu.open .mobile-link:nth-child(4) { transition: opacity 0.4s 0.26s, transform 0.4s 0.26s var(--ease-snap), color 0.2s; }
+.mobile-menu-cta {
+  margin-top: 1rem;
+  background: var(--blue);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1rem 2.5rem;
+  border-radius: 100px;
+  box-shadow: 0 8px 32px var(--blue-glow);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s 0.32s, transform 0.4s 0.32s var(--ease-snap);
+}
+#mobile-menu.open .mobile-menu-cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── HERO / HEADER ─── */
+.page-header {
+  min-height: 60vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 10rem 2rem 6rem;
+  position: relative; overflow: hidden;
+}
+.header-grid {
+  position: absolute; inset: -60px;
+  background-image:
+    linear-gradient(to right, rgba(0,102,255,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,102,255,0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at center, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at center, black 20%, transparent 80%);
+  animation: grid-drift 40s linear infinite;
+}
+@keyframes grid-drift { 0% { transform: translateY(0); } 100% { transform: translateY(64px); } }
+.header-rails::before, .header-rails::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 1px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0,102,255,0.15) 30%, rgba(0,102,255,0.15) 70%, transparent 100%);
+}
+.header-rails { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.header-rails::before { left: clamp(1.5rem,5vw,5rem); }
+.header-rails::after  { right: clamp(1.5rem,5vw,5rem); }
+.header-glow {
+  position: absolute; width: 700px; height: 500px;
+  left: 50%; top: 50%; transform: translate(-50%,-50%);
+  background: radial-gradient(ellipse at center, rgba(0,102,255,0.1) 0%, transparent 65%);
+  filter: blur(30px); pointer-events: none;
+}
+.header-inner { position: relative; z-index: 2; max-width: 800px; }
+.section-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .3em;
+  text-transform: uppercase; color: var(--blue);
+  margin-bottom: 1rem;
+  display: inline-flex; align-items: center; gap: .75rem;
+}
+.section-label::before {
+  content: ''; display: block; width: 24px; height: 1px;
+  background: var(--blue); flex-shrink: 0;
+}
+.page-title {
+  font-family: 'Cal Sans', sans-serif;
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  font-weight: 900; line-height: .9;
+  text-transform: uppercase; font-style: italic;
+  letter-spacing: -.02em; color: var(--white);
+  margin-bottom: 1.5rem;
+}
+.page-title .accent { color: var(--blue); }
+.page-subtitle {
+  font-size: 1.1rem; color: var(--muted);
+  max-width: 560px; margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ─── COUNTER BAR ─── */
+.counter-bar {
+  display: flex; justify-content: center; gap: 4rem;
+  padding: 3rem 2rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,0.015);
+}
+.counter-item { text-align: center; }
+.counter-num {
+  font-family: 'Cal Sans', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900; font-style: italic;
+  color: var(--white); line-height: 1;
+}
+.counter-num .accent { color: var(--blue); }
+.counter-label {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--muted); margin-top: .4rem;
+}
+
+/* ─── CASES ─── */
+.cases-section {
+  max-width: 1100px; margin: 0 auto;
+  padding: 6rem 2rem 4rem;
+}
+.case-row {
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  gap: 5rem;
+  align-items: center;
+  padding: 6rem 0;
+  border-bottom: 1px solid var(--border);
+  opacity: 0;
+  transform: translateY(60px);
+}
+.case-row.reverse { grid-template-columns: 1.8fr 1fr; }
+.case-row.reverse .case-video { order: 2; }
+.case-row.reverse .case-text  { order: 1; }
+.case-row:last-child { border-bottom: none; }
+
+/* video side */
+.case-video {
+  position: relative;
+  aspect-ratio: 9/16;
+}
+.case-video-glow {
+  position: absolute; inset: -20px;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: .25;
+  pointer-events: none;
+}
+.case-video-wrap {
+  position: relative; z-index: 1;
+  height: 100%;
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: #0a0c10;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+.case-video-wrap video {
+  width: 100%; height: 100%; object-fit: cover;
+  display: block;
+}
+
+/* carousel arrows */
+.vid-carousel { position: relative; height: 100%; }
+.vid-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  z-index: 20; width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(0,0,0,.7); border: 1px solid rgba(255,255,255,.15);
+  color: white; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all .2s; backdrop-filter: blur(8px);
+  font-size: 18px;
+}
+.vid-arrow:hover { background: rgba(0,102,255,.6); border-color: var(--blue); }
+.vid-arrow.left { left: 10px; }
+.vid-arrow.right { right: 10px; }
+.vid-dots { display: flex; gap: 6px; justify-content: center; margin-top: 12px; }
+.vid-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(255,255,255,.2); transition: all .25s; cursor: pointer;
+}
+.vid-dot.active { background: var(--blue); width: 18px; border-radius: 3px; }
+
+/* text side */
+.case-num {
+  font-family: 'Cal Sans', sans-serif;
+  font-size: 8rem; font-weight: 900; font-style: italic;
+  color: rgba(255,255,255,.04);
+  line-height: 1; margin-bottom: -.5rem;
+  pointer-events: none; user-select: none;
+}
+.case-role {
+  display: inline-block;
+  font-size: 9px; font-weight: 700; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 100px; padding: .3rem 1rem;
+  background: rgba(255,255,255,.03);
+  margin-bottom: 1rem;
+}
+.case-name {
+  font-family: 'Cal Sans', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900; font-style: italic;
+  text-transform: uppercase; color: var(--white);
+  line-height: .95; margin-bottom: 1.5rem;
+}
+.case-roas {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--blue-dim);
+  border: 1px solid rgba(0,102,255,.25);
+  border-radius: 100px;
+  padding: .4rem 1.1rem;
+  font-size: 10px; font-weight: 900;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 1.5rem;
+}
+.case-quote {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  padding: 2rem 2.5rem;
+}
+.case-quote p {
+  font-size: .975rem; color: rgba(240,246,252,.85);
+  line-height: 1.8; font-style: italic;
+}
+
+/* ─── BOTTOM CTA ─── */
+.bottom-cta {
+  text-align: center;
+  padding: 10rem 2rem;
+  position: relative; overflow: hidden;
+}
+.bottom-cta-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 70% at center bottom, rgba(0,102,255,0.1), transparent 70%);
+  pointer-events: none;
+}
+.bottom-cta h2 {
+  font-family: 'Cal Sans', sans-serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 900; font-style: italic;
+  text-transform: uppercase; color: var(--white);
+  line-height: .9; margin-bottom: 2.5rem;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: .75rem;
+  background: var(--blue); color: #fff;
+  font-size: 11px; font-weight: 900; letter-spacing: .18em;
+  text-transform: uppercase; text-decoration: none;
+  padding: 1.1rem 2.5rem; border-radius: 100px;
+  box-shadow: 0 8px 32px var(--blue-glow);
+  transition: all .25s var(--ease-snap);
+}
+.btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 14px 40px var(--blue-glow); }
+
+/* ─── FOOTER ─── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 3rem 2rem;
+}
+.footer-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+}
+.footer-logo {
+  font-family: 'Cal Sans', sans-serif;
+  font-size: 1.8rem; font-weight: 900; font-style: italic;
+  color: var(--white); text-decoration: none;
+}
+.footer-copy {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
+}
+.footer-links { display: flex; gap: 2rem; list-style: none; }
+.footer-links a {
+  font-size: 10px; font-weight: 700; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--muted);
+  text-decoration: none; transition: color .2s;
+  display: flex; align-items: center; gap: .4rem;
+}
+.footer-links a:hover { color: var(--white); }
+
+/* ─── GLOW COLORS ─── */
+.glow-blue   { background: rgba(0,102,255,.4); }
+.glow-emerald{ background: rgba(16,185,129,.4); }
+.glow-orange { background: rgba(249,115,22,.4); }
+.glow-rose   { background: rgba(225,29,72,.4); }
+.glow-violet { background: rgba(139,92,246,.4); }
+
+/* ─── UNMUTE BUTTON ─── */
+.unmute-btn {
+  position: absolute; bottom: 14px; right: 14px; z-index: 25;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: rgba(0,0,0,0.65); border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all .2s; color: #fff;
+}
+.unmute-btn:hover { background: rgba(0,102,255,0.7); border-color: var(--blue); }
+.unmute-btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-cta { display: none; }
+  .nav-hamburger { display: flex; }
+  .case-row, .case-row.reverse {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 4rem 0;
+  }
+  .case-row.reverse .case-video,
+  .case-row.reverse .case-text { order: unset; }
+  .case-video { max-width: 320px; margin: 0 auto; }
+  .counter-bar { gap: 2rem; padding: 2rem 1.5rem; }
+  .page-header { padding: 8rem 1.5rem 4rem; min-height: 50vh; }
+  .cases-section { padding: 4rem 1.5rem 2rem; }
+  .bottom-cta { padding: 7rem 1.5rem; }
+  .case-num { font-size: 5rem; }
+  .case-name { font-size: clamp(1.6rem, 5vw, 2.5rem); }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+  .footer-links { flex-wrap: wrap; gap: 1.25rem; }
+}
+@media (max-width: 560px) {
+  .counter-bar { flex-wrap: wrap; gap: 1.5rem 3rem; }
+  .counter-num { font-size: clamp(1.8rem, 8vw, 2.5rem); }
+  .case-num { font-size: 4rem; }
+  .case-quote { padding: 1.5rem; }
+  .case-video { max-width: 280px; }
+  .page-title { font-size: clamp(2.2rem, 9vw, 4rem); }
+  .bottom-cta h2 { font-size: clamp(2.5rem, 10vw, 4rem); }
+  .vid-arrow { width: 30px; height: 30px; }
+}
 </style>
 </head>
-<body class="bg-background text-on-surface antialiased overflow-x-hidden">
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- PAGE TRANSITION OVERLAY -->
+<div id="page-transition"></div>
 
 <!-- NAV -->
-<nav class="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-2xl border-b border-white/5">
-<div class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto">
-<a class="font-black tracking-tighter text-white uppercase font-headline text-2xl italic" href="/">VOMTU</a>
-<div class="hidden md:flex items-center gap-10">
-<a class="text-text-secondary font-bold hover:text-white transition-colors text-[10px] uppercase tracking-[0.2em] font-label" href="/#process">Proceso</a>
-<a class="text-white font-bold transition-colors text-[10px] uppercase tracking-[0.2em] font-label" href="/testimonios">Testimonios</a>
-<a class="text-text-secondary font-bold hover:text-white transition-colors text-[10px] uppercase tracking-[0.2em] font-label" href="/#faq">FAQ</a>
-</div>
-<div class="flex items-center gap-4">
-    <a href="https://www.instagram.com/vomtu.c/" target="_blank" class="text-text-secondary hover:text-white transition-all hover:scale-110 flex items-center justify-center w-8 h-8 rounded-full bg-white/5 border border-white/10">
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-    </a>
-    <a class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white/5 text-white font-black hover:bg-white/10 transition-all duration-300 border border-white/10 font-label tracking-widest text-[10px] cursor-pointer" href="/#comprar">COMPRAR VÍDEO</a>
-</div>
-</div>
+<nav>
+  <a class="nav-logo" href="/">VOMTU</a>
+  <ul class="nav-links">
+    <li><a href="/#process">Proceso</a></li>
+    <li><a href="/testimonios" class="active">Testimonios</a></li>
+    <li><a href="/#pricing">Precios</a></li>
+    <li><a href="/#faq">FAQ</a></li>
+  </ul>
+  <a class="nav-cta" href="/#pricing">Comprar vídeo</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- HEADER -->
-<section class="pt-40 pb-20 px-6 text-center">
-<div class="max-w-4xl mx-auto">
-<div class="text-primary font-label text-[10px] font-black tracking-[0.3em] uppercase mb-4 reveal-up">Nuestros Trabajos</div>
-<h1 class="font-headline text-5xl md:text-7xl font-black text-white uppercase italic leading-none mb-8 tracking-wide reveal-up" style="transition-delay: 100ms">Nuestros <span class="text-primary">Testimonios</span></h1>
-<p class="font-body text-xl text-text-secondary opacity-80 max-w-2xl mx-auto reveal-up" style="transition-delay: 200ms">Descubre cómo los Motion Graphics de Vomtu han ayudado a marcas reales a romper el techo de su ROAS en tiempo récord.</p>
+<!-- MOBILE MENU -->
+<div id="mobile-menu">
+  <a class="mobile-link" href="/#process">Proceso</a>
+  <a class="mobile-link" href="/testimonios">Testimonios</a>
+  <a class="mobile-link" href="/#pricing">Precios</a>
+  <a class="mobile-link" href="/#faq">FAQ</a>
+  <a class="mobile-menu-cta" href="/#pricing">Comprar vídeo</a>
 </div>
-</section>
 
-<!-- CASES LIST: paginated, reads from admin localStorage -->
-<section class="py-12 px-6" id="cases-section">
-<div class="max-w-6xl mx-auto">
-  <!-- Dynamic cases rendered by JS -->
-  <div id="cases-container" class="flex flex-col gap-24"></div>
+<!-- HEADER -->
+<header class="page-header">
+  <div class="header-grid"></div>
+  <div class="header-rails"></div>
+  <div class="header-glow"></div>
+  <div class="header-inner">
+    <div class="section-label" id="header-label" style="opacity:0">Nuestros trabajos</div>
+    <h1 class="page-title" id="header-title" style="opacity:0">
+      Nuestros <span class="accent">Testimonios</span>
+    </h1>
+    <p class="page-subtitle" id="header-sub" style="opacity:0">
+      Descubre cómo los Motion Graphics de Vomtu han ayudado a marcas reales a romper el techo de su ROAS en tiempo récord.
+    </p>
+  </div>
+</header>
 
-  <!-- Pagination -->
-  <div id="pagination" class="flex items-center justify-center gap-6 mt-20" style="display:none!important">
-    <button id="btn-prev" onclick="changePage(-1)" class="flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 text-white font-label font-black text-xs uppercase tracking-widest hover:border-primary/50 hover:bg-primary/10 transition-all disabled:opacity-30 disabled:cursor-not-allowed">
-      <span class="material-symbols-outlined text-sm">arrow_back</span> Anterior
-    </button>
-    <div id="page-indicator" class="text-text-secondary font-label text-xs uppercase tracking-widest">Pág 1 de 1</div>
-    <button id="btn-next" onclick="changePage(1)" class="flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 text-white font-label font-black text-xs uppercase tracking-widest hover:border-primary/50 hover:bg-primary/10 transition-all disabled:opacity-30 disabled:cursor-not-allowed">
-      Siguiente <span class="material-symbols-outlined text-sm">arrow_forward</span>
-    </button>
+<!-- COUNTER BAR -->
+<div class="counter-bar" id="counter-bar" style="opacity:0">
+  <div class="counter-item">
+    <div class="counter-num"><span class="accent">+20</span></div>
+    <div class="counter-label">Marcas activas</div>
+  </div>
+  <div class="counter-item">
+    <div class="counter-num"><span class="accent">48</span>h</div>
+    <div class="counter-label">Entrega media</div>
+  </div>
+  <div class="counter-item">
+    <div class="counter-num"><span class="accent">x4</span></div>
+    <div class="counter-label">ROAS medio</div>
+  </div>
+  <div class="counter-item">
+    <div class="counter-num"><span class="accent">5★</span></div>
+    <div class="counter-label">Valoración</div>
   </div>
 </div>
-</section>
 
-<style>
-.vid-carousel{position:relative}
-.vid-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:20;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.15);color:white;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;backdrop-filter:blur(8px)}
-.vid-arrow:hover{background:rgba(0,102,255,.6);border-color:#0066FF}
-.vid-arrow.left{left:10px}.vid-arrow.right{right:10px}
-.vid-dots{display:flex;gap:6px;justify-content:center;margin-top:10px}
-.vid-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2);transition:background .2s;cursor:pointer}
-.vid-dot.active{background:#0066FF;width:18px;border-radius:3px}
-</style>
-<script>
-const CASES_PER_PAGE = 2;
-const ACCENT_COLORS = ['bg-primary/20','bg-secondary/20','bg-emerald-500/20','bg-orange-500/20','bg-rose-500/20'];
-
-// videos: array of src strings. Single video = array of 1
-const HARDCODED = [
-  {name:'Somos Pasión',role:'TIENDA DE DEPORTES (@somospasion.deportes)',text:'Desde que incorporamos los vídeos de Vomtu en nuestras campañas, el crecimiento ha sido espectacular. Los motion graphics muestran nuestras camisetas con un dinamismo brutal, logrando que la promoción 3x2 reviente en ventas por todo Instagram. El contenido visual ahora está a otro nivel, son unos genios.',videos:['roas/somospasion_ad_A.mp4'],roas:'ROAS x4.5'},
-  {name:'Camisetas 3 Hermanos',role:'TIENDA ONLINE (Instagram)',text:'Desde que empezamos a trabajar con Vomtu para los anuncios de nuestras camisetas, las ventas se han disparado. Los motion graphics le dan un toque tan profesional y dinámico que la gente no para de preguntar por los modelos en Instagram. Una inversión que se paga sola, el mejor equipo de creativos.',videos:['roas/camisetas3hermanos_ad_A.mp4'],roas:'ROAS x4.2'},
-  {name:'Jaime — Camisetas Fútbol Express',role:'TIENDA DE ROPA (60K TikTok)',text:'Tener a Vomtu en el equipo ha sido un antes y un después. No solo por la rapidez de los vídeos, sino por cómo entienden lo que necesita mi audiencia de 60.000 seguidores en TikTok. El vídeo de la camiseta de España para el Mundial 2026 fue un hit absoluto, ventas disparadas y un acabado que parece de productora de cine por una fracción del coste.',videos:['roas/camisetas_jaime.mp4'],roas:'ROI x3 en 7 días'},
-  {name:'Velyn — SaaS',role:'SAAS',text:'Hicimos una campaña brutal de más de 12 anuncios diferentes con Vomtu. El nivel de detalle y la capacidad de adaptar los motion graphics a cada ángulo de venta nos ha generado unos resultados excepcionales. Una inversión importante que ha merecido cada céntimo; el contenido transmite una calidad y esencia de producto inigualable, destacando como ninguna otra campaña lo había hecho.',videos:['roas/velyn_ad_a.mp4','roas/velyn_ad_b.mp4','roas/velyn_ad_c.mp4','roas/velyn_ad_d.mp4','roas/velyn_ad_e.mp4','roas/velyn_ad_f.mp4','roas/velyn_ad_g.mp4','roas/velyn_ad_h.mp4','roas/velyn_ad_i.mp4','roas/velyn_ad_j.mp4','roas/velyn_ad_k.mp4','roas/velyn_ad_l.mp4'],roas:''},
-  {name:'Vortiza — Agencia IA',role:'AGENCIA DE IA',text:'Teníamos que comunicar nuestra propuesta de valor tecnológica de forma clara y atractiva. Este vídeo lo logró en segundos, captando la atención perfecta para nuestro público B2B.',videos:['roas/vortiza.mp4','roas/vortiza2.mp4'],roas:''},
-  {name:'Economy Laborathion',role:'PRODUCTO & MARCA',text:'El vídeo transmite exactamente la identidad de la marca. Calidad cinematográfica sin necesidad de cámaras ni equipo de producción. Listo en tiempo récord.',videos:['roas/economy_laborathion_ad1_v2.mp4'],roas:''},
-  {name:'One Agency',role:'AGENCIA & SERVICIOS',text:'Queríamos un vídeo que representara la profesionalidad de nuestra agencia sin caer en lo genérico. El resultado fue un motion graphic con personalidad propia.',videos:['roas/one-agency.mp4'],roas:''},
-];
-
-// Track video index per case
-const vidIndex = {};
-
-let currentPage = 0;
-let allCases = [];
-
-function loadCases() {
-  const db = JSON.parse(localStorage.getItem('vomtu_db') || '{"testimonials":[]}');
-  const adminCases = (db.testimonials || []).map(t => {
-    const vids = t.video ? [t.video] : [];
-    return {name:t.name, role:t.role||'CLIENTE', text:t.text, videos:vids, roas:t.roas||''};
-  });
-  allCases = adminCases.length > 0 ? [...adminCases, ...HARDCODED] : HARDCODED;
-  renderPage();
-}
-
-function buildVideoCarousel(c, caseId, accent) {
-  const vids = c.videos || [];
-  if (!vids.length) return '';
-  if (vids.length === 1) {
-    // Single video — no arrows needed
-    return `<div class="w-full md:w-1/3 aspect-[9/16] relative reveal-up">
-      <div class="absolute inset-0 ${accent} blur-3xl rounded-full scale-75"></div>
-      <div class="relative z-10 h-full border border-white/10 rounded-[1.5rem] shadow-2xl overflow-hidden bg-neutral-900">
-        <video src="${vids[0]}" controls playsinline class="w-full h-full object-cover"></video>
-      </div>
-    </div>`;
-  }
-  // Multiple videos — carousel
-  vidIndex[caseId] = vidIndex[caseId] || 0;
-  const dots = vids.map((_,i) => `<div class="vid-dot ${i===0?'active':''}" id="dot-${caseId}-${i}" onclick="setVid('${caseId}',${i})"></div>`).join('');
-  return `<div class="w-full md:w-1/3 aspect-[9/16] relative reveal-up">
-    <div class="absolute inset-0 ${accent} blur-3xl rounded-full scale-75"></div>
-    <div class="vid-carousel relative z-10 h-full border border-white/10 rounded-[1.5rem] shadow-2xl overflow-hidden bg-neutral-900">
-      <video id="vid-${caseId}" src="${vids[0]}" controls playsinline class="w-full h-full object-cover" style="transition:opacity .25s"></video>
-      <button class="vid-arrow left" onclick="stepVid('${caseId}',-1)">
-        <span class="material-symbols-outlined" style="font-size:18px">chevron_left</span>
-      </button>
-      <button class="vid-arrow right" onclick="stepVid('${caseId}',1)">
-        <span class="material-symbols-outlined" style="font-size:18px">chevron_right</span>
-      </button>
-    </div>
-    <div class="vid-dots mt-3">${dots}</div>
-  </div>`;
-}
-
-function setVid(caseId, idx) {
-  const c = allCases.find((_,i) => `case-${i}` === caseId);
-  if (!c) return;
-  const vids = c.videos || [];
-  idx = Math.max(0, Math.min(vids.length-1, idx));
-  vidIndex[caseId] = idx;
-  const vid = document.getElementById('vid-'+caseId);
-  if (!vid) return;
-  vid.style.opacity = '0';
-  setTimeout(() => { vid.src = vids[idx]; vid.load(); vid.style.opacity = '1'; }, 250);
-  document.querySelectorAll(`[id^="dot-${caseId}-"]`).forEach((d,i) => d.classList.toggle('active', i===idx));
-}
-
-function stepVid(caseId, dir) {
-  const idx = (vidIndex[caseId] || 0) + dir;
-  setVid(caseId, idx);
-}
-
-function renderPage() {
-  const totalPages = Math.ceil(allCases.length / CASES_PER_PAGE);
-  const start = currentPage * CASES_PER_PAGE;
-  const items = allCases.slice(start, start + CASES_PER_PAGE);
-  const container = document.getElementById('cases-container');
-  container.innerHTML = items.map((c, i) => {
-    const globalIdx = start + i;
-    const caseId = `case-${globalIdx}`;
-    const isEven = i % 2 === 0;
-    const accent = ACCENT_COLORS[globalIdx % ACCENT_COLORS.length];
-    const videoBlock = buildVideoCarousel(c, caseId, accent);
-    const roasHtml = c.roas ? `<div class="inline-block mb-4 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary font-label font-black text-xs uppercase tracking-widest">${c.roas}</div>` : '';
-    const row = isEven ? 'flex-col md:flex-row' : 'flex-col md:flex-row-reverse';
-    return `<div class="flex ${row} gap-12 items-center">${videoBlock}<div class="w-full md:w-2/3 flex flex-col reveal-up" style="transition-delay:200ms">
-      <div class="flex items-center gap-3 mb-4"><span class="text-xs font-label font-bold tracking-widest text-white/50 border border-white/10 rounded-full px-3 py-1 bg-white/5">${c.role}</span></div>
-      <h2 class="font-headline text-4xl font-black italic uppercase text-white mb-6">${c.name}</h2>
-      ${roasHtml}
-      <div class="glass-panel p-8 rounded-2xl mb-8"><p class="text-white/90 text-lg leading-relaxed italic">"${c.text}"</p></div>
-    </div></div>`;
-  }).join('');
-
-  // Pagination
-  const pg = document.getElementById('pagination');
-  if (totalPages > 1) { pg.style.display = 'flex'; } else { pg.style.display = 'none'; }
-  document.getElementById('page-indicator').textContent = `Pág ${currentPage+1} de ${totalPages}`;
-  document.getElementById('btn-prev').disabled = currentPage === 0;
-  document.getElementById('btn-next').disabled = currentPage >= totalPages - 1;
-
-  document.querySelectorAll('.reveal-up').forEach(el => animationObserver.observe(el));
-  window.scrollTo({top: document.getElementById('cases-section').offsetTop - 80, behavior:'smooth'});
-}
-
-function changePage(dir) { currentPage += dir; renderPage(); }
-loadCases();
-</script>
-
+<!-- CASES (rendered by JS) -->
+<div class="cases-section" id="cases-container"></div>
 
 <!-- BOTTOM CTA -->
-<section class="py-32 px-6 text-center relative overflow-hidden mt-20">
-<div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/10"></div>
-<div class="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
-<h2 class="font-headline text-5xl md:text-7xl font-black italic uppercase text-white mb-8">Tú puedes ser el próximo</h2>
-<a class="glow-button text-white px-10 py-5 rounded-full font-label font-black text-xl uppercase tracking-tighter flex items-center gap-4" href="/#comprar">
-EMPEZAR BRIEFING <span class="material-symbols-outlined">rocket_launch</span>
-</a>
-</div>
+<section class="bottom-cta" id="bottom-cta" style="opacity:0">
+  <div class="bottom-cta-glow"></div>
+  <h2>Tú puedes ser<br/>el próximo</h2>
+  <a class="btn-primary" href="/#pricing">
+    Empezar ahora
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
 </section>
 
 <!-- FOOTER -->
-<footer class="w-full py-10 border-t border-white/5 bg-background text-white font-label text-[10px] tracking-[0.3em] uppercase font-black">
-<div class="flex justify-between items-center px-10 max-w-7xl mx-auto">
-<div class="text-xl font-black tracking-tighter text-white italic font-headline">VOMTU</div>
-<div class="flex items-center gap-10">
-    <a href="https://www.instagram.com/vomtu.c/" target="_blank" class="text-text-secondary hover:text-white transition-all flex items-center gap-2 group text-[10px] uppercase tracking-[0.3em] font-black">
-        <svg class="w-4 h-4 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        <span>Instagram</span>
-    </a>
-    <div class="text-text-secondary text-[10px] uppercase tracking-[0.3em] font-black">© 2025 VOMTU</div>
-</div>
-</div>
+<footer>
+  <div class="footer-inner">
+    <a class="footer-logo" href="/">VOMTU</a>
+    <div class="footer-copy">© 2025 VOMTU. Visionary AI.</div>
+    <ul class="footer-links">
+      <li>
+        <a href="https://www.instagram.com/vomtu.c/" target="_blank" rel="noopener">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          Instagram
+        </a>
+      </li>
+      <li><a href="privacidad.html">Privacidad</a></li>
+      <li><a href="terminos.html">Términos</a></li>
+    </ul>
+  </div>
 </footer>
 
 <script>
-// Scroll Reveal Observer
-const animationObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-        }
-    });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal-up').forEach(el => animationObserver.observe(el));
+gsap.registerPlugin(ScrollTrigger);
 
-// Video autoplay
-const videoObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.play().catch(e => console.log(e));
-        } else {
-            entry.target.pause();
-        }
+/* ─── CURSOR ─── */
+const cursor = document.getElementById('cursor');
+const ring   = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e=>{ mx=e.clientX; my=e.clientY; });
+(function raf(){ rx+=(mx-rx)*.18; ry+=(my-ry)*.18;
+  cursor.style.left=mx+'px'; cursor.style.top=my+'px';
+  ring.style.left=rx+'px';   ring.style.top=ry+'px';
+  requestAnimationFrame(raf);
+})();
+document.addEventListener('mouseover', e=>{
+  if(e.target.closest('a,button,.vid-arrow,.vid-dot'))
+    document.body.classList.add('cursor-hover');
+  else document.body.classList.remove('cursor-hover');
+});
+
+/* ─── HAMBURGER / MOBILE MENU ─── */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+
+hamburger.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  hamburger.classList.toggle('open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+
+mobileMenu.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+/* ─── PAGE TRANSITION ─── */
+function navigateTo(url) {
+  const overlay = document.getElementById('page-transition');
+  gsap.to(overlay, {
+    clipPath: 'inset(0 0 0% 0)',
+    duration: 0.6,
+    ease: 'power4.inOut',
+    onComplete: () => { window.location.href = url; }
+  });
+}
+
+document.querySelectorAll('a[href]').forEach(a => {
+  const href = a.getAttribute('href');
+  if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    navigateTo(href);
+  });
+});
+
+/* ─── DATA ─── */
+const GLOW_CLASSES = ['glow-blue','glow-emerald','glow-orange','glow-rose','glow-violet'];
+const HARDCODED = [
+  {name:'Somos Pasión', role:'TIENDA DE DEPORTES (@somospasion.deportes)',
+   text:'Desde que incorporamos los vídeos de Vomtu en nuestras campañas, el crecimiento ha sido espectacular. Los motion graphics muestran nuestras camisetas con un dinamismo brutal, logrando que la promoción 3x2 reviente en ventas por todo Instagram. El contenido visual ahora está a otro nivel, son unos genios.',
+   videos:['roas/somospasion_ad_A.mp4'], roas:'ROAS x4.5'},
+
+  {name:'Camisetas 3 Hermanos', role:'TIENDA ONLINE (Instagram)',
+   text:'Desde que empezamos a trabajar con Vomtu para los anuncios de nuestras camisetas, las ventas se han disparado. Los motion graphics le dan un toque tan profesional y dinámico que la gente no para de preguntar por los modelos en Instagram. Una inversión que se paga sola, el mejor equipo de creativos.',
+   videos:['roas/camisetas3hermanos_ad_A.mp4'], roas:'ROAS x4.2'},
+
+  {name:'Jaime — Camisetas Fútbol Express', role:'TIENDA DE ROPA (60K TikTok)',
+   text:'Tener a Vomtu en el equipo ha sido un antes y un después. No solo por la rapidez de los vídeos, sino por cómo entienden lo que necesita mi audiencia de 60.000 seguidores en TikTok. El vídeo de la camiseta de España para el Mundial 2026 fue un hit absoluto, ventas disparadas y un acabado que parece de productora de cine por una fracción del coste.',
+   videos:['roas/camisetas_jaime.mp4'], roas:'ROI x3 en 7 días'},
+
+  {name:'Velyn — SaaS', role:'SAAS',
+   text:'Hicimos una campaña brutal de más de 12 anuncios diferentes con Vomtu. El nivel de detalle y la capacidad de adaptar los motion graphics a cada ángulo de venta nos ha generado unos resultados excepcionales. Una inversión importante que ha merecido cada céntimo; el contenido transmite una calidad y esencia de producto inigualable, destacando como ninguna otra campaña lo había hecho.',
+   videos:['roas/velyn_ad_a.mp4','roas/velyn_ad_b.mp4','roas/velyn_ad_c.mp4','roas/velyn_ad_d.mp4','roas/velyn_ad_e.mp4','roas/velyn_ad_f.mp4','roas/velyn_ad_g.mp4','roas/velyn_ad_h.mp4','roas/velyn_ad_i.mp4','roas/velyn_ad_j.mp4','roas/velyn_ad_k.mp4','roas/velyn_ad_l.mp4'], roas:''},
+
+  {name:'Vortiza — Agencia IA', role:'AGENCIA DE IA',
+   text:'Teníamos que comunicar nuestra propuesta de valor tecnológica de forma clara y atractiva. Este vídeo lo logró en segundos, captando la atención perfecta para nuestro público B2B.',
+   videos:['roas/vortiza.mp4','roas/vortiza2.mp4'], roas:''},
+
+  {name:'Economy Laborathion', role:'PRODUCTO & MARCA',
+   text:'El vídeo transmite exactamente la identidad de la marca. Calidad cinematográfica sin necesidad de cámaras ni equipo de producción. Listo en tiempo récord.',
+   videos:['roas/economy_laborathion_ad1_v2.mp4'], roas:''},
+
+  {name:'One Agency', role:'AGENCIA & SERVICIOS',
+   text:'Queríamos un vídeo que representara la profesionalidad de nuestra agencia sin caer en lo genérico. El resultado fue un motion graphic con personalidad propia.',
+   videos:['roas/one-agency.mp4'], roas:''},
+];
+
+/* ─── CAROUSEL STATE ─── */
+const vidIdx = {};
+
+function setVid(caseId, idx) {
+  const vids = window._caseVids[caseId];
+  if (!vids) return;
+  idx = Math.max(0, Math.min(vids.length-1, idx));
+  vidIdx[caseId] = idx;
+  const vid = document.getElementById('vid-'+caseId);
+  if (!vid) return;
+  gsap.to(vid, { opacity:0, duration:.2, onComplete:()=>{
+    delete vid.dataset.src;
+    vid.src = vids[idx]; vid.load(); vid.play().catch(()=>{});
+    gsap.to(vid, { opacity:1, duration:.2 });
+  }});
+  document.querySelectorAll(`[id^="dot-${caseId}-"]`).forEach((d,i)=>
+    d.classList.toggle('active', i===idx));
+}
+window.setVid = setVid;
+window.stepVid = (id, dir) => setVid(id, (vidIdx[id]||0)+dir);
+window._caseVids = {};
+
+/* ─── MUTE TOGGLE ─── */
+const ICON_MUTED   = `<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>`;
+const ICON_UNMUTED = `<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM19 12c0 2.93-1.68 5.47-4.15 6.71l1.46 1.46C19.15 18.6 21 15.5 21 12s-1.85-6.6-4.69-8.17l-1.46 1.46C17.32 6.53 19 9.07 19 12z"/>`;
+
+window.toggleMute = function(id) {
+  const vid  = document.getElementById('vid-' + id);
+  const icon = document.getElementById('mute-icon-' + id);
+  if (!vid || !icon) return;
+  vid.muted = !vid.muted;
+  icon.innerHTML = vid.muted ? ICON_MUTED : ICON_UNMUTED;
+  if (!vid.muted) vid.play().catch(()=>{ vid.muted = true; icon.innerHTML = ICON_MUTED; });
+};
+
+/* ─── BUILD & INJECT CASES ─── */
+function buildCases() {
+  const db = JSON.parse(localStorage.getItem('vomtu_db')||'{"testimonials":[]}');
+  const adminCases = (db.testimonials||[]).map(t=>({
+    name:t.name, role:t.role||'CLIENTE', text:t.text,
+    videos:t.video?[t.video]:[], roas:t.roas||''
+  }));
+  const cases = adminCases.length ? [...adminCases, ...HARDCODED] : HARDCODED;
+
+  const container = document.getElementById('cases-container');
+  container.innerHTML = cases.map((c, i) => {
+    const id = `case-${i}`;
+    window._caseVids[id] = c.videos||[];
+    vidIdx[id] = 0;
+    const isReverse = i%2 !== 0;
+    const glowClass = GLOW_CLASSES[i % GLOW_CLASSES.length];
+    const roasHtml = c.roas
+      ? `<div class="case-roas">
+           <svg width="12" height="12" viewBox="0 0 24 24" fill="#0066FF"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+           ${c.roas}
+         </div>`
+      : '';
+
+    const unmuteBtn = `<button class="unmute-btn" id="mute-${id}" onclick="toggleMute('${id}')" title="Activar sonido">
+      <svg id="mute-icon-${id}" viewBox="0 0 24 24">${ICON_MUTED}</svg>
+    </button>`;
+
+    let videoHtml;
+    if (c.videos.length === 1) {
+      videoHtml = `<div class="case-video-wrap">
+        <video id="vid-${id}" data-src="${c.videos[0]}" muted loop playsinline preload="none"></video>
+        ${unmuteBtn}
+      </div>`;
+    } else {
+      const dots = c.videos.map((_,j)=>
+        `<div class="vid-dot${j===0?' active':''}" id="dot-${id}-${j}" onclick="setVid('${id}',${j})"></div>`
+      ).join('');
+      videoHtml = `<div class="vid-carousel">
+        <div class="case-video-wrap">
+          <video id="vid-${id}" data-src="${c.videos[0]}" muted loop playsinline preload="none"></video>
+          <button class="vid-arrow left" onclick="stepVid('${id}',-1)">&#8249;</button>
+          <button class="vid-arrow right" onclick="stepVid('${id}',1)">&#8250;</button>
+          ${unmuteBtn}
+        </div>
+        <div class="vid-dots">${dots}</div>
+      </div>`;
+    }
+
+    return `
+    <div class="case-row${isReverse?' reverse':''}" id="${id}-row">
+      <div class="case-video">
+        <div class="case-video-glow ${glowClass}"></div>
+        ${videoHtml}
+      </div>
+      <div class="case-text">
+        <div class="case-num">${String(i+1).padStart(2,'0')}</div>
+        <div class="case-role">${c.role}</div>
+        <h2 class="case-name">${c.name}</h2>
+        ${roasHtml}
+        <div class="case-quote"><p>"${c.text}"</p></div>
+      </div>
+    </div>`;
+  }).join('');
+
+  initScrollAnimations();
+}
+
+/* ─── SCROLL ANIMATIONS ─── */
+function initScrollAnimations() {
+  gsap.set('#header-title, #header-sub', { y: 30 });
+  gsap.to('#header-label', { opacity:1, y:0, duration:.6, ease:'power3.out', delay:.1 });
+  gsap.to('#header-title', { opacity:1, y:0, duration:.8, ease:'power3.out', delay:.25 });
+  gsap.to('#header-sub',   { opacity:1, y:0, duration:.7, ease:'power3.out', delay:.4 });
+
+  gsap.set('#counter-bar', { y: 40 });
+  gsap.to('#counter-bar', {
+    opacity:1, y:0, duration:.8, ease:'power3.out',
+    scrollTrigger:{ trigger:'#counter-bar', start:'top 88%', toggleActions:'play none none none' }
+  });
+
+  document.querySelectorAll('.case-row').forEach((row, i) => {
+    const isReverse = row.classList.contains('reverse');
+    const video = row.querySelector('.case-video');
+    const text  = row.querySelector('.case-text');
+
+    const tl = gsap.timeline({
+      scrollTrigger:{
+        trigger: row,
+        start: 'top 80%',
+        toggleActions: 'play none none none'
+      }
     });
-}, { threshold: 0.5 });
-document.querySelectorAll('video').forEach(video => videoObserver.observe(video));
+
+    tl.to(row, { opacity:1, y:0, duration:.01 })
+      .from(video, {
+        opacity:0,
+        x: isReverse ? 80 : -80,
+        duration: 1,
+        ease: 'power3.out'
+      }, 0)
+      .from(text.querySelector('.case-num'),   { opacity:0, y:30, duration:.6, ease:'power3.out' }, .15)
+      .from(text.querySelector('.case-role'),  { opacity:0, y:20, duration:.5, ease:'power3.out' }, .25)
+      .from(text.querySelector('.case-name'),  { opacity:0, y:30, duration:.7, ease:'power4.out' }, .35)
+      .from(text.querySelector('.case-quote'), { opacity:0, y:30, duration:.7, ease:'power3.out' }, .5);
+
+    const roas = text.querySelector('.case-roas');
+    if (roas) tl.from(roas, { opacity:0, scale:.9, duration:.5, ease:'back.out(2)' }, .45);
+  });
+
+  gsap.set('#bottom-cta', { y:50 });
+  gsap.to('#bottom-cta', {
+    opacity:1, y:0, duration:1, ease:'power3.out',
+    scrollTrigger:{ trigger:'#bottom-cta', start:'top 85%', toggleActions:'play none none none' }
+  });
+}
+
+buildCases();
+
+/* ─── LAZY LOAD VIDEOS ─── */
+const lazyVids = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const vid = entry.target;
+    if (vid.dataset.src) {
+      vid.src = vid.dataset.src;
+      delete vid.dataset.src;
+      vid.load();
+      vid.play().catch(() => {});
+    }
+    lazyVids.unobserve(vid);
+  });
+}, { rootMargin: '200px' });
+
+document.querySelectorAll('video[data-src]').forEach(v => lazyVids.observe(v));
 </script>
 </body>
 </html>

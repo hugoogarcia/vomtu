@@ -1,29 +1,24 @@
 <!DOCTYPE html>
-<html class="dark" lang="es"><head>
+<html lang="es">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>VOMTU - Producción de Motion Graphics. En 48 horas.</title>
-<meta name="description" content="Creamos vídeos y Motion Graphics de alto impacto que escalan tu marca, sin esperas ni equipos de producción largos. Listo en 48h.">
-<meta name="keywords" content="motion graphics, producción de video, videos corporativos, videos para redes sociales, Vomtu, diseño visual, video ads">
+<title>VOMTU | Cinematic Motion Graphics & Producción Visual Premium</title>
+<meta name="description" content="VOMTU ® Cinematic Motion Graphics de calidad High-End. Elevamos la identidad visual de tu marca y escalamos tus resultados con vídeos premium en 48 horas.">
+<meta name="keywords" content="cinematic motion graphics, producción visual premium, videos corporativos, high-end videos, Vomtu, diseño visual, escalabilidad visual">
 <meta name="author" content="VOMTU">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://vomtu.com/">
-
-<!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vomtu.com/">
-<meta property="og:title" content="VOMTU - Producción de Motion Graphics en 48h">
-<meta property="og:description" content="Vídeos Motion Graphics de alto impacto entregados en 48h. Formato vertical u horizontal para cualquier plataforma.">
+<meta property="og:title" content="VOMTU | Cinematic Motion Graphics & Producción Visual Premium">
+<meta property="og:description" content="VOMTU ® Cinematic Motion Graphics de calidad High-End. Elevamos la identidad visual de tu marca con vídeos premium en 48 horas.">
 <meta property="og:image" content="https://vomtu.com/og-image.jpg">
-
-<!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://vomtu.com/">
-<meta property="twitter:title" content="VOMTU - Producción de Motion Graphics en 48h">
-<meta property="twitter:description" content="Vídeos Motion Graphics de alto impacto entregados en 48h.">
+<meta property="twitter:title" content="VOMTU | Cinematic Motion Graphics & Producción Visual Premium">
+<meta property="twitter:description" content="VOMTU ® Cinematic Motion Graphics de calidad High-End. Elevamos la identidad visual de tu marca con vídeos premium en 48 horas.">
 <meta property="twitter:image" content="https://vomtu.com/og-image.jpg">
-
-<!-- Structured Data (JSON-LD) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -32,498 +27,1887 @@
   "url": "https://vomtu.com/",
   "logo": "https://vomtu.com/favicon.png",
   "image": "https://vomtu.com/og-image.jpg",
-  "description": "Agencia de producción de Motion Graphics premium. Creamos todo tipo de vídeos de alto impacto entregados en 48 horas: corporativos, redes sociales, explicativos y más.",
+  "description": "VOMTU ® Agencia de Cinematic Motion Graphics y Producción Visual Premium.",
   "offers": {
     "@type": "AggregateOffer",
     "priceCurrency": "EUR",
-    "lowPrice": "300",
-    "highPrice": "1200",
-    "offerCount": "2"
+    "lowPrice": "8.99",
+    "highPrice": "49.99",
+    "offerCount": "3"
   }
 }
 </script>
-
 <link rel="icon" type="image/png" href="favicon.png?v=3"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-<!-- Fonts -->
+<!-- GSAP + ScrollTrigger -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
 <style>
+/* ─── RESET ─── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ─── TOKENS ─── */
+:root {
+  --black:    #010409;
+  --blue:     #0066FF;
+  --blue-dim: rgba(0,102,255,0.12);
+  --blue-glow:rgba(0,102,255,0.5);
+  --white:    #F0F6FC;
+  --muted:    #8B949E;
+  --glass:    rgba(255,255,255,0.03);
+  --border:   rgba(240,246,252,0.08);
+  --ease-snap: cubic-bezier(0.23,1,0.32,1);
+  --ease-flow: cubic-bezier(0.77,0,0.175,1);
+}
+
+/* ─── BASE ─── */
+html { scroll-behavior: auto; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Geist Sans', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  cursor: none;
+}
+
+/* ─── FONTS ─── */
 @font-face {
   font-family: 'Cal Sans';
-  font-style: normal;
   font-weight: 400;
   font-display: swap;
   src: url('https://cdn.jsdelivr.net/fontsource/fonts/cal-sans@latest/latin-400-normal.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Geist Sans';
-  font-style: normal;
   font-weight: 400;
   font-display: swap;
   src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-400-normal.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Geist Sans';
-  font-style: normal;
   font-weight: 700;
   font-display: swap;
   src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-700-normal.woff2') format('woff2');
 }
-</style>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-tailwind.config = {
-    darkMode: "class",
-    theme: {
-        extend: {
-            colors: {
-                "background": "#010409",
-                "surface": "#010409",
-                "primary": "#0066FF",
-                "secondary": "#0044cc",
-                "text-secondary": "#8B949E",
-                "outline": "rgba(240, 246, 252, 0.1)",
-            },
-            fontFamily: {
-                "headline": ["Cal Sans", "Inter", "sans-serif"],
-                "body": ["Geist Sans", "Inter", "sans-serif"],
-                "label": ["Geist Sans", "Space Grotesk", "sans-serif"]
-            },
-            animation: { 
-                'grid': 'grid 20s linear infinite',
-                'pulse-slow': 'pulse 4s cubic-bezier(0.23, 1, 0.32, 1) infinite',
-            },
-            keyframes: { grid: { '0%': { transform: 'translateY(0)' }, '100%': { transform: 'translateY(40px)' } } }
-        }
-    }
-}
-</script>
-<style>
-:root {
-  --bg-obsidian: #010409;
-  --vomtu-blue: #0066FF;
-  --teal-accent: #14B8A6;
-  --easing-snap: cubic-bezier(0.23, 1, 0.32, 1);
-  --easing-flow: cubic-bezier(0.77, 0, 0.175, 1);
+@font-face {
+  font-family: 'Geist Sans';
+  font-weight: 900;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-900-normal.woff2') format('woff2');
 }
 
-body { 
-    font-family: 'Geist Sans', sans-serif; 
-    background-color: var(--bg-obsidian); 
-    color: #F0F6FC; 
-    position: relative;
+/* ─── GRAIN ─── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 9998;
 }
 
-/* Grain Texture Overlay */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-    opacity: 0.03;
-    pointer-events: none;
-    z-index: 9999;
-    filter: contrast(120%) brightness(120%);
+/* ─── CURSOR ─── */
+#cursor {
+  position: fixed;
+  width: 10px; height: 10px;
+  background: var(--white);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%,-50%);
+  transition: width 0.2s var(--ease-snap), height 0.2s var(--ease-snap), background 0.2s;
+  mix-blend-mode: difference;
+}
+#cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(240,246,252,0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: width 0.35s var(--ease-snap), height 0.35s var(--ease-snap), border-color 0.2s;
+}
+body.cursor-hover #cursor { width: 6px; height: 6px; }
+body.cursor-hover #cursor-ring { width: 56px; height: 56px; border-color: var(--blue); }
+
+/* ─── PRELOADER ─── */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--black);
+  z-index: 9997;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+#preloader-count {
+  font-family: 'Cal Sans', sans-serif;
+  font-size: clamp(5rem, 20vw, 16rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  font-style: italic;
+}
+#preloader-bar {
+  width: 160px;
+  height: 1px;
+  background: var(--border);
+  position: relative;
+  overflow: hidden;
+}
+#preloader-label {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
 }
 
-.glass-panel { 
-    background: rgba(13, 17, 23, 0.6); 
-    backdrop-filter: blur(12px); 
-    border: 0.5px solid rgba(240, 246, 252, 0.1); 
-    transition: all 0.4s var(--easing-snap); 
-    transform: translateZ(0); 
-}
-.glass-panel:hover { 
-    transform: translateY(-8px) scale(1.005) translateZ(0); 
-    border-color: rgba(0, 102, 255, 0.3); 
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5); 
+/* ─── PAGE TRANSITION OVERLAY ─── */
+#page-transition {
+  position: fixed;
+  inset: 0;
+  background: var(--black);
+  z-index: 9996;
+  clip-path: inset(100% 0 0 0);
+  pointer-events: none;
 }
 
-/* --- Cinematic Reveal Animations --- */
-.reveal-up {
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: calc(100% - 3rem);
+  max-width: 900px;
+  background: rgba(1,4,9,0.6);
+  backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 0.75rem 0.75rem 0.75rem 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   opacity: 0;
-  transform: translate3d(0, 20px, 0);
-  transition: opacity 0.6s var(--easing-flow), transform 0.6s var(--easing-flow);
-  will-change: opacity, transform;
 }
-
-.reveal-up.active {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
+.nav-logo {
+  font-family: 'Cal Sans', sans-serif;
+  font-weight: 900;
+  font-size: 1.25rem;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  text-decoration: none;
+  font-style: italic;
+  text-transform: uppercase;
 }
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.nav-links a {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--white); }
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--blue);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.65rem 1.4rem;
+  border-radius: 100px;
+  transition: all 0.2s var(--ease-snap);
+  box-shadow: 0 4px 20px var(--blue-glow);
+}
+.nav-cta:hover { transform: scale(1.04); box-shadow: 0 6px 30px var(--blue-glow); }
 
-.reveal-scale {
+/* ─── HAMBURGER ─── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 36px; height: 36px;
+  gap: 5px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.nav-hamburger:hover { background: rgba(255,255,255,0.1); }
+.nav-hamburger span {
+  display: block;
+  width: 14px; height: 1px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: transform 0.3s var(--ease-snap), opacity 0.3s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* ─── MOBILE MENU ─── */
+#mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: rgba(1,4,9,0.97);
+  backdrop-filter: blur(24px);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
   opacity: 0;
-  transform: scale(0.98) translate3d(0, 10px, 0);
-  transition: opacity 0.6s var(--easing-snap), transform 0.6s var(--easing-snap);
-  will-change: opacity, transform;
+  pointer-events: none;
+  transition: opacity 0.35s var(--ease-snap);
 }
-
-.reveal-scale.active {
+#mobile-menu.open {
   opacity: 1;
-  transform: scale(1) translate3d(0, 0, 0);
+  pointer-events: all;
+}
+.mobile-link {
+  font-family: 'Cal Sans', sans-serif;
+  font-size: clamp(2rem, 10vw, 4rem);
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: color 0.2s;
+}
+.mobile-link:hover { color: var(--blue); }
+#mobile-menu.open .mobile-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+#mobile-menu.open .mobile-link:nth-child(1) { transition: opacity 0.4s 0.08s, transform 0.4s 0.08s var(--ease-snap), color 0.2s; }
+#mobile-menu.open .mobile-link:nth-child(2) { transition: opacity 0.4s 0.14s, transform 0.4s 0.14s var(--ease-snap), color 0.2s; }
+#mobile-menu.open .mobile-link:nth-child(3) { transition: opacity 0.4s 0.20s, transform 0.4s 0.20s var(--ease-snap), color 0.2s; }
+#mobile-menu.open .mobile-link:nth-child(4) { transition: opacity 0.4s 0.26s, transform 0.4s 0.26s var(--ease-snap), color 0.2s; }
+.mobile-menu-cta {
+  margin-top: 1rem;
+  background: var(--blue);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1rem 2.5rem;
+  border-radius: 100px;
+  box-shadow: 0 8px 32px var(--blue-glow);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s 0.32s, transform 0.4s 0.32s var(--ease-snap);
+}
+#mobile-menu.open .mobile-menu-cta {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.glow-button { 
-    background: linear-gradient(135deg, var(--vomtu-blue), #0044cc); 
-    box-shadow: 0 10px 20px -5px rgba(0, 102, 255, 0.4); 
-    transition: all 0.3s var(--easing-snap); 
-}
-.glow-button:hover { 
-    box-shadow: 0 15px 30px rgba(0, 102, 255, 0.6); 
-    transform: translateY(-2px) scale(1.02); 
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10rem 2rem 6rem;
+  position: relative;
+  overflow: hidden;
 }
 
-.grid-bg-animated {
-    position: absolute; inset: -40px;
-    background-image: linear-gradient(to right, rgba(0, 102, 255, 0.05) 0.5px, transparent 0.5px), 
-                      linear-gradient(to bottom, rgba(0, 102, 255, 0.05) 0.5px, transparent 0.5px);
-    background-size: 60px 60px; 
-    animation: grid 30s linear infinite; 
-    z-index: 0;
-    mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
-    -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+.hero-grid {
+  position: absolute;
+  inset: -60px;
+  background-image:
+    linear-gradient(to right, rgba(0,102,255,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,102,255,0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at center, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at center, black 20%, transparent 80%);
+  animation: grid-drift 40s linear infinite;
 }
-.ambient-glow { position: absolute; border-radius: 50%; filter: blur(150px); opacity: 0.08; pointer-events: none; }
-.section-divider { border-bottom: 0.5px solid rgba(240, 246, 252, 0.05); }
-.verified-badge { 
-    display: inline-flex; align-items: center; gap: 4px; 
-    background: rgba(0, 102, 255, 0.1); 
-    border: 0.5px solid rgba(0, 102, 255, 0.2); 
-    border-radius: 99px; padding: 2px 10px; 
-    font-size: 10px; color: var(--vomtu-blue); 
-    font-family: 'Geist Sans', sans-serif; 
-    font-weight: 700; 
-    letter-spacing: 0.05em;
-}
-.stars { color: #f59e0b; letter-spacing: 2px; font-size: 14px; }
+@keyframes grid-drift { 0% { transform: translateY(0); } 100% { transform: translateY(64px); } }
 
-/* Custom Video Integration */
-.video-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.4;
-    transition: opacity 0.5s ease;
+.hero-rails {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
 }
-.video-container:hover video {
-    opacity: 1;
+.hero-rails::before,
+.hero-rails::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0,102,255,0.15) 30%, rgba(0,102,255,0.15) 70%, transparent 100%);
+}
+.hero-rails::before { left: clamp(1.5rem, 5vw, 5rem); }
+.hero-rails::after  { right: clamp(1.5rem, 5vw, 5rem); }
+
+.hero-glow {
+  position: absolute;
+  width: 900px; height: 700px;
+  left: 50%; top: 50%;
+  transform: translate(-50%,-50%);
+  background: radial-gradient(ellipse at center, rgba(0,102,255,0.12) 0%, transparent 65%);
+  pointer-events: none;
+  filter: blur(30px);
+  animation: glow-pulse 6s ease-in-out infinite alternate;
+}
+@keyframes glow-pulse {
+  0%   { opacity: 0.7; transform: translate(-50%,-50%) scale(1); }
+  100% { opacity: 1;   transform: translate(-50%,-50%) scale(1.08); }
+}
+
+.hero-inner { position: relative; z-index: 2; max-width: 1100px; }
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--blue-dim);
+  border: 1px solid rgba(0,102,255,0.2);
+  border-radius: 100px;
+  padding: 0.35rem 1rem;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 2.5rem;
+  opacity: 0;
+}
+.hero-tag .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--blue);
+  animation: ping 1.5s ease-in-out infinite;
+}
+@keyframes ping {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.4); }
+}
+
+.hero-title {
+  font-family: 'Cal Sans', sans-serif;
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  font-weight: 900;
+  line-height: 0.95;
+  text-transform: uppercase;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 2rem;
+  visibility: hidden;
+}
+.hero-title .line {
+  display: block;
+  overflow: visible;
+  padding-bottom: 0.2em;
+}
+.hero-title .word { display: inline-block; white-space: nowrap; }
+.hero-title .accent { color: var(--blue); }
+
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: var(--muted);
+  max-width: 560px;
+  margin: 0 auto 3rem;
+  line-height: 1.7;
+  opacity: 0;
+}
+.hero-sub strong { color: var(--white); font-weight: 700; }
+
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 5rem;
+  opacity: 0;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--blue);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.1rem 2.5rem;
+  border-radius: 100px;
+  box-shadow: 0 8px 32px var(--blue-glow);
+  transition: all 0.25s var(--ease-snap);
+  border: none;
+}
+.btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 14px 40px var(--blue-glow); }
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255,255,255,0.04);
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.1rem 2.5rem;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  transition: all 0.25s var(--ease-snap);
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(240,246,252,0.2); }
+
+.hero-stats {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+}
+.stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 0.5rem 1.1rem;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.stat-pill .icon {
+  width: 14px; height: 14px;
+  fill: var(--blue);
+  flex-shrink: 0;
+}
+
+/* ─── SCROLL INDICATOR ─── */
+.scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0;
+  z-index: 2;
+}
+.scroll-hint-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--blue), transparent);
+  animation: scroll-line 1.5s ease-in-out infinite;
+}
+@keyframes scroll-line {
+  0% { transform: scaleY(0); transform-origin: top; opacity: 1; }
+  50% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+  51% { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+  100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+}
+
+/* ─── CLIENT TICKER ─── */
+.ticker-section {
+  overflow: hidden;
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,0.01);
+}
+.ticker-track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: max-content;
+  animation: ticker-scroll 28s linear infinite;
+}
+.ticker-track:hover { animation-play-state: paused; }
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 3.5rem;
+  white-space: nowrap;
+}
+.ticker-name {
+  font-family: 'Cal Sans', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: rgba(240,246,252,0.35);
+  transition: color 0.3s;
+}
+.ticker-track:hover .ticker-name { color: rgba(240,246,252,0.55); }
+.ticker-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: rgba(0,102,255,0.4);
+  flex-shrink: 0;
+}
+
+/* ─── SECTION BASE ─── */
+section { position: relative; }
+.section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--blue);
+  flex-shrink: 0;
+}
+.section-num {
+  font-family: 'Cal Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: rgba(240,246,252,0.2);
+  font-style: italic;
+  margin-right: auto;
+}
+.section-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 5rem;
+  gap: 2rem;
+}
+.section-title {
+  font-family: 'Cal Sans', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 900;
+  line-height: 0.9;
+  text-transform: uppercase;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  color: var(--white);
+}
+.section-title .accent { color: var(--blue); }
+.section-divider {
+  border-top: 1px solid var(--border);
+}
+
+/* ─── PROCESS ─── */
+.process-section {
+  padding: 10rem 0;
+}
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5px;
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+/* connecting line between steps */
+.process-connector {
+  position: absolute;
+  top: 50%;
+  left: calc(25% - 1px);
+  right: calc(0%);
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(0,102,255,0.2) 20%, rgba(0,102,255,0.2) 80%, transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.process-step {
+  padding: 3rem 2rem;
+  background: var(--glass);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s var(--ease-snap);
+}
+.process-step::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--blue-dim) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.process-step:hover::before { opacity: 1; }
+.process-step:hover { background: rgba(0,102,255,0.03); }
+.step-num-bg {
+  font-family: 'Cal Sans', sans-serif;
+  font-size: 7rem;
+  font-weight: 900;
+  font-style: italic;
+  color: rgba(255,255,255,0.04);
+  position: absolute;
+  top: -1rem;
+  right: 1rem;
+  line-height: 1;
+  pointer-events: none;
+}
+.step-num {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--blue);
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+.step-title {
+  font-family: 'Cal Sans', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+.step-body {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── TESTIMONIALS CTA ─── */
+.cases-section {
+  padding: 10rem 0;
+}
+.cases-feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.cases-copy .section-title { margin-bottom: 1.5rem; }
+.cases-copy p {
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+.cases-visual {
+  position: relative;
+  height: 480px;
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: var(--glass);
+}
+.cases-visual-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 3rem;
+}
+.big-stat {
+  font-family: 'Cal Sans', sans-serif;
+  font-size: clamp(4rem, 8vw, 7rem);
+  font-weight: 900;
+  font-style: italic;
+  color: var(--white);
+  line-height: 1;
+  text-align: center;
+}
+.big-stat span { color: var(--blue); }
+.big-stat-label {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+  text-align: center;
+}
+.cases-visual-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center bottom, rgba(0,102,255,0.12), transparent 60%);
+  pointer-events: none;
+}
+
+/* ─── PRICING ─── */
+.pricing-section {
+  padding: 10rem 0;
+}
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.pricing-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.3s, transform 0.4s var(--ease-snap);
+  overflow: hidden;
+}
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(0,102,255,0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.pricing-card:hover { border-color: rgba(0,102,255,0.2); transform: translateY(-6px); }
+.pricing-card:hover::before { opacity: 1; }
+.pricing-card.featured {
+  background: rgba(0,102,255,0.06);
+  border-color: rgba(0,102,255,0.25);
+}
+.pricing-card.featured::before { opacity: 1; }
+.badge {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: var(--blue);
+  color: #fff;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border-radius: 100px;
+}
+.pricing-name {
+  font-family: 'Cal Sans', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 0.25rem;
+}
+.pricing-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+.pricing-price strong {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1;
+}
+.pricing-price .save {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+/* availability indicator per card */
+.pricing-avail {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #22c55e;
+  margin-bottom: 0.75rem;
+}
+.avail-dot-sm {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: ping 1.5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.pricing-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 1.5rem 0;
+}
+.pricing-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  flex: 1;
+  margin-bottom: 2rem;
+}
+.pricing-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.pricing-features li svg {
+  width: 14px; height: 14px;
+  flex-shrink: 0;
+  fill: var(--blue);
+}
+.pricing-features li.highlight { color: var(--white); font-weight: 600; }
+.btn-buy {
+  display: block;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.25s var(--ease-snap);
+}
+.btn-buy-outline {
+  border: 1px solid var(--border);
+  color: var(--white);
+  background: transparent;
+}
+.btn-buy-outline:hover { background: rgba(255,255,255,0.06); border-color: rgba(240,246,252,0.2); }
+.btn-buy-solid {
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 6px 24px var(--blue-glow);
+}
+.btn-buy-solid:hover { transform: translateY(-2px); box-shadow: 0 10px 32px var(--blue-glow); }
+
+/* ─── TESTIMONIALS ─── */
+.testimonials-section {
+  padding: 10rem 0;
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.testimonial-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.3s, transform 0.4s var(--ease-snap);
+}
+.testimonial-card:hover { border-color: rgba(0,102,255,0.15); transform: translateY(-4px); }
+.stars { color: #f59e0b; font-size: 12px; letter-spacing: 3px; margin-bottom: 1.5rem; }
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--blue-dim);
+  border: 1px solid rgba(0,102,255,0.2);
+  border-radius: 100px;
+  padding: 0.2rem 0.7rem;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+.testimonial-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+.testimonial-body {
+  font-size: 0.95rem;
+  color: rgba(240,246,252,0.85);
+  line-height: 1.75;
+  font-style: italic;
+  flex: 1;
+  margin-bottom: 2rem;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+}
+.avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 13px;
+  color: #fff;
+  flex-shrink: 0;
+}
+.author-name {
+  font-weight: 900;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--white);
+  font-style: italic;
+}
+.author-role {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+
+/* ─── FAQ ─── */
+.faq-section {
+  padding: 10rem 0;
+}
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
+}
+.faq-item:last-child { border-bottom: none; }
+.faq-item:hover { background: rgba(255,255,255,0.015); }
+.faq-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 2.5rem;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+.faq-summary::-webkit-details-marker { display: none; }
+.faq-q {
+  font-family: 'Cal Sans', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.faq-arrow {
+  width: 28px; height: 28px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s var(--ease-snap), border-color 0.3s, background 0.3s;
+  color: var(--blue);
+}
+details[open] .faq-arrow {
+  transform: rotate(45deg);
+  border-color: rgba(0,102,255,0.3);
+  background: var(--blue-dim);
+}
+.faq-body {
+  padding: 0 2.5rem 2rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 680px;
+}
+
+/* ─── FINAL CTA ─── */
+.cta-section {
+  padding: 12rem 0;
+  overflow: hidden;
+}
+.cta-inner {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.cta-section .bg-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 80% at center, rgba(0,102,255,0.1), transparent 70%);
+  pointer-events: none;
+}
+.cta-headline {
+  font-family: 'Cal Sans', sans-serif;
+  font-size: clamp(4rem, 12vw, 11rem);
+  font-weight: 900;
+  line-height: 0.85;
+  text-transform: uppercase;
+  font-style: italic;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+.cta-headline .accent { color: var(--blue); }
+.cta-sub {
+  color: var(--muted);
+  max-width: 500px;
+  margin: 0 auto 3rem;
+  line-height: 1.7;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.85rem;
+}
+.cta-availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 0.6rem 1.5rem;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 2rem;
+}
+.avail-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: ping 1.5s ease-in-out infinite;
+}
+
+/* ─── CTA BUTTON SCALED UP ─── */
+.cta-btn-wrap {
+  display: flex;
+  justify-content: center;
+}
+.btn-primary-xl {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--blue);
+  color: #fff;
+  font-size: clamp(0.875rem, 2vw, 1.15rem);
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: clamp(1.1rem, 2.5vw, 1.6rem) clamp(2rem, 5vw, 4.5rem);
+  border-radius: 100px;
+  box-shadow: 0 12px 48px var(--blue-glow);
+  transition: all 0.3s var(--ease-snap);
+  border: none;
+}
+.btn-primary-xl:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 60px var(--blue-glow); }
+
+/* ─── FOOTER ─── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 4rem 2rem;
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.footer-logo {
+  font-family: 'Cal Sans', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: -0.03em;
+}
+.footer-copy {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+.footer-links a {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.footer-links a:hover { color: var(--white); }
+
+/* ─── SCROLL REVEAL BASE ─── */
+.sr { opacity: 0; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-cta { display: none; }
+  .process-grid { grid-template-columns: 1fr 1fr; }
+  .process-connector { display: none; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  .testimonials-grid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
+  .cases-feature { grid-template-columns: 1fr; }
+  .cases-visual { height: 320px; }
+  .section-header { flex-direction: column; gap: 0.5rem; }
+  .section-num { display: none; }
+  .ticker-name { font-size: 0.9rem; }
+}
+@media (max-width: 600px) {
+  .hero { padding: 8rem 1.5rem 5rem; }
+  .hero-title { font-size: clamp(3rem, 14vw, 5rem); }
+  .process-grid { grid-template-columns: 1fr; }
+  .process-step { padding: 2rem 1.5rem; }
+  .hero-ctas { flex-direction: column; align-items: stretch; width: 100%; }
+  .btn-primary, .btn-ghost { justify-content: center; }
+  .hero-stats { gap: 0.75rem; }
+  .stat-pill { font-size: 9px; padding: 0.4rem 0.85rem; }
+  .section-inner { padding: 0 1.25rem; }
+  .process-section, .cases-section, .pricing-section,
+  .testimonials-section, .faq-section, .cta-section { padding: 6rem 0; }
+  .cta-headline { font-size: clamp(3rem, 14vw, 5rem); }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+  .footer-links { flex-wrap: wrap; gap: 1.25rem; }
+  .pricing-card { padding: 2rem 1.5rem; }
+  .testimonial-card { padding: 2rem 1.5rem; }
+  .faq-summary { padding: 1.5rem; }
+  .faq-body { padding: 0 1.5rem 1.5rem; }
+  .section-title { font-size: clamp(2rem, 10vw, 3.5rem); }
+  .ticker-item { padding: 0 2rem; }
 }
 </style>
 </head>
-<body class="bg-background text-on-surface antialiased overflow-x-hidden">
+<body>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- PAGE TRANSITION OVERLAY -->
+<div id="page-transition"></div>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div id="preloader-count">0</div>
+  <div id="preloader-bar"></div>
+  <div id="preloader-label">Cargando producción</div>
+</div>
 
 <!-- NAV -->
-<nav class="fixed top-0 w-full z-10 bg-background/40 backdrop-blur-2xl border-b border-white/5">
-<div class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto">
-<a class="font-black tracking-tighter text-white uppercase font-headline text-2xl italic" href="#">VOMTU</a>
-<div class="hidden md:flex items-center gap-10">
-<a class="text-text-secondary font-bold hover:text-white transition-colors text-[10px] uppercase tracking-[0.2em] font-label" href="#process">Proceso</a>
-<a class="text-text-secondary font-bold hover:text-white transition-colors text-[10px] uppercase tracking-[0.2em] font-label" href="/testimonios">Testimonios</a>
-<a class="text-text-secondary font-bold hover:text-white transition-colors text-[10px] uppercase tracking-[0.2em] font-label" href="#services">Precios</a>
-<a class="text-text-secondary font-bold hover:text-white transition-colors text-[10px] uppercase tracking-[0.2em] font-label" href="#faq">FAQ</a>
-</div>
-<div class="flex items-center gap-4">
-    <a href="https://www.instagram.com/vomtu.c/" target="_blank" class="text-text-secondary hover:text-white transition-all hover:scale-110 flex items-center justify-center w-8 h-8 rounded-full bg-white/5 border border-white/10">
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-    </a>
-    <a class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white/5 text-white font-black hover:bg-white/10 transition-all duration-300 border border-white/10 font-label tracking-widest text-[10px] cursor-pointer" href="#comprar">COMPRAR VÍDEO</a>
-</div>
-</div>
+<nav id="main-nav">
+  <a class="nav-logo" href="#">VOMTU</a>
+  <ul class="nav-links">
+    <li><a href="#process">Proceso</a></li>
+    <li><a href="/testimonios">Testimonios</a></li>
+    <li><a href="#pricing">Precios</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a class="nav-cta" href="#pricing">Comprar vídeo</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<!-- MOBILE MENU -->
+<div id="mobile-menu">
+  <a class="mobile-link" href="#process">Proceso</a>
+  <a class="mobile-link" href="/testimonios">Testimonios</a>
+  <a class="mobile-link" href="#pricing">Precios</a>
+  <a class="mobile-link" href="#faq">FAQ</a>
+  <a class="mobile-menu-cta" href="#pricing">Comprar vídeo</a>
+</div>
+
 <!-- HERO -->
-<section class="relative min-h-screen flex items-center justify-center pt-40 pb-32 px-6 section-divider overflow-hidden">
-<div class="grid-bg-animated"></div>
-<div class="ambient-glow bg-primary w-[800px] h-[800px] top-1/4 -left-1/4 animate-pulse-slow"></div>
-<div class="ambient-glow bg-secondary w-[700px] h-[700px] bottom-1/4 -right-1/4 animate-pulse-slow" style="animation-delay: -2s"></div>
-<div class="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary font-label text-[10px] font-bold tracking-[0.2em] uppercase mb-8">
-    <span class="relative flex h-2 w-2">
-      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-      <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-    </span>
-    AI Video Production
-</div>
-<h1 class="font-headline text-5xl sm:text-7xl md:text-[88px] font-black tracking-[0.05em] leading-[0.85] mb-10 text-white uppercase italic px-2 reveal-up">
-    Motion <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Graphics.</span><br/>Para cualquier vídeo.
-</h1>
-<p class="font-body text-lg sm:text-xl md:text-2xl text-text-secondary max-w-2xl mb-14 leading-relaxed opacity-90 px-4 reveal-up" style="transition-delay: 200ms">
-    Compra tus vídeos directamente. <span class="text-white">Sin agendar llamadas.</span> Sin presupuestos ocultos. Desde vídeos corporativos hasta redes sociales. Entregados en 48 horas.
-</p>
-<div class="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-20 w-full sm:w-auto px-4 sm:px-0 reveal-up" style="transition-delay: 400ms">
-<a class="glow-button text-white px-8 py-5 sm:px-12 sm:py-6 rounded-full font-label font-black text-base sm:text-lg uppercase tracking-tight flex items-center justify-center cursor-pointer" href="#comprar">COMPRAR VÍDEO</a>
-<a class="glass-panel text-white px-8 py-5 sm:px-12 sm:py-6 rounded-full font-label font-black text-base sm:text-lg uppercase tracking-tight hover:bg-white/10 transition-colors flex items-center justify-center" href="/testimonios" style="border-radius: 9999px;">Testimonios</a>
-</div>
-<div class="flex flex-wrap justify-center gap-6 reveal-up" style="transition-delay: 600ms">
-<div class="flex items-center gap-2 font-label text-[10px] font-bold tracking-widest text-text-secondary uppercase bg-white/5 px-4 py-2 rounded-full border border-white/5">
-<span class="material-symbols-outlined text-[16px] text-primary">bolt</span> 48h entrega</div>
-<div class="flex items-center gap-2 font-label text-[10px] font-bold tracking-widest text-text-secondary uppercase bg-white/5 px-4 py-2 rounded-full border border-white/5">
-<span class="material-symbols-outlined text-[16px] text-primary">payments</span> Desde 300€</div>
-<div class="flex items-center gap-2 font-label text-[10px] font-bold tracking-widest text-text-secondary uppercase bg-white/5 px-4 py-2 rounded-full border border-white/5">
-<span class="material-symbols-outlined text-[16px] text-primary">verified</span> +20 tiendas</div>
-</div>
-</div>
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-rails"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-inner">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      AI Video Production · 48h Entrega
+    </div>
+
+    <h1 class="hero-title">
+      <span class="line"><span class="word">Motion</span> <span class="word accent">Graphics.</span></span>
+      <span class="line"><span class="word">Para cualquier</span></span>
+      <span class="line"><span class="word">vídeo.</span></span>
+    </h1>
+
+    <p class="hero-sub">
+      Compra tus vídeos directamente. <strong>Sin agendar llamadas.</strong>
+      Sin presupuestos ocultos. Desde vídeos corporativos hasta redes sociales.
+      Entregados en <strong>48 horas.</strong>
+    </p>
+
+    <div class="hero-ctas">
+      <a class="btn-primary" href="#pricing">
+        Comprar vídeo
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a class="btn-ghost" href="/testimonios">Ver resultados</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-pill">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        48h entrega
+      </div>
+      <div class="stat-pill">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+        Desde €8.99
+      </div>
+      <div class="stat-pill">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+        +20 tiendas
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint" id="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-hint-line"></div>
+  </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="py-20 bg-background relative section-divider" id="process">
-<div class="max-w-7xl mx-auto px-6">
-<div class="flex flex-col items-center mb-16">
-    <div class="text-primary font-label text-[10px] font-black tracking-[0.3em] uppercase mb-3">Metodología</div>
-    <h2 class="font-headline text-3xl md:text-5xl font-black text-center text-white uppercase italic leading-none reveal-up">Del briefing al vídeo en <span class="text-primary">4 pasos</span></h2>
+<!-- CLIENT TICKER -->
+<div class="ticker-section">
+  <div class="ticker-track">
+    <!-- first set -->
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-name">Somos Pasión</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-name">Velyn SaaS</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-name">Camisetas 3 Hermanos</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-name">Jaime — Fútbol Express</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-name">Vortiza IA</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-name">Economy Laborathion</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-name">One Agency</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-name">+20 Marcas</span></div>
+    <!-- duplicate for seamless loop -->
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-name">Somos Pasión</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-name">Velyn SaaS</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-name">Camisetas 3 Hermanos</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-name">Jaime — Fútbol Express</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-name">Vortiza IA</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-name">Economy Laborathion</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-name">One Agency</span></div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-name">+20 Marcas</span></div>
+  </div>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-<div class="glass-panel p-8 rounded-2xl flex flex-col group relative overflow-hidden" reveal-scale>
-<div class="text-8xl font-black text-white/10 absolute top-0 right-2 italic select-none pointer-events-none font-headline">01</div>
-<div class="relative z-10 w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6"><span class="text-[10px] font-black text-primary font-label">01</span></div>
-<h3 class="relative z-10 font-headline text-xl font-black mb-3 text-white uppercase tracking-tight">Pedido</h3>
-<p class="relative z-10 text-text-secondary text-xs leading-relaxed opacity-60">Eliges el paquete de vídeos, completas el pago y nos envías los detalles del producto.</p>
-</div>
-<div class="glass-panel p-8 rounded-2xl flex flex-col group relative overflow-hidden" reveal-scale style="transition-delay: 100ms">
-<div class="text-8xl font-black text-white/10 absolute top-0 right-2 italic select-none pointer-events-none font-headline">02</div>
-<div class="relative z-10 w-10 h-10 rounded-xl bg-secondary/10 border border-secondary/20 flex items-center justify-center mb-6"><span class="text-[10px] font-black text-secondary font-label">02</span></div>
-<h3 class="relative z-10 font-headline text-xl font-black mb-3 text-white uppercase tracking-tight">Producción</h3>
-<p class="relative z-10 text-text-secondary text-xs leading-relaxed opacity-60">Generamos los visuales cinemáticos, locución AI y música a medida.</p>
-</div>
-<div class="glass-panel p-8 rounded-2xl flex flex-col group relative overflow-hidden" reveal-scale style="transition-delay: 200ms">
-<div class="text-8xl font-black text-white/10 absolute top-0 right-2 italic select-none pointer-events-none font-headline">03</div>
-<div class="relative z-10 w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6"><span class="text-[10px] font-black text-primary font-label">03</span></div>
-<h3 class="relative z-10 font-headline text-xl font-black mb-3 text-white uppercase tracking-tight">Revisión</h3>
-<p class="relative z-10 text-text-secondary text-xs leading-relaxed opacity-60">Te enviamos una versión preliminar para que ajustes hasta que brille.</p>
-</div>
-<div class="glass-panel p-8 rounded-2xl flex flex-col group relative overflow-hidden" reveal-scale style="transition-delay: 300ms">
-<div class="text-8xl font-black text-white/10 absolute top-0 right-2 italic select-none pointer-events-none font-headline">04</div>
-<div class="relative z-10 w-10 h-10 rounded-xl bg-secondary/10 border border-secondary/20 flex items-center justify-center mb-6"><span class="text-[10px] font-black text-secondary font-label">04</span></div>
-<h3 class="relative z-10 font-headline text-xl font-black mb-3 text-white uppercase tracking-tight">Entrega</h3>
-<p class="relative z-10 text-text-secondary text-xs leading-relaxed opacity-60">Recibes tus vídeos Motion Graphics en 48h, listos para publicar en cualquier plataforma.</p>
-</div>
-</div>
-</div>
+
+<!-- PROCESS -->
+<section class="process-section section-divider" id="process">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-label">Metodología</div>
+        <h2 class="section-title sr">Del briefing al vídeo<br/>en <span class="accent">4 pasos</span></h2>
+      </div>
+      <div class="section-num">— 01</div>
+    </div>
+
+    <div class="process-grid">
+      <div class="process-connector"></div>
+      <div class="process-step sr">
+        <div class="step-num-bg">01</div>
+        <div class="step-num">01 — Pedido</div>
+        <div class="step-title">Pedido</div>
+        <p class="step-body">Eliges el paquete de vídeos, completas el pago y nos envías los detalles del producto o marca.</p>
+      </div>
+      <div class="process-step sr" style="--delay:0.1s">
+        <div class="step-num-bg">02</div>
+        <div class="step-num">02 — Producción</div>
+        <div class="step-title">Producción</div>
+        <p class="step-body">Generamos los visuales cinemáticos, locución AI y música a medida. Sin interrupciones.</p>
+      </div>
+      <div class="process-step sr" style="--delay:0.2s">
+        <div class="step-num-bg">03</div>
+        <div class="step-num">03 — Revisión</div>
+        <div class="step-title">Revisión</div>
+        <p class="step-body">Te enviamos una versión preliminar para que ajustes hasta que brille exactamente como imaginas.</p>
+      </div>
+      <div class="process-step sr" style="--delay:0.3s">
+        <div class="step-num-bg">04</div>
+        <div class="step-num">04 — Entrega</div>
+        <div class="step-title">Entrega</div>
+        <p class="step-body">Recibes tus vídeos Motion Graphics en 48h, listos para publicar en cualquier plataforma.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- TESTIMONIALS / CASES CTA -->
-<section class="py-24 bg-background relative section-divider" id="work">
-<div class="max-w-4xl mx-auto px-6 text-center">
-<div class="text-primary font-label text-[10px] font-black tracking-[0.3em] uppercase mb-4">Casos de Éxito</div>
-<h2 class="font-headline text-4xl sm:text-5xl md:text-6xl font-black text-white uppercase italic leading-none mb-8 reveal-up">Testimonios y <span class="text-primary">Resultados</span></h2>
-<p class="font-body text-xl text-text-secondary mb-10 opacity-80 reveal-up" style="transition-delay: 100ms">Descubre cómo nuestros vídeos Motion Graphics están escalando el ROAS de las mejores marcas del mercado.</p>
-<a class="glow-button inline-flex text-white px-10 py-5 rounded-full font-label font-black text-lg uppercase tracking-tight items-center justify-center reveal-up" style="transition-delay: 200ms" href="/testimonios">VER TESTIMONIOS COMPLETOS</a>
-</div>
+<!-- CASES CTA -->
+<section class="cases-section section-divider" id="work">
+  <div class="section-inner">
+    <div class="cases-feature">
+      <div class="cases-copy">
+        <div class="section-label">Casos de éxito</div>
+        <h2 class="section-title sr">Testimonios y<br/><span class="accent">Resultados</span></h2>
+        <p class="sr" style="--delay:0.15s">Descubre cómo nuestros vídeos Motion Graphics están escalando el ROAS de las mejores marcas del mercado.</p>
+        <a class="btn-primary sr" style="--delay:0.25s; display:inline-flex" href="/testimonios">
+          Ver testimonios completos
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="cases-visual sr" style="--delay:0.1s">
+        <div class="cases-visual-glow"></div>
+        <div class="cases-visual-inner">
+          <div class="big-stat sr" style="--delay:0.2s">+<span>20</span></div>
+          <div class="big-stat-label sr" style="--delay:0.3s">Tiendas escalando ROAS</div>
+          <div class="big-stat sr" style="--delay:0.4s; font-size: clamp(2rem,4vw,3.5rem); margin-top: 1.5rem;"><span>48</span>h</div>
+          <div class="big-stat-label sr" style="--delay:0.5s">Tiempo medio de entrega</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- PURCHASE PANEL -->
-<section class="py-20 bg-background relative section-divider" id="comprar">
-<div class="max-w-6xl mx-auto px-6">
-<div class="flex flex-col items-center mb-16">
-    <div class="text-primary font-label text-[10px] font-black tracking-[0.3em] uppercase mb-3">Tu Pedido</div>
-    <h2 class="font-headline text-3xl sm:text-4xl md:text-5xl font-black text-center text-white uppercase italic leading-none mb-12 px-4 reveal-up">Compra <span class="text-primary">Directa</span></h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+<!-- PRICING -->
+<section class="pricing-section section-divider" id="pricing">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-label">Tu pedido</div>
+        <h2 class="section-title sr">Compra <span class="accent">Directa</span></h2>
+      </div>
+      <div class="section-num">— 03</div>
+    </div>
 
-<div class="glass-panel p-8 rounded-[2rem] flex flex-col h-full border-white/5 hover:border-primary/20 transition-all group" reveal-scale>
-<h3 class="font-headline text-2xl font-black text-white mb-2 uppercase tracking-tighter italic">1 Vídeo</h3>
-<div class="flex items-baseline gap-2 mb-8"><span class="text-4xl sm:text-5xl font-black text-white">€8.99</span></div>
-<div class="w-full h-px bg-white/10 mb-8"></div>
-<ul class="space-y-6 mb-12 flex-grow">
-<li class="flex items-center gap-4 text-text-secondary text-sm font-medium" reveal-up><span class="material-symbols-outlined text-primary text-lg">check_circle</span><span>Entrega en 48h</span></li>
-<li class="flex items-center gap-4 text-text-secondary text-sm font-medium" reveal-up><span class="material-symbols-outlined text-primary text-lg">check_circle</span><span>Cualquier formato o plataforma</span></li>
-</ul>
-<a class="block w-full py-4 rounded-xl font-label font-black text-center border border-white/20 text-white uppercase tracking-widest text-[10px] hover:bg-white/10 hover:border-white/40 transition-all cursor-pointer" href="https://buy.stripe.com/28E5kD9bh77iadOexgcV202">Comprar</a>
-</div>
+    <div class="pricing-grid">
 
-<div class="glass-panel p-8 rounded-[2rem] flex flex-col h-full relative overflow-hidden bg-primary/5 border-primary/20 group" reveal-scale style="transition-delay: 100ms">
-<div class="absolute top-4 right-6 bg-primary text-white px-4 py-1 rounded-full text-[9px] font-black tracking-widest uppercase font-label">Populares</div>
-<h3 class="font-headline text-2xl font-black text-white mb-2 uppercase tracking-tighter italic">Pack 3 Vídeos</h3>
-<div class="flex items-baseline gap-2 mb-8"><span class="text-4xl sm:text-5xl font-black text-white">€24.99</span><span class="ml-2 text-text-secondary font-label text-[10px] uppercase tracking-widest">Ahorras 2€</span></div>
-<div class="w-full h-px bg-primary/20 mb-8"></div>
-<ul class="space-y-6 mb-12 flex-grow">
-<li class="flex items-center gap-4 text-white text-sm font-bold" reveal-up><span class="material-symbols-outlined text-primary text-lg">verified</span><span>Ideal para campañas y redes</span></li>
-<li class="flex items-center gap-4 text-white text-sm font-bold" reveal-up><span class="material-symbols-outlined text-primary text-lg">verified</span><span>Entrega en 48h</span></li>
-<li class="flex items-center gap-4 text-white text-sm font-bold" reveal-up><span class="material-symbols-outlined text-primary text-lg">verified</span><span>Prioridad de entrega</span></li>
-</ul>
-<a class="glow-button block w-full py-4 rounded-xl font-label font-black text-center text-white uppercase tracking-widest text-[10px] cursor-pointer" href="https://buy.stripe.com/6oU6oH0ELajuclW88ScV201">Comprar Pack 3</a>
-</div>
+      <div class="pricing-card sr">
+        <div class="pricing-name">1 Vídeo</div>
+        <div class="pricing-price"><strong>€8.99</strong></div>
+        <div class="pricing-avail"><div class="avail-dot-sm"></div>Disponible ahora</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+            Entrega en 48h
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+            Cualquier formato o plataforma
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+            1 revisión gratuita
+          </li>
+        </ul>
+        <a class="btn-buy btn-buy-outline" href="https://buy.stripe.com/28E5kD9bh77iadOexgcV202">Comprar</a>
+      </div>
 
-<div class="glass-panel p-8 rounded-[2rem] flex flex-col h-full border-white/5 hover:border-primary/20 transition-all group" reveal-scale style="transition-delay: 200ms">
-<h3 class="font-headline text-2xl font-black text-white mb-2 uppercase tracking-tighter italic">Pack 6 Vídeos</h3>
-<div class="flex items-baseline gap-2 mb-8"><span class="text-4xl sm:text-5xl font-black text-white">€49.99</span><span class="ml-2 text-text-secondary font-label text-[10px] uppercase tracking-widest">Ahorras 4€</span></div>
-<div class="w-full h-px bg-white/10 mb-8"></div>
-<ul class="space-y-6 mb-12 flex-grow">
-<li class="flex items-center gap-4 text-text-secondary text-sm font-medium" reveal-up><span class="material-symbols-outlined text-primary text-lg">check_circle</span><span>Dominio en todas las redes</span></li>
-<li class="flex items-center gap-4 text-text-secondary text-sm font-medium" reveal-up><span class="material-symbols-outlined text-primary text-lg">check_circle</span><span>Contenido recurrente masivo</span></li>
-<li class="flex items-center gap-4 text-text-secondary text-sm font-medium" reveal-up><span class="material-symbols-outlined text-primary text-lg">check_circle</span><span>Soporte VIP</span></li>
-</ul>
-<a class="block w-full py-4 rounded-xl font-label font-black text-center border border-white/20 text-white uppercase tracking-widest text-[10px] hover:bg-white/10 hover:border-white/40 transition-all cursor-pointer" href="https://buy.stripe.com/00wdR91IP77iadO4WGcV200">Comprar Pack 6</a>
-</div>
+      <div class="pricing-card featured sr" style="--delay:0.1s">
+        <span class="badge">Popular</span>
+        <div class="pricing-name">Pack 3 Vídeos</div>
+        <div class="pricing-price">
+          <strong>€24.99</strong>
+          <span class="save">Ahorras 2€</span>
+        </div>
+        <div class="pricing-avail"><div class="avail-dot-sm"></div>Disponible ahora</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li class="highlight">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+            Ideal para campañas y redes
+          </li>
+          <li class="highlight">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+            Entrega en 48h
+          </li>
+          <li class="highlight">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+            Prioridad de entrega
+          </li>
+          <li class="highlight">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+            1 revisión gratuita por vídeo
+          </li>
+        </ul>
+        <a class="btn-buy btn-buy-solid" href="https://buy.stripe.com/6oU6oH0ELajuclW88ScV201">Comprar Pack 3</a>
+      </div>
 
-</div>
-</div>
+      <div class="pricing-card sr" style="--delay:0.2s">
+        <div class="pricing-name">Pack 6 Vídeos</div>
+        <div class="pricing-price">
+          <strong>€49.99</strong>
+          <span class="save">Ahorras 4€</span>
+        </div>
+        <div class="pricing-avail"><div class="avail-dot-sm"></div>Disponible ahora</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+            Dominio en todas las redes
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+            Contenido recurrente masivo
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+            Soporte VIP
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+            Prioridad máxima
+          </li>
+        </ul>
+        <a class="btn-buy btn-buy-outline" href="https://buy.stripe.com/00wdR91IP77iadO4WGcV200">Comprar Pack 6</a>
+      </div>
+
+    </div>
+  </div>
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="py-32 bg-background relative section-divider">
-<div class="max-w-7xl mx-auto px-6">
-<div class="flex flex-col items-center mb-24">
-    <div class="text-primary font-label text-xs font-black tracking-[0.3em] uppercase mb-4">Feedback</div>
-    <h2 class="font-headline text-3xl sm:text-4xl md:text-6xl font-black text-center text-white uppercase italic leading-none px-4 reveal-up">Confianza <span class="text-primary">Verificada</span></h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-  <div class="glass-panel p-10 rounded-[2rem] flex flex-col justify-between hover:bg-white/5 transition-all" reveal-scale>
-    <div>
-      <div class="flex items-center justify-between mb-8">
-        <div class="stars">★★★★★</div>
-        <span class="verified-badge tracking-tighter">✓ CLIENTE VERIFICADO</span>
-      </div>
-      <p class="text-white/90 text-lg font-medium leading-relaxed mb-10 italic">"Necesitábamos testear creatividades rápido, pero grabar nos retrasaba semanas. Vomtu nos entregó 3 motion graphics en 48h. Llevamos escalando 2 meses seguidos."</p>
-    </div>
-    <div class="flex items-center gap-4 pt-8 border-t border-white/5">
-      <div class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center font-black text-white text-sm">AR</div>
+<section class="testimonials-section section-divider">
+  <div class="section-inner">
+    <div class="section-header">
       <div>
-        <p class="font-black text-white text-sm uppercase italic tracking-tight">Alejandro R.</p>
-        <p class="text-[10px] text-neutral-500 font-label font-bold uppercase tracking-widest mt-1">Founder · Streetwear</p>
+        <div class="section-label">Feedback</div>
+        <h2 class="section-title sr">Confianza <span class="accent">Verificada</span></h2>
       </div>
+      <div class="section-num">— 04</div>
+    </div>
+
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card sr">
+        <div>
+          <div class="testimonial-top">
+            <div class="stars">★★★★★</div>
+            <span class="verified-badge">✓ Verificado</span>
+          </div>
+          <p class="testimonial-body">"Necesitábamos testear creatividades rápido, pero grabar nos retrasaba semanas. Vomtu nos entregó 3 motion graphics en 48h. Llevamos escalando 2 meses seguidos."</p>
+        </div>
+        <div class="testimonial-author">
+          <div class="avatar" style="background: linear-gradient(135deg,#0066FF,#0044cc)">AR</div>
+          <div>
+            <div class="author-name">Alejandro R.</div>
+            <div class="author-role">Founder · Streetwear</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card sr" style="--delay:0.1s">
+        <div>
+          <div class="testimonial-top">
+            <div class="stars">★★★★★</div>
+            <span class="verified-badge">✓ Verificado</span>
+          </div>
+          <p class="testimonial-body">"Increíble lo sencillos que son los motion graphics pero lo bien que funcionan. El vídeo corporativo superó todas nuestras expectativas. Directos al grano."</p>
+        </div>
+        <div class="testimonial-author">
+          <div class="avatar" style="background: linear-gradient(135deg,#10b981,#0d9488)">LM</div>
+          <div>
+            <div class="author-name">Laura M.</div>
+            <div class="author-role">CEO · Nutrición</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card sr" style="--delay:0.2s">
+        <div>
+          <div class="testimonial-top">
+            <div class="stars">★★★★★</div>
+            <span class="verified-badge">✓ Verificado</span>
+          </div>
+          <p class="testimonial-body">"Rellenar el formulario fue literalmente como un juego. Al día siguiente teníamos el primer borrador listo. Rápido, sin reuniones y con un acabado hiper premium."</p>
+        </div>
+        <div class="testimonial-author">
+          <div class="avatar" style="background: linear-gradient(135deg,#f97316,#e11d48)">DC</div>
+          <div>
+            <div class="author-name">Daniel C.</div>
+            <div class="author-role">Founder · Accesorios</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
-
-  <div class="glass-panel p-10 rounded-[2rem] flex flex-col justify-between hover:bg-white/5 transition-all" reveal-scale>
-    <div>
-      <div class="flex items-center justify-between mb-8">
-        <div class="stars">★★★★★</div>
-        <span class="verified-badge tracking-tighter">✓ CLIENTE VERIFICADO</span>
-      </div>
-      <p class="text-white/90 text-lg font-medium leading-relaxed mb-10 italic">"Increíble lo sencillos que son los motion graphics pero lo bien que funcionan. El vídeo corporativo superó todas nuestras expectativas. Directos al grano."</p>
-    </div>
-    <div class="flex items-center gap-4 pt-8 border-t border-white/5">
-      <div class="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center font-black text-white text-sm">LM</div>
-      <div>
-        <p class="font-black text-white text-sm uppercase italic tracking-tight">Laura M.</p>
-        <p class="text-[10px] text-neutral-500 font-label font-bold uppercase tracking-widest mt-1">CEO · Nutrición</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="glass-panel p-10 rounded-[2rem] flex flex-col justify-between hover:bg-white/5 transition-all" reveal-scale>
-    <div>
-      <div class="flex items-center justify-between mb-8">
-        <div class="stars">★★★★★</div>
-        <span class="verified-badge tracking-tighter">✓ CLIENTE VERIFICADO</span>
-      </div>
-      <p class="text-white/90 text-lg font-medium leading-relaxed mb-10 italic">"Rellenar el formulario fue literalmente como un juego. Al día siguiente teníamos el primer borrador listo. Rápido, sin reuniones y con un acabado hiper premium."</p>
-    </div>
-    <div class="flex items-center gap-4 pt-8 border-t border-white/5">
-      <div class="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-rose-600 flex items-center justify-center font-black text-white text-sm">DC</div>
-      <div>
-        <p class="font-black text-white text-sm uppercase italic tracking-tight">Daniel C.</p>
-        <p class="text-[10px] text-neutral-500 font-label font-bold uppercase tracking-widest mt-1">Founders · Accesorios</p>
-      </div>
-    </div>
-  </div>
-
-</div>
-</div>
 </section>
 
 <!-- FAQ -->
-<section class="py-32 bg-background relative section-divider" id="faq">
-<div class="max-w-4xl mx-auto px-6">
-<div class="flex flex-col items-center mb-24">
-    <div class="text-primary font-label text-xs font-black tracking-[0.3em] uppercase mb-4">FAQ</div>
-    <h2 class="font-headline text-3xl sm:text-4xl md:text-6xl font-black text-center text-white uppercase italic leading-none px-4 reveal-up">Dudas <span class="text-primary">Comunes</span></h2>
-</div>
-<div class="space-y-4">
-<div class="glass-panel rounded-2xl overflow-hidden hover:border-primary/20 transition-all" reveal-scale>
-<details class="group reveal-up"><summary class="flex justify-between items-center font-headline font-black italic uppercase cursor-pointer list-none p-8 text-xl text-white"><span>¿Necesito grabar o tener contenido propio?</span><span class="transition group-open:rotate-180 text-primary"><span class="material-symbols-outlined">expand_more</span></span></summary>
-<div class="text-text-secondary px-8 pb-8 text-base leading-relaxed opacity-70">Para nada. Podemos trabajar con tus fotos/vídeos o utilizar nuestros propios recursos de stock premium y animaciones gráficas para que no tengas que grabar absolutamente nada.</div></details>
-</div>
-<div class="glass-panel rounded-2xl overflow-hidden hover:border-primary/20 transition-all" reveal-scale style="transition-delay: 100ms">
-<details class="group reveal-up"><summary class="flex justify-between items-center font-headline font-black italic uppercase cursor-pointer list-none p-8 text-xl text-white"><span>¿Cuánto se tarda en recibir el primer vídeo?</span><span class="transition group-open:rotate-180 text-primary"><span class="material-symbols-outlined">expand_more</span></span></summary>
-<div class="text-text-secondary px-8 pb-8 text-base leading-relaxed opacity-70">Máxima velocidad. En 48 horas desde que completas el briefing interactivo recibes tu primera versión. Sin bloqueos, sin llamadas innecesarias.</div></details>
-</div>
-<div class="glass-panel rounded-2xl overflow-hidden hover:border-primary/20 transition-all" reveal-scale style="transition-delay: 200ms">
-<details class="group reveal-up"><summary class="flex justify-between items-center font-headline font-black italic uppercase cursor-pointer list-none p-8 text-xl text-white"><span>¿Qué pasa si quiero cambiar algo del vídeo?</span><span class="transition group-open:rotate-180 text-primary"><span class="material-symbols-outlined">expand_more</span></span></summary>
-<div class="text-text-secondary px-8 pb-8 text-base leading-relaxed opacity-70">El pedido incluye 1 ronda de revisión gratuita. Como los vídeos son de Motion Graphics dinámicos, hacer ajustes de textos, colores o ritmo es súper rápido.</div></details>
-</div>
-</div>
-</div>
+<section class="faq-section section-divider" id="faq">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-label">FAQ</div>
+        <h2 class="section-title sr">Dudas <span class="accent">Comunes</span></h2>
+      </div>
+      <div class="section-num">— 05</div>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item sr">
+        <summary class="faq-summary">
+          <span class="faq-q">¿Necesito grabar o tener contenido propio?</span>
+          <span class="faq-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </summary>
+        <div class="faq-body">Para nada. Podemos trabajar con tus fotos/vídeos o utilizar nuestros propios recursos de stock premium y animaciones gráficas para que no tengas que grabar absolutamente nada.</div>
+      </details>
+      <details class="faq-item sr" style="--delay:0.05s">
+        <summary class="faq-summary">
+          <span class="faq-q">¿Cuánto se tarda en recibir el primer vídeo?</span>
+          <span class="faq-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </summary>
+        <div class="faq-body">Máxima velocidad. En 48 horas desde que completas el briefing interactivo recibes tu primera versión. Sin bloqueos, sin llamadas innecesarias.</div>
+      </details>
+      <details class="faq-item sr" style="--delay:0.1s">
+        <summary class="faq-summary">
+          <span class="faq-q">¿Qué pasa si quiero cambiar algo del vídeo?</span>
+          <span class="faq-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </summary>
+        <div class="faq-body">El pedido incluye 1 ronda de revisión gratuita. Como los vídeos son de Motion Graphics dinámicos, hacer ajustes de textos, colores o ritmo es súper rápido.</div>
+      </details>
+      <details class="faq-item sr" style="--delay:0.15s">
+        <summary class="faq-summary">
+          <span class="faq-q">¿Para qué tipo de negocio funcionan mejor?</span>
+          <span class="faq-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </summary>
+        <div class="faq-body">Funcionan especialmente bien para ecommerce y tiendas online que necesitan contenido constante para Meta Ads, TikTok y Reels. También para marcas personales y startups que quieren proyectar imagen premium sin el coste de una productora tradicional.</div>
+      </details>
+    </div>
+  </div>
 </section>
 
 <!-- FINAL CTA -->
-<section class="py-40 relative overflow-hidden bg-background" id="pedido">
-<div class="absolute inset-0 bg-gradient-to-b from-background via-primary/10 to-secondary/20 z-0"></div>
-<div class="ambient-glow bg-primary w-[1000px] h-[1000px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20"></div>
-<div class="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center">
-<h2 class="font-headline text-5xl sm:text-6xl md:text-[110px] font-black tracking-tighter mb-8 md:mb-12 text-white italic leading-[0.8] uppercase px-4 reveal-up">¿Listo para<br/><span class="text-primary">VENDER MÁS</span>?</h2>
-<p class="font-body text-lg md:text-2xl text-text-secondary mb-12 md:mb-20 max-w-2xl opacity-90 uppercase tracking-tighter px-4 reveal-up" style="transition-delay: 200ms">Pide tu vídeo Motion Graphic ahora. Sin llamadas ni esperas. Descubre el contenido que dispara tu ROAS.</p>
-<a class="glow-button text-white px-8 py-5 md:px-16 md:py-8 rounded-full font-label font-black text-xl md:text-4xl uppercase tracking-tighter flex items-center justify-center gap-4 md:gap-6 hover:scale-105 transition-transform cursor-pointer w-[90%] md:w-auto shadow-[0_0_40px_rgba(0,102,255,0.4)] reveal-up" style="transition-delay: 400ms" href="#comprar">
-HACER PEDIDO <span class="material-symbols-outlined text-3xl md:text-5xl">arrow_forward</span></a>
-<div class="mt-20 flex items-center gap-4 bg-white/5 py-4 px-10 rounded-full border border-white/10 reveal-up" style="transition-delay: 600ms">
-    <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
-    <p class="text-text-secondary text-sm font-black uppercase tracking-widest font-label">Capacidad de producción: Disponible</p>
-</div>
-</div>
+<section class="cta-section section-divider" id="pedido">
+  <div class="bg-glow"></div>
+  <div class="section-inner">
+    <div class="cta-inner">
+      <h2 class="cta-headline sr">
+        ¿Listo para<br/><span class="accent">Vender Más</span>?
+      </h2>
+      <p class="cta-sub sr" style="--delay:0.2s">Pide tu vídeo Motion Graphic ahora. Sin llamadas ni esperas.</p>
+      <div class="cta-btn-wrap sr" style="--delay:0.35s">
+        <a class="btn-primary-xl" href="#pricing">
+          Hacer pedido
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="cta-availability sr" style="--delay:0.5s">
+        <div class="avail-dot"></div>
+        Capacidad de producción: Disponible
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="w-full py-20 border-t border-white/5 bg-background text-white font-label text-[10px] tracking-[0.3em] uppercase font-black">
-<div class="flex flex-col md:flex-row justify-between items-center px-10 max-w-7xl mx-auto gap-12">
-<div class="text-3xl font-black tracking-tighter text-white italic font-headline">VOMTU</div>
-<div class="text-text-secondary">© 2025 VOMTU. VISIONARY AI.</div>
-<div class="flex items-center gap-10">
-    <a href="https://www.instagram.com/vomtu.c/" target="_blank" class="text-text-secondary hover:text-white transition-all flex items-center gap-2 group">
-        <svg class="w-4 h-4 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        <span>Instagram</span>
-    </a>
-    <a class="text-text-secondary hover:text-white transition-colors" href="privacidad.html">Privacidad</a>
-    <a class="text-text-secondary hover:text-white transition-colors" href="terminos.html">Términos</a>
-</div>
-</div>
+<footer>
+  <div class="footer-inner">
+    <a class="footer-logo" href="#">VOMTU</a>
+    <div class="footer-copy">© 2025 VOMTU. Visionary AI.</div>
+    <ul class="footer-links">
+      <li>
+        <a href="https://www.instagram.com/vomtu.c/" target="_blank" rel="noopener">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          Instagram
+        </a>
+      </li>
+      <li><a href="privacidad.html">Privacidad</a></li>
+      <li><a href="terminos.html">Términos</a></li>
+    </ul>
+  </div>
 </footer>
 
 <script>
-// Intersection Observer for Videos to make it "Alive"
-const observerOptions = {
-    threshold: 0.5
-};
+gsap.registerPlugin(ScrollTrigger);
 
-const videoObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        const video = entry.target;
-        if (entry.isIntersecting) {
-            video.play().catch(() => {
-                // Autoplay might be blocked if not muted
-                video.muted = true;
-                video.play();
-            });
-        } else {
-            video.pause();
-        }
-    });
-}, observerOptions);
+/* ─── SPLIT CHARS HELPER ─── */
+function splitChars(el) {
+  const text = el.textContent;
+  el.textContent = '';
+  const chars = [];
+  for (const ch of text) {
+    const span = document.createElement('span');
+    span.textContent = ch === ' ' ? '\xa0' : ch;
+    span.style.cssText = 'display:inline-block;will-change:transform,opacity;';
+    el.appendChild(span);
+    chars.push(span);
+  }
+  return chars;
+}
 
-document.querySelectorAll('video').forEach(video => {
-    videoObserver.observe(video);
+/* ─── CURSOR ─── */
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+(function rafCursor() {
+  rx += (mx - rx) * 0.18;
+  ry += (my - ry) * 0.18;
+  cursor.style.left = mx + 'px';
+  cursor.style.top = my + 'px';
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(rafCursor);
+})();
+
+document.querySelectorAll('a, button, summary, .pricing-card, .testimonial-card, .process-step').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
 });
 
-// Animation Observer for Scroll Reveals
-const animationObserverOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px 0px 0px"
-};
+/* ─── HAMBURGER / MOBILE MENU ─── */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
 
-const animationObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            observer.unobserve(entry.target); // Only animate once
-        }
-    });
-}, animationObserverOptions);
+hamburger.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  hamburger.classList.toggle('open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
 
-document.addEventListener('DOMContentLoaded', () => {
-    const animatables = document.querySelectorAll('.reveal-up, .reveal-scale');
-    animatables.forEach(el => animationObserver.observe(el));
+// close mobile menu when clicking any link inside
+mobileMenu.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+/* ─── PAGE TRANSITION ─── */
+function navigateTo(url) {
+  const overlay = document.getElementById('page-transition');
+  gsap.to(overlay, {
+    clipPath: 'inset(0 0 0% 0)',
+    duration: 0.6,
+    ease: 'power4.inOut',
+    onComplete: () => { window.location.href = url; }
+  });
+}
+
+// intercept internal links for transition
+document.querySelectorAll('a[href]').forEach(a => {
+  const href = a.getAttribute('href');
+  if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    navigateTo(href);
+  });
+});
+
+/* ─── PRELOADER ─── */
+(function() {
+  const countEl = document.getElementById('preloader-count');
+  const bar = document.getElementById('preloader-bar');
+  const loader = document.getElementById('preloader');
+  const nums = [0, 5, 18, 35, 55, 75, 90, 100];
+  let i = 0;
+
+  function step() {
+    if (i >= nums.length) {
+      const tl = gsap.timeline();
+      tl.to('#preloader-count', { y: -60, opacity: 0, duration: 0.35, ease: 'power3.in' })
+        .to('#preloader-bar, #preloader-label', { opacity: 0, duration: 0.2 }, '<')
+        .to(loader, {
+          clipPath: 'inset(0 0 100% 0)',
+          duration: 0.7,
+          ease: 'power4.inOut',
+          onComplete: () => { loader.style.display = 'none'; }
+        }, '-=0.1')
+        .call(enterPage);
+      return;
+    }
+    const n = nums[i++];
+    countEl.textContent = n;
+    bar.style.background = `linear-gradient(to right, #0066FF ${n}%, rgba(240,246,252,0.08) ${n}%)`;
+    setTimeout(step, n < 50 ? 55 : n < 90 ? 45 : 80);
+  }
+  step();
+})();
+
+/* ─── PAGE ENTER ─── */
+function enterPage() {
+  const tl = gsap.timeline();
+
+  tl.to('nav', { opacity: 1, duration: 0.7, ease: 'power2.out' }, 0);
+  tl.to('.hero-tag', { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 0.15);
+
+  document.querySelector('.hero-title').style.visibility = 'visible';
+  const words = document.querySelectorAll('.hero-title .word');
+  const allChars = [];
+  words.forEach(w => allChars.push(...splitChars(w)));
+  gsap.set(allChars, { opacity: 0, y: '115%' });
+  tl.to(allChars, {
+    opacity: 1, y: '0%',
+    stagger: 0.018, duration: 0.7, ease: 'power4.out'
+  }, 0.35);
+
+  tl.to('.hero-sub',   { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, 0.75);
+  tl.to('.hero-ctas',  { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }, 0.9);
+  tl.to('.hero-stats', { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }, 1.05);
+  tl.to('#scroll-hint', { opacity: 1, duration: 0.5 }, 1.4);
+}
+
+// initial states
+gsap.set('.hero-tag',   { y: 20 });
+gsap.set('.hero-sub',   { y: 20 });
+gsap.set('.hero-ctas',  { y: 20 });
+gsap.set('.hero-stats', { y: 20 });
+
+/* ─── SCROLL REVEALS ─── */
+document.querySelectorAll('.sr').forEach(el => {
+  const delay = parseFloat(getComputedStyle(el).getPropertyValue('--delay')) || 0;
+  gsap.fromTo(el,
+    { opacity: 0, y: 48 },
+    {
+      opacity: 1, y: 0,
+      duration: 0.9, delay,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 86%',
+        toggleActions: 'play none none none'
+      }
+    }
+  );
+});
+
+/* ─── PARALLAX glow on hero ─── */
+ScrollTrigger.create({
+  trigger: '.hero',
+  start: 'top top',
+  end: 'bottom top',
+  scrub: 1,
+  onUpdate: self => {
+    gsap.set('.hero-glow', { y: self.progress * 80 });
+    gsap.set('.hero-grid', { y: self.progress * 40 });
+  }
+});
+
+/* ─── HIDE SCROLL HINT ON SCROLL ─── */
+ScrollTrigger.create({
+  trigger: 'body',
+  start: '80px top',
+  onEnter: () => gsap.to('#scroll-hint', { opacity: 0, duration: 0.3 }),
+  onLeaveBack: () => gsap.to('#scroll-hint', { opacity: 1, duration: 0.3 })
+});
+
+/* ─── SMOOTH NAV SHRINK ─── */
+ScrollTrigger.create({
+  start: '50px top',
+  onEnter: () => gsap.to('nav', { padding: '0.5rem 0.5rem 0.5rem 1.5rem', duration: 0.4 }),
+  onLeaveBack: () => gsap.to('nav', { padding: '0.75rem 0.75rem 0.75rem 1.75rem', duration: 0.4 })
+});
+
+/* ─── SMOOTH SCROLL ─── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      // close mobile menu if open
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      document.body.style.overflow = '';
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
 });
 </script>
-</body></html>
+</body>
+</html>
